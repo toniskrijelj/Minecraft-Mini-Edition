@@ -3,32 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockGrid
+public class BlockGrid : MonoBehaviour
 {
 	public static BlockGrid Instance { get; private set; }
 
-    //public event EventHandler<OnGridObjectChangedEventArgs> OnGridObjectChanged;
-    public class OnGridObjectChangedEventArgs : EventArgs {
-        public int x;
-        public int y;
-    }
+    private const int width = 16;
+	private const int height = 16;
+	private const float cellSize = 1;
+	private static readonly Vector3 originPosition = new Vector3(-8, -8);
+	private Block[,] gridArray;
 
-    private int width;
-    private int height;
-    private float cellSize;
-    private Vector3 originPosition;
-    private Block[,] gridArray;
-
-    public BlockGrid(int width, int height, float cellSize, Vector3 originPosition) {
-        this.width = width;
-        this.height = height;
-        this.cellSize = cellSize;
-        this.originPosition = originPosition;
-
-        gridArray = new Block[width, height];
-
+	private void Awake()
+	{
+		gridArray = new Block[width, height];
+		for (int i = 0; i < 16; i++)
+		{
+			SpriteRenderer spriteRenderer = Instantiate(BlockData.blockData.blockPrefab, GetWorldPosition(i, 8), Quaternion.identity);
+			SetBlock(i, 8, new Block(1, ToolType.None, ToolMaterial.All, spriteRenderer, "BLOCK NIGGA " + i, BlockData.blockData.oakPlanksTexture));
+		}
 		Instance = this;
-    }
+	}
 
     public int GetWidth() {
         return width;
@@ -67,23 +61,20 @@ public class BlockGrid
         y = Mathf.RoundToInt((worldPosition - originPosition).y / cellSize);
     }
 
-    public void SetBlock(int x, int y, Block block) {
-        if (x >= 0 && y >= 0 && x < width && y < height) {
-			if(block == null)
+	public void SetBlock(int x, int y, Block block)
+	{
+		if (x >= 0 && y >= 0 && x < width && y < height)
+		{
+			if (block == null)
 			{
 				if (gridArray[x, y] != null)
 				{
 					UnityEngine.Object.Destroy(gridArray[x, y].GameObject);
 				}
 			}
-            gridArray[x, y] = block;
-            //OnGridObjectChanged?.Invoke(this, new OnGridObjectChangedEventArgs { x = x, y = y });
-        }
-    }
-
-    /*public void TriggerGridObjectChanged(int x, int y) {
-        OnGridObjectChanged?.Invoke(this, new OnGridObjectChangedEventArgs { x = x, y = y });
-    }*/
+			gridArray[x, y] = block;
+		}
+	}
 
     public void SetBlock(Vector3 worldPosition, Block value) {
 		GetXY(worldPosition, out int x, out int y);

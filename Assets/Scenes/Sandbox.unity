@@ -246,9 +246,9 @@ GameObject:
   - component: {fileID: 342456691}
   - component: {fileID: 342456690}
   - component: {fileID: 342456689}
-  - component: {fileID: 342456688}
   - component: {fileID: 342456687}
   - component: {fileID: 342456693}
+  - component: {fileID: 342456688}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -347,6 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ef08bd03ff84e49890226b5f367720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  crouchSpeed: 3
   walkSpeed: 4.3
   runSpeed: 5.6
   jumpHeight: 1.5

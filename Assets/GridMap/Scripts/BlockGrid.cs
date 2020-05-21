@@ -65,11 +65,18 @@ public class BlockGrid : MonoBehaviour
 	{
 		if (x >= 0 && y >= 0 && x < width && y < height)
 		{
+			if (block == null)
+			{
+				if (gridArray[x, y] != null)
+				{
+					Destroy(gridArray[x, y].GameObject);
+				}
+			}
 			gridArray[x, y] = block;
 		}
-	}
+	} 
 
-    public void SetBlock(Vector3 worldPosition, Block value) {
+	public void SetBlock(Vector3 worldPosition, Block value) {
 		GetXY(worldPosition, out int x, out int y);
 		SetBlock(x, y, value);
     }

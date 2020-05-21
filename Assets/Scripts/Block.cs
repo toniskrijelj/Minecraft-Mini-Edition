@@ -27,6 +27,7 @@ public class Block
 
 	~Block()
 	{
+		Debug.Log("nigga");
 		if(GameObject != null)
 		{
 			Object.Destroy(GameObject);
@@ -45,7 +46,7 @@ public class Block
 
 	public bool Damage(ToolType toolType, ToolMaterial toolMaterial)
 	{
-		if(toolType.CanHarvest(ToolType))
+		if(toolType.CanHarvest(ToolType) && toolMaterial.StrongEnough(ToolMaterial))
 		{
 			float multiplier = toolType.RightTool(ToolType) ? toolMaterial.Multiplier : 1;
 			currentDamage += Time.deltaTime * multiplier * 0.666666f;

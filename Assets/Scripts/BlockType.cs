@@ -5,7 +5,7 @@ using System;
 
 public class BlockType : Enumeration
 {
-	public static readonly BlockType OakPlanks = new BlockType(100, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.oakPlanksTexture);
+	public static readonly BlockType OakPlanks = new BlockType(2, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.oakPlanksTexture);
 
 	public float Hardness { get; }
 	public ToolType ToolType { get; }

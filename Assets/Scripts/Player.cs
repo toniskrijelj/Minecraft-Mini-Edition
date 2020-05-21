@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
 	public static Player Instance { get; private set; }
 
+	[SerializeField] GameObject breakObject;
+	[SerializeField] Transform fillBar;
 	private Item inHand = Item.OakPlanks;
 	private ToolType activeTool = ToolType.None;
 	private ToolMaterial toolMaterial = ToolMaterial.All;
@@ -34,13 +36,8 @@ public class Player : MonoBehaviour
 		bonusDamage += difference;
 	}
 
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
+	Block currentBlock = null;
 
-    // Update is called once per frame
     void Update()
     {
 		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -53,13 +50,37 @@ public class Player : MonoBehaviour
 			Vector2Int placeGridPosition = BlockGrid.Instance.GetXY(placeWorldPosition);
 			Vector2Int breakGridPosition = BlockGrid.Instance.GetXY(breakWorldPosition);
 
-
+			Block newBlock = BlockGrid.Instance.GetBlock(breakGridPosition.x, breakGridPosition.y);
+			if(newBlock != currentBlock)
+			{
+				currentBlock?.Repair();
+			}
+			currentBlock = newBlock;
 			if (Input.GetMouseButtonDown(0))
 			{
-				BlockGrid.Instance.SetBlock(breakGridPosition.x, breakGridPosition.y, null);
+
+			}
+			if(Input.GetMouseButton(0))
+			{
+				breakObject.SetActive(true);
+				breakObject.transform.position = BlockGrid.Instance.GetWorldPosition(breakGridPosition.x, breakGridPosition.y);
+				if(currentBlock.Damage(activeTool, toolMaterial))
+				{
+					BlockGrid.Instance.SetBlock(breakGridPosition.x, breakGridPosition.y, null);
+					breakObject.SetActive(false);
+				}
+				fillBar.transform.localScale = new Vector3(currentBlock.Percentage(), fillBar.transform.localScale.y);
+			}
+			else
+			{
+				breakObject.SetActive(false);
+			}
+			if(Input.GetMouseButtonUp(0))
+			{
+				currentBlock?.Repair();
 			}
 
-			if (inHand is Item.BlockItem)
+			if (HoldingBlock())
 			{
 				if (Input.GetMouseButton(1))
 				{
@@ -74,6 +95,12 @@ public class Player : MonoBehaviour
 				}
 			}
 		}
+		else
+		{
+			currentBlock?.Repair();
+			currentBlock = null;
+			breakObject.SetActive(false);
+		}
 	}
 
 	private void OnDrawGizmos()
@@ -87,5 +114,10 @@ public class Player : MonoBehaviour
 
 		Gizmos.DrawSphere(placeWorldPosition, .05f);
 		Gizmos.DrawSphere(breakWorldPosition, .05f);
+	}
+
+	public bool HoldingBlock()
+	{
+		return inHand is Item.BlockItem;
 	}
 }

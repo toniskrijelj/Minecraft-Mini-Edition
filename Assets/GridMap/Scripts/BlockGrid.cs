@@ -19,7 +19,7 @@ public class BlockGrid : MonoBehaviour
 		for (int i = 0; i < 16; i++)
 		{
 			SpriteRenderer spriteRenderer = Instantiate(BlockData.blockData.blockPrefab, GetWorldPosition(i, 8), Quaternion.identity);
-			SetBlock(i, 8, new Block(1, ToolType.None, ToolMaterial.All, spriteRenderer, "BLOCK NIGGA " + i, BlockData.blockData.oakPlanksTexture));
+			SetBlock(i, 8, new Block(1, ToolType.Axe, ToolMaterial.All, spriteRenderer, "BLOCK NIGGA " + i, BlockData.blockData.oakPlanksTexture));
 		}
 		Instance = this;
 	}
@@ -65,13 +65,6 @@ public class BlockGrid : MonoBehaviour
 	{
 		if (x >= 0 && y >= 0 && x < width && y < height)
 		{
-			if (block == null)
-			{
-				if (gridArray[x, y] != null)
-				{
-					UnityEngine.Object.Destroy(gridArray[x, y].GameObject);
-				}
-			}
 			gridArray[x, y] = block;
 		}
 	}

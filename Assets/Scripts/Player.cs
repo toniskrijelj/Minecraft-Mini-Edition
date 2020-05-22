@@ -40,59 +40,53 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		var hit = Physics2D.Raycast(transform.position, (mousePosition - transform.position).normalized, 4, 1 << 8);
-		if (hit)
+		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		mouseWorldPosition.z = 0;
+		if ((mouseWorldPosition - transform.position).sqrMagnitude <= 4 * 4)
 		{
-			Vector2 placeWorldPosition = hit.point + hit.normal * 0.1f;
-			Vector2 breakWorldPosition = hit.point - hit.normal * 0.1f;
-
-			Vector2Int placeGridPosition = BlockGrid.Instance.GetXY(placeWorldPosition);
-			Vector2Int breakGridPosition = BlockGrid.Instance.GetXY(breakWorldPosition);
-
-			Block newBlock = BlockGrid.Instance.GetBlock(breakGridPosition.x, breakGridPosition.y);
-			if(newBlock != currentBlock)
+			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);
+			Block block = BlockGrid.Instance.GetBlock(mouseGridPosition);
+			if (block != null)
 			{
-				currentBlock?.Repair();
-			}
-			currentBlock = newBlock;
-			if (Input.GetMouseButtonDown(0))
-			{
-
-			}
-			if(Input.GetMouseButton(0))
-			{
-				breakObject.SetActive(true);
-				breakObject.transform.position = BlockGrid.Instance.GetWorldPosition(breakGridPosition.x, breakGridPosition.y);
-				if(currentBlock.Damage(activeTool, toolMaterial))
+				if (block != currentBlock)
 				{
-					BlockGrid.Instance.SetBlock(breakGridPosition.x, breakGridPosition.y, null);
+					currentBlock?.Repair();
+				}
+				currentBlock = block;
+				if (Input.GetMouseButtonDown(0))
+				{
+
+				}
+				if (Input.GetMouseButton(0))
+				{
+					breakObject.SetActive(true);
+					breakObject.transform.position = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);
+					if (currentBlock.Damage(activeTool, toolMaterial))
+					{
+						breakObject.SetActive(false);
+						currentBlock = null;
+						block = null;
+						BlockGrid.Instance.SetBlock(mouseGridPosition, null);
+					}
+					else
+					{
+						fillBar.transform.localScale = new Vector3(currentBlock.Percentage(), fillBar.transform.localScale.y);
+					}
+				}
+				else
+				{
 					breakObject.SetActive(false);
 				}
-				fillBar.transform.localScale = new Vector3(currentBlock.Percentage(), fillBar.transform.localScale.y);
+				if (Input.GetMouseButtonUp(0))
+				{
+					currentBlock?.Repair();
+				}
 			}
 			else
-			{
-				breakObject.SetActive(false);
-			}
-			if(Input.GetMouseButtonUp(0))
 			{
 				currentBlock?.Repair();
-			}
-
-			if (HoldingBlock())
-			{
-				if (Input.GetMouseButton(1))
-				{
-					inHand.SpecialAction();
-				}
-			}
-			else
-			{
-				if(Input.GetMouseButtonDown(1))
-				{
-					inHand.SpecialAction();
-				}
+				currentBlock = null;
+				breakObject.SetActive(false);
 			}
 		}
 		else
@@ -101,8 +95,12 @@ public class Player : MonoBehaviour
 			currentBlock = null;
 			breakObject.SetActive(false);
 		}
+		if (Input.GetMouseButtonDown(1))
+		{
+			inHand.SpecialAction();
+		}
 	}
-
+	/*
 	private void OnDrawGizmos()
 	{
 		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -115,7 +113,7 @@ public class Player : MonoBehaviour
 		Gizmos.DrawSphere(placeWorldPosition, .05f);
 		Gizmos.DrawSphere(breakWorldPosition, .05f);
 	}
-
+	*/
 	public bool HoldingBlock()
 	{
 		return inHand is Item.BlockItem;

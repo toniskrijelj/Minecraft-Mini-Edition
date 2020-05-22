@@ -40,6 +40,11 @@ public class BlockGrid : MonoBehaviour
         return new Vector3(x, y) * cellSize + originPosition;
     }
 
+	public Vector3 GetWorldPosition(Vector2Int gridPosition)
+	{
+		return GetWorldPosition(gridPosition.x, gridPosition.y);
+	}
+
 	public Vector2Int GetXY(Vector3 worldPosition)
 	{
 		GetXY(worldPosition, out int x, out int y);
@@ -74,7 +79,12 @@ public class BlockGrid : MonoBehaviour
 			}
 			gridArray[x, y] = block;
 		}
-	} 
+	}
+
+	public void SetBlock(Vector2Int gridPosition, Block value)
+	{
+		SetBlock(gridPosition.x, gridPosition.y, value);
+	}
 
 	public void SetBlock(Vector3 worldPosition, Block value) {
 		GetXY(worldPosition, out int x, out int y);
@@ -88,6 +98,11 @@ public class BlockGrid : MonoBehaviour
             return default;
         }
     }
+
+	public Block GetBlock(Vector2Int gridPosition)
+	{
+		return GetBlock(gridPosition.x, gridPosition.y);
+	}
 
     public Block GetBlock(Vector3 worldPosition) {
 		GetXY(worldPosition, out int x, out int y);

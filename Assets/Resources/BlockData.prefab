@@ -45,4 +45,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blockPrefab: {fileID: 5983052184422762067, guid: d21f3a00cef0ddb4ea2fdd017a2f8414,
     type: 3}
-  oakPlanksTexture: {fileID: 21300000, guid: fabe15e97f276ca43b3277dea17444e2, type: 3}
+  oakPlanksTexture: {fileID: 21300000, guid: 01a2bfb2e7841644a8ff39559e92a186, type: 3}

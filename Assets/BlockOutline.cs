@@ -7,6 +7,7 @@ public class BlockOutline : MonoBehaviour
 	[SerializeField] SpriteRenderer breakOutline = null;
 	[SerializeField] SpriteRenderer placeOutline = null;
 
+	/*
 	void Update()
 	{
 		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -36,4 +37,5 @@ public class BlockOutline : MonoBehaviour
 			breakOutline.enabled = false;
 		}
 	}
+	*/
 }

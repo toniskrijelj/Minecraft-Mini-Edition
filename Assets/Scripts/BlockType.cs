@@ -22,19 +22,22 @@ public class BlockType : Enumeration
 
 	public void TryPlace()
 	{
-		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		var hit = Physics2D.Raycast(Player.Instance.transform.position, (mousePosition - Player.Instance.transform.position).normalized, 4, 1 << 8);
-		if (hit)
+		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		if ((mouseWorldPosition - Player.Instance.transform.position).sqrMagnitude <= 4 * 4)
 		{
-			Vector2 placeWorldPosition = hit.point + hit.normal * 0.1f;
-			Vector2Int placeGridPosition = BlockGrid.Instance.GetXY(placeWorldPosition);
-			placeWorldPosition = BlockGrid.Instance.GetWorldPosition(placeGridPosition.x, placeGridPosition.y);
-			if (!BlockGrid.Instance.CheckXY(placeGridPosition) || Physics2D.BoxCast(placeWorldPosition, new Vector2(.8f, .8f), 0, Vector2.zero, 0, 1 << 10))
+			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);
+			Vector3 worldPosition = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);
+			if (
+			BlockGrid.Instance.CheckXY(mouseGridPosition) &&
+			!Physics2D.BoxCast(worldPosition, new Vector2(.8f, .8f), 0, Vector2.zero, 0, 1 << 10) && (
+			BlockGrid.Instance.GetBlock(mouseGridPosition.x - 1, mouseGridPosition.y) != null ||
+			BlockGrid.Instance.GetBlock(mouseGridPosition.x + 1, mouseGridPosition.y) != null ||
+			BlockGrid.Instance.GetBlock(mouseGridPosition.x, mouseGridPosition.y + 1) != null ||
+			BlockGrid.Instance.GetBlock(mouseGridPosition.x, mouseGridPosition.y - 1) != null))
 			{
-				return;
+				Block block = new Block(Hardness, ToolType, ToolMaterial, UnityEngine.Object.Instantiate(BlockData.blockData.blockPrefab, worldPosition, Quaternion.identity), "nigg", Texture());
+				BlockGrid.Instance.SetBlock(mouseGridPosition, block);
 			}
-			Block block = new Block(Hardness, ToolType, ToolMaterial, UnityEngine.Object.Instantiate(BlockData.blockData.blockPrefab, placeWorldPosition, Quaternion.identity), "nigg", Texture());
-			BlockGrid.Instance.SetBlock(placeGridPosition.x, placeGridPosition.y, block);
 		}
 	}
 }

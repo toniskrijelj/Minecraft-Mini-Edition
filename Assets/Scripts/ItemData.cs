@@ -12,23 +12,9 @@ public class ItemData : MonoBehaviour
 		{
 			if (_i == null)
 			{
-				GameObject gameObj = Instantiate(Resources.Load("ItemData") as GameObject);
-				_i = gameObj.GetComponent<ItemData>();
-				_i.name = "ItemData";
+				_i = Resources.Load<ItemData>("ItemData");
 			}
 			return _i;
-		}
-	}
-
-	private void Awake()
-	{
-		if (_i == null)
-		{
-			_i = this;
-		}
-		else
-		{
-			Destroy(gameObject);
 		}
 	}
 
@@ -36,5 +22,5 @@ public class ItemData : MonoBehaviour
 	public Sprite diamondSword;
 	public Sprite woodenSword;
 	public Sprite woodenPickaxe;
-
+	public ItemEntity itemEntityPrefab;
 }

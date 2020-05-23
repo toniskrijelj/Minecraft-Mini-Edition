@@ -12,25 +12,11 @@ public class BlockData : MonoBehaviour
 		{
 			if (_i == null)
 			{
-				_i = (Resources.Load("BlockData") as GameObject).GetComponent<BlockData>();
+				_i = Resources.Load<BlockData>("BlockData");
 			}
 			return _i;
 		}
 	}
-
-	private void Awake()
-	{
-		if(_i == null)
-		{
-			_i = this;
-		}
-		else
-		{
-			Destroy(gameObject);
-		}
-	}
-
-	public SpriteRenderer blockPrefab;
 
 	public Sprite oakPlanksTexture;
 }

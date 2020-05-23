@@ -11,15 +11,16 @@ public class BlockGrid : MonoBehaviour
 	private const int height = 16;
 	private const float cellSize = 1;
 	private static readonly Vector3 originPosition = new Vector3(-8, -8);
-	private Block[,] gridArray;
+	public Block[,] gridArray;
 
 	private void Awake()
 	{
 		gridArray = new Block[width, height];
 		for (int i = 0; i < 16; i++)
 		{
-			SpriteRenderer spriteRenderer = Instantiate(BlockData.blockData.blockPrefab, GetWorldPosition(i, 8), Quaternion.identity);
-			SetBlock(i, 8, new Block(1, ToolType.Axe, ToolMaterial.All, spriteRenderer, "BLOCK NIGGA " + i, BlockData.blockData.oakPlanksTexture));
+						//Block.Place(worldPosition, Hardness, ToolType, ToolMaterial, Texture(), Item, Input.GetKey(KeyCode.LeftAlt))
+			Block block = Block.Place(GetWorldPosition(i, 8), 1, ToolType.Axe, ToolMaterial.All, BlockData.blockData.oakPlanksTexture, Item.OakPlanks);
+			SetBlock(i, 8, block);
 		}
 		Instance = this;
 	}
@@ -70,13 +71,6 @@ public class BlockGrid : MonoBehaviour
 	{
 		if (x >= 0 && y >= 0 && x < width && y < height)
 		{
-			if (block == null)
-			{
-				if (gridArray[x, y] != null)
-				{
-					Destroy(gridArray[x, y].GameObject);
-				}
-			}
 			gridArray[x, y] = block;
 		}
 	}
@@ -109,4 +103,19 @@ public class BlockGrid : MonoBehaviour
 		return GetBlock(x, y);
     }
 
+	public bool CanPlace(int x, int y)
+	{
+		return CheckXY(x, y) &&
+				GetBlock(x, y) == null &&
+				(!Physics2D.BoxCast(GetWorldPosition(x, y), new Vector2(.8f, .8f), 0, Vector2.zero, 0, 1 << 10) || Input.GetKey(KeyCode.LeftAlt)) &&
+				(GetBlock(x - 1, y) != null ||
+				GetBlock(x + 1, y) != null ||
+				GetBlock(x, y + 1) != null ||
+				GetBlock(x, y - 1) != null);
+	}
+
+	public bool CanPlace(Vector2Int mouseGridPosition)
+	{
+		return CanPlace(mouseGridPosition.x, mouseGridPosition.y);
+	}
 }

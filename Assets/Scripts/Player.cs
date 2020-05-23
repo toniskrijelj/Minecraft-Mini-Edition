@@ -6,9 +6,9 @@ public class Player : MonoBehaviour
 {
 	public static Player Instance { get; private set; }
 
-	[SerializeField] GameObject breakObject;
-	[SerializeField] Transform fillBar;
-	private Item inHand = Item.OakPlanks;
+	[SerializeField] GameObject breakObject = null;
+	[SerializeField] Transform fillBar = null;
+	private Slot handSlot;
 	private ToolType activeTool = ToolType.None;
 	private ToolMaterial toolMaterial = ToolMaterial.All;
 	private float bonusDamage = 0;
@@ -18,11 +18,11 @@ public class Player : MonoBehaviour
 		Instance = this;
 	}
 
-	public void ChangeItem(Item item)
+	public void ChangeHandSlot(Slot slot)
 	{
-		inHand?.RemoveFromHand();
-		inHand = item;
-		inHand?.PutInHand();
+		handSlot?.item?.RemoveFromHand();
+		handSlot = slot;
+		handSlot?.item?.PutInHand();
 	}
 
 	public void ChangeTool(ToolType tool, ToolMaterial material)
@@ -61,17 +61,8 @@ public class Player : MonoBehaviour
 				{
 					breakObject.SetActive(true);
 					breakObject.transform.position = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);
-					if (currentBlock.Damage(activeTool, toolMaterial))
-					{
-						breakObject.SetActive(false);
-						currentBlock = null;
-						block = null;
-						BlockGrid.Instance.SetBlock(mouseGridPosition, null);
-					}
-					else
-					{
-						fillBar.transform.localScale = new Vector3(currentBlock.Percentage(), fillBar.transform.localScale.y);
-					}
+					currentBlock.Damage(activeTool, toolMaterial);
+					fillBar.transform.localScale = new Vector3(currentBlock.Percentage(), fillBar.transform.localScale.y);
 				}
 				else
 				{
@@ -95,9 +86,12 @@ public class Player : MonoBehaviour
 			currentBlock = null;
 			breakObject.SetActive(false);
 		}
-		if (Input.GetMouseButtonDown(1))
+		if (Input.GetMouseButton(1))
 		{
-			inHand.SpecialAction();
+			if(handSlot.item.SpecialAction())
+			{
+				handSlot.Consume(1);
+			}
 		}
 	}
 	/*
@@ -116,6 +110,6 @@ public class Player : MonoBehaviour
 	*/
 	public bool HoldingBlock()
 	{
-		return inHand is Item.BlockItem;
+		return handSlot.item is Item.BlockItem;
 	}
 }

@@ -4,38 +4,44 @@ using UnityEngine;
 
 public class BlockOutline : MonoBehaviour
 {
-	[SerializeField] SpriteRenderer breakOutline = null;
-	[SerializeField] SpriteRenderer placeOutline = null;
+	SpriteRenderer blockOutline;
 
-	/*
+	private void Awake()
+	{
+		blockOutline = GetComponent<SpriteRenderer>();
+	}
+
 	void Update()
 	{
-		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		var hit = Physics2D.Raycast(Player.Instance.transform.position, (mousePosition - Player.Instance.transform.position).normalized, 4, 1 << 8);
-		if (hit)
+		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		mouseWorldPosition.z = 0;
+		if ((mouseWorldPosition - Player.Instance.transform.position).sqrMagnitude <= 4 * 4)
 		{
-			Vector2 placeWorldPosition = hit.point + hit.normal * 0.1f;
-			Vector2 breakWorldPosition = hit.point - hit.normal * 0.1f;
-			Vector2Int placeGridPosition = BlockGrid.Instance.GetXY(placeWorldPosition);
-			Vector2Int breakGridPosition = BlockGrid.Instance.GetXY(breakWorldPosition);
-			breakOutline.enabled = true;
-			breakOutline.transform.position = BlockGrid.Instance.GetWorldPosition(breakGridPosition.x, breakGridPosition.y);
-			if (Player.Instance.HoldingBlock() && BlockGrid.Instance.CheckXY(placeGridPosition) && !Physics2D.BoxCast(placeWorldPosition, new Vector2(.8f, .8f), 0, Vector2.zero, 0, 1 << 10))
+			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);
+			Block block = BlockGrid.Instance.GetBlock(mouseGridPosition);
+			if (block != null)
 			{
-				placeWorldPosition = BlockGrid.Instance.GetWorldPosition(placeGridPosition.x, placeGridPosition.y);
-				placeOutline.transform.position = placeWorldPosition;
-				placeOutline.enabled = true;
+				transform.position = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);
+				blockOutline.enabled = true;
 			}
-			else
+			else if(Player.Instance.HoldingBlock())
 			{
-				placeOutline.enabled = false;
+				if (BlockGrid.Instance.CanPlace(mouseGridPosition))
+				{
+					transform.position = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);
+					blockOutline.enabled = true;
+				}
+				else
+				{
+					blockOutline.enabled = false;
+					blockOutline.enabled = false;
+				}
 			}
 		}
 		else
 		{
-			placeOutline.enabled = false;
-			breakOutline.enabled = false;
+			blockOutline.enabled = false;
+			blockOutline.enabled = false;
 		}
 	}
-	*/
 }

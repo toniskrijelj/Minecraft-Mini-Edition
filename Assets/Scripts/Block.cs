@@ -2,36 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Block
+public class Block : MonoBehaviour
 {
-	public string Name { get; }
-	public float Hardness { get; }
-	public ToolType ToolType { get; }
-	public ToolMaterial ToolMaterial { get; }
-	public GameObject GameObject { get; }
-	bool harvested = false;
+	private static Block prefab;
+	public static Block Prefab
+	{
+		get
+		{
+			if(prefab == null)
+			{
+				prefab = Resources.Load<Block>("BlockPrefab");
+			}
+			return prefab;
+		}
+	}
+
+	[SerializeField] SpriteRenderer spriteRenderer = null;
+	[SerializeField] Collider2D blockCollider = null;
+
+	private float hardness;
+	private ToolType toolType;
+	private ToolMaterial toolMaterial;
+	private Item item;
 
 	float totalDamage;
 	float currentDamage;
 
-	public Block(float hardness, ToolType toolType, ToolMaterial toolMaterial, SpriteRenderer spriteRenderer, string name = "", Sprite texture = null)
+	public static Block Place(Vector3 worldPosition, float hardness, ToolType toolType, ToolMaterial toolMaterial, Sprite texture, Item item, bool background = false)
 	{
-		Name = name;
-		GameObject = spriteRenderer.gameObject;
-		Hardness = hardness;
-		ToolMaterial = toolMaterial;
-		ToolType = toolType;
-		spriteRenderer.sprite = texture;
-		totalDamage = hardness;
-	}
-
-	~Block()
-	{
-		Debug.Log("nigga");
-		if(GameObject != null)
+		Block block = Instantiate(Prefab, worldPosition, Quaternion.identity);
+		block.hardness = hardness;
+		block.toolMaterial = toolMaterial;
+		block.toolType = toolType;
+		block.spriteRenderer.sprite = texture;
+		block.totalDamage = hardness;
+		block.item = item;
+		if(background)
 		{
-			Object.Destroy(GameObject);
+			block.spriteRenderer.color = new Color(1, 1, 1, 0.7f);
 		}
+		else
+		{
+			block.blockCollider.enabled = true;
+		}
+		return block;
 	}
 
 	public float Percentage()
@@ -44,21 +58,31 @@ public class Block
 		currentDamage = 0;
 	}
 
+	bool destroyed = false;
+
 	public bool Damage(ToolType toolType, ToolMaterial toolMaterial)
 	{
-		if(toolType.CanHarvest(ToolType) && toolMaterial.StrongEnough(ToolMaterial))
+		if(toolType.CanHarvest(toolType) && toolMaterial.StrongEnough(toolMaterial))
 		{
-			float multiplier = toolType.RightTool(ToolType) ? toolMaterial.Multiplier : 1;
+			float multiplier = toolType.RightTool(toolType) ? toolMaterial.Multiplier : 1;
 			currentDamage += Time.deltaTime * multiplier * 0.666666f;
 			if(currentDamage >= totalDamage)
 			{
-				harvested = true;
+				if (destroyed) return true;
+				destroyed = true;
+				Instantiate(ItemData.icons.itemEntityPrefab, transform.position, Quaternion.identity).Setup(item);
 			}
 		}
 		else
 		{
 			currentDamage += Time.deltaTime * 0.2f;
 		}
-		return currentDamage >= totalDamage;
+		if(currentDamage >= totalDamage)
+		{
+			destroyed = true;
+			Destroy(gameObject);
+			return true;
+		}
+		return false;
 	}
 }

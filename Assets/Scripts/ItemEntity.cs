@@ -4,20 +4,31 @@ using UnityEngine;
 
 public class ItemEntity : MonoBehaviour
 {
+	private static ItemEntity prefab = null;
+	public static ItemEntity Prefab
+	{
+		get
+		{
+			if(prefab == null)
+			{
+				prefab = Resources.Load<ItemEntity>("ItemEntity");
+			}
+			return prefab;
+		}
+	}
+
 	[SerializeField] float bobbingSpeed = 2f;
 	[SerializeField] SpriteRenderer spriteRenderer = null;
-	[SerializeField] Rigidbody2D rb = null;
+	float amount;
 
 	private Item item;
 	private float spawnTime;
 
-	bool startedBobbing = false;
-	float startTime;
-	float originalY;
-
 	public void Setup(Item item)
 	{
 		this.item = item;
+		Debug.Log(item);
+		Debug.Log(spriteRenderer);
 		spriteRenderer.sprite = item.GetIcon();
 	}
 
@@ -28,16 +39,7 @@ public class ItemEntity : MonoBehaviour
 
 	private void Update()
 	{
-		if(rb.velocity.sqrMagnitude < 0.1f)
-		{
-			if(!startedBobbing)
-			{
-				startedBobbing = true;
-				originalY = spriteRenderer.transform.position.y;
-				startTime = Time.time;
-			}
-			spriteRenderer.transform.localPosition = Vector3.up * Mathf.Sin((Time.time - startTime) * bobbingSpeed) / 10f;
-		}
+		spriteRenderer.transform.localPosition = Vector3.up * Mathf.Sin((Time.time - spawnTime) * bobbingSpeed) / 10f;
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)

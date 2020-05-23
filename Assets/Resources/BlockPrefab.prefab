@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1815177517662034153}
   - component: {fileID: 5983052184422762067}
   - component: {fileID: 214450690823136098}
+  - component: {fileID: 8609493887107195743}
   m_Layer: 8
   m_Name: BlockPrefab
   m_TagString: Untagged
@@ -88,7 +89,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8249817711450834013}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 368c950c40aa1b5499b6e71c1a3a9aea, type: 2}
   m_IsTrigger: 0
@@ -107,3 +108,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8609493887107195743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8249817711450834013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d775c8b4298d95d48b904ab61690f989, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5983052184422762067}
+  blockCollider: {fileID: 214450690823136098}

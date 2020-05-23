@@ -5,39 +5,38 @@ using System;
 
 public class BlockType : Enumeration
 {
-	public static readonly BlockType OakPlanks = new BlockType(2, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.oakPlanksTexture);
+	public static readonly BlockType OakPlanks = new BlockType(1, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.oakPlanksTexture, () => Item.OakPlanks);
 
 	public float Hardness { get; }
 	public ToolType ToolType { get; }
 	public ToolMaterial ToolMaterial { get; }
 	public Func<Sprite> Texture { get; }
+	public Func<Item> GetItem { get; }
 
-	protected BlockType(float hardness, ToolType toolType, ToolMaterial toolMaterial, Func<Sprite> texture)
+	protected BlockType(float hardness, ToolType toolType, ToolMaterial toolMaterial, Func<Sprite> texture, Func<Item> itemDrop)
 	{
 		Hardness = hardness;
 		ToolType = toolType;
 		ToolMaterial = toolMaterial;
 		Texture = texture;
+		GetItem = itemDrop;
 	}
 
-	public void TryPlace()
+	public bool TryPlace()
 	{
 		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		mouseWorldPosition.z = 0;
 		if ((mouseWorldPosition - Player.Instance.transform.position).sqrMagnitude <= 4 * 4)
 		{
 			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);
 			Vector3 worldPosition = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);
-			if (
-			BlockGrid.Instance.CheckXY(mouseGridPosition) &&
-			!Physics2D.BoxCast(worldPosition, new Vector2(.8f, .8f), 0, Vector2.zero, 0, 1 << 10) && (
-			BlockGrid.Instance.GetBlock(mouseGridPosition.x - 1, mouseGridPosition.y) != null ||
-			BlockGrid.Instance.GetBlock(mouseGridPosition.x + 1, mouseGridPosition.y) != null ||
-			BlockGrid.Instance.GetBlock(mouseGridPosition.x, mouseGridPosition.y + 1) != null ||
-			BlockGrid.Instance.GetBlock(mouseGridPosition.x, mouseGridPosition.y - 1) != null))
+			if (BlockGrid.Instance.CanPlace(mouseGridPosition))
 			{
-				Block block = new Block(Hardness, ToolType, ToolMaterial, UnityEngine.Object.Instantiate(BlockData.blockData.blockPrefab, worldPosition, Quaternion.identity), "nigg", Texture());
+				Block block = Block.Place(worldPosition, Hardness, ToolType, ToolMaterial, Texture(), GetItem(), Input.GetKey(KeyCode.LeftAlt));
 				BlockGrid.Instance.SetBlock(mouseGridPosition, block);
+				return true;
 			}
 		}
+		return false;
 	}
 }

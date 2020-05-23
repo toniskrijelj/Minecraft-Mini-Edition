@@ -13,13 +13,19 @@ public class Item : Enumeration
 
 	private Action putInHand = null;
 	private Action removeFromHand = null;
-	private Action specialAction = null;
+	private Func<bool> specialAction = null;
+
+	public readonly bool stackable;
 
 	public Func<Sprite> GetIcon { get; }
 
-	protected Item(string displayName, Func<Sprite> iconFunc) : base(displayName) { GetIcon = iconFunc; }
+	protected Item(string displayName, Func<Sprite> iconFunc, bool stackable) : base(displayName)
+	{
+		GetIcon = iconFunc;
+		this.stackable = stackable;
+	}
 
-	protected Item(int value, string displayName, Action putInHand, Action removeFromHand, Action specialAction) : base(displayName)
+	protected Item(int value, string displayName, Action putInHand, Action removeFromHand, Func<bool> specialAction) : base(displayName)
 	{
 		this.putInHand = putInHand;
 		this.removeFromHand = removeFromHand;
@@ -36,14 +42,18 @@ public class Item : Enumeration
 		removeFromHand?.Invoke();
 	}
 
-	public void SpecialAction()
+	public bool SpecialAction()
 	{
-		specialAction?.Invoke();
+		if(specialAction == null)
+		{
+			return false;
+		}
+		return specialAction.Invoke();
 	}
 
 	private class SwordItem : Item
 	{
-		public SwordItem(string displayName, Func<Sprite> icon, int damageIncrease) : base(displayName, icon)
+		public SwordItem(string displayName, Func<Sprite> icon, int damageIncrease) : base(displayName, icon, false)
 		{
 			putInHand = () => Player.Instance.ChangeBonusDamage(damageIncrease);
 			removeFromHand = () => Player.Instance.ChangeBonusDamage(-damageIncrease);
@@ -51,14 +61,14 @@ public class Item : Enumeration
 	}
 	public class BlockItem : Item
 	{
-		public BlockItem(string displayName, Func<Sprite> icon, BlockType blockType) : base(displayName, icon)
+		public BlockItem(string displayName, Func<Sprite> icon, BlockType blockType) : base(displayName, icon, true)
 		{
 			specialAction = blockType.TryPlace;
 		}
 	}
 	private class ToolItem : Item
 	{
-		public ToolItem(string displayName, Func<Sprite> icon, ToolType type, ToolMaterial material) : base(displayName, icon)
+		public ToolItem(string displayName, Func<Sprite> icon, ToolType type, ToolMaterial material) : base(displayName, icon, false)
 		{
 			putInHand = () => Player.Instance.ChangeTool(type, material);
 			removeFromHand = () => Player.Instance.ChangeTool(ToolType.None, ToolMaterial.All);

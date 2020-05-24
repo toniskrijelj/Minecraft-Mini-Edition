@@ -16,9 +16,15 @@ public class HotbarUI : MonoBehaviour
         for(int i = 0; i<9; i++)
         {
             slots[i] = transform.Find("Slot" + (i+1)).GetComponent<SlotUI>();
-			slots[i].SetSlot(inventory.slots[i]);
         }
     }
+	private void Start()
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			slots[i].SetSlot(inventory.slots[i]);
+		}
+	}
 
 	private void OnEnable()
 	{

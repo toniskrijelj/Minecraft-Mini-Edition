@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemEntity : MonoBehaviour
 {
 	private static ItemEntity prefab = null;
-	public static ItemEntity Prefab
+	private static ItemEntity Prefab
 	{
 		get
 		{
@@ -17,20 +17,29 @@ public class ItemEntity : MonoBehaviour
 		}
 	}
 
-	[SerializeField] float bobbingSpeed = 2f;
-	[SerializeField] SpriteRenderer spriteRenderer = null;
-	float amount;
+	public static ItemEntity Spawn(Vector3 worldPosition, Item item, int amount)
+	{
+		ItemEntity itemEntity = Instantiate(Prefab, worldPosition, Quaternion.identity);
+		itemEntity.item = item;
+		for(int i = 0; i < itemEntity.spriteRenderers.Length; i++)
+		{
+			itemEntity.spriteRenderers[i].sprite = item.GetIcon();
+		}
+		itemEntity.SetAmount(amount);
+		itemEntity.rb.velocity = new Vector2(PlayerSprite.Instance.lastSprite == PlayerSprite.Instance.left ? -itemEntity.throwPower : itemEntity.throwPower, 0);
+		return itemEntity;
+	}
 
+	[SerializeField] private float bobbingSpeed = 2f;
+	[SerializeField] private float throwPower = 3;
+	[SerializeField] private Transform offset = null;
+	[SerializeField] private Rigidbody2D rb = null;
+	[SerializeField] private SpriteRenderer[] spriteRenderers = null;
+
+	private int amount;
 	private Item item;
 	private float spawnTime;
-
-	public void Setup(Item item)
-	{
-		this.item = item;
-		Debug.Log(item);
-		Debug.Log(spriteRenderer);
-		spriteRenderer.sprite = item.GetIcon();
-	}
+	private bool picked = false;
 
 	private void Awake()
 	{
@@ -39,18 +48,95 @@ public class ItemEntity : MonoBehaviour
 
 	private void Update()
 	{
-		spriteRenderer.transform.localPosition = Vector3.up * Mathf.Sin((Time.time - spawnTime) * bobbingSpeed) / 10f;
+		offset.localPosition = Vector3.up * Mathf.Sin((Time.time - spawnTime) * bobbingSpeed) / 10f;
 	}
 
-	private void OnTriggerEnter2D(Collider2D collision)
+	private void SetAmount(int amount)
 	{
-		Debug.Log("picked");
-		/*
-		 * if(spawnTime + 2 > Time.time) return;
-		if(player.TryAddItem(type))
+		if(amount <= 0)
 		{
 			Destroy(gameObject);
+			return;
 		}
-		*/
+		if (amount >= 21)
+		{
+			spriteRenderers[0].enabled = true;
+			spriteRenderers[1].enabled = true;
+			spriteRenderers[2].enabled = true;
+			spriteRenderers[3].enabled = true;
+		}
+		else if (amount >= 6)
+		{
+			spriteRenderers[0].enabled = true;
+			spriteRenderers[1].enabled = true;
+			spriteRenderers[2].enabled = true;
+			spriteRenderers[3].enabled = false;
+		}
+		else if (amount >= 2)
+		{
+			spriteRenderers[0].enabled = true;
+			spriteRenderers[1].enabled = true;
+			spriteRenderers[2].enabled = false;
+			spriteRenderers[3].enabled = false;
+		}
+		else
+		{
+			spriteRenderers[0].enabled = true;
+			spriteRenderers[1].enabled = false;
+			spriteRenderers[2].enabled = false;
+			spriteRenderers[3].enabled = false;
+		}
+		this.amount = amount;
+	}
+
+	private void OnTriggerStay2D(Collider2D collision)
+	{
+		if (picked) return;
+		if(collision.CompareTag("Player"))
+		{
+			if(spawnTime + 2 < Time.time)
+			{
+				Inventory playerInventory = collision.GetComponent<Inventory>();
+				int addedAmount = playerInventory.Add(item, amount);
+				amount -= addedAmount;
+				if (amount <= 0)
+				{
+					picked = true;
+					Destroy(gameObject);
+				}
+				else
+				{
+					SetAmount(amount);
+				}
+			}
+		}
+		else
+		{
+			ItemEntity itemEntity = collision.GetComponent<ItemEntity>();
+			if (itemEntity.item == item)
+			{
+				if (item.stackable)
+				{
+					if (amount >= itemEntity.amount)
+					{
+						int amountToAdd = Mathf.Min(64 - amount, itemEntity.amount);
+						if(amountToAdd == itemEntity.amount)
+						{
+							itemEntity.picked = true;
+							SetAmount(amount + amountToAdd);
+							spawnTime = Time.time;
+							Destroy(itemEntity.gameObject);
+						}
+						else if(amountToAdd > 0)
+						{
+							itemEntity.spawnTime = spawnTime = Time.time;
+							SetAmount(amount + amountToAdd);
+							itemEntity.SetAmount(itemEntity.amount - amountToAdd);
+						}
+					}
+				}
+			}
+
+		}
 	}
 }

@@ -18,7 +18,6 @@ public class BlockGrid : MonoBehaviour
 		gridArray = new Block[width, height];
 		for (int i = 0; i < 16; i++)
 		{
-						//Block.Place(worldPosition, Hardness, ToolType, ToolMaterial, Texture(), Item, Input.GetKey(KeyCode.LeftAlt))
 			Block block = Block.Place(GetWorldPosition(i+32, 32), 1, ToolType.Axe, ToolMaterial.All, BlockData.blockData.oakPlanksTexture, Item.OakPlanks);
 			SetBlock(i+32, 32, block);
 		}

@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerSprite : MonoBehaviour
 {
-	[SerializeField] Sprite left = null;
-	[SerializeField] Sprite right = null;
+	public static PlayerSprite Instance { get; private set; }
 
-	Sprite lastSprite = null;
+	public Sprite left = null;
+	public Sprite right = null;
+
+	public Sprite lastSprite { get; private set; }
 
 	Rigidbody2D rb;
 	SpriteRenderer sr;
@@ -16,6 +18,7 @@ public class PlayerSprite : MonoBehaviour
 	{
 		rb = GetComponent<Rigidbody2D>();
 		sr = GetComponent<SpriteRenderer>();
+		Instance = this;
 	}
 
 	void FixedUpdate()

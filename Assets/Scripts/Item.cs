@@ -9,7 +9,6 @@ public class Item : Enumeration
 	public static readonly Item WoodenSword = new SwordItem("Wooden Sword", () => ItemData.icons.woodenSword, 1);
 	public static readonly Item OakPlanks = new BlockItem("Oak Planks", () => ItemData.icons.oakPlanks, BlockType.OakPlanks);
 	public static readonly Item WoodenPickaxe = new ToolItem("Wooden Pickaxe", () => ItemData.icons.woodenPickaxe, ToolType.Pickaxe, ToolMaterial.Wood);
-	//public static readonly Item WoodenAxe = new ToolItem("Wooden Axe", () => ItemData.icons, ToolType.Axe, ToolMaterial.Wood);
 
 	private Action putInHand = null;
 	private Action removeFromHand = null;

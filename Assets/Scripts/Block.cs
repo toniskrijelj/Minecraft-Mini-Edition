@@ -70,7 +70,7 @@ public class Block : MonoBehaviour
 			{
 				if (destroyed) return true;
 				destroyed = true;
-				Instantiate(ItemData.icons.itemEntityPrefab, transform.position, Quaternion.identity).Setup(item);
+				ItemEntity.Spawn(transform.position, item, 1);
 			}
 		}
 		else

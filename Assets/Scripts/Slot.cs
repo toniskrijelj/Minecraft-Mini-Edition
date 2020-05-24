@@ -84,7 +84,10 @@ public class Slot
 
 	public void Drop(bool all = false)
 	{
-		Debug.Log("spawn entity " + (all ? Amount : 1));
-		Consume(all ? Amount : 1);
+		if (Item != null)
+		{
+			ItemEntity.Spawn(Player.Instance.transform.position, Item, all ? Amount : 1);
+			Consume(all ? Amount : 1);
+		}
 	}
 }

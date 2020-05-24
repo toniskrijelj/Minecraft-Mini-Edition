@@ -22,5 +22,4 @@ public class ItemData : MonoBehaviour
 	public Sprite diamondSword;
 	public Sprite woodenSword;
 	public Sprite woodenPickaxe;
-	public ItemEntity itemEntityPrefab;
 }

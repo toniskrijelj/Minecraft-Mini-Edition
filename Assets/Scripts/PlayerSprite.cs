@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,7 @@ public class PlayerSprite : MonoBehaviour
 
 	public Sprite left = null;
 	public Sprite right = null;
+	[SerializeField] Animator animator;
 
 	public Sprite lastSprite { get; private set; }
 
@@ -38,5 +40,12 @@ public class PlayerSprite : MonoBehaviour
 			sr.sprite = sprite;
 			lastSprite = sprite;
 		}
+		int intSpeed = Mathf.CeilToInt(xSpeed);
+		if(intSpeed != 0)
+		{
+			float sign = Mathf.Sign(intSpeed);
+			animator.transform.localScale = new Vector3(-sign, 1, 1);
+		}
+		animator.SetInteger("Speed", intSpeed);
     }
 }

@@ -5,10 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 	public static Player Instance { get; private set; }
+	public const float range = 4;
+	[SerializeField] private GameObject breakObject = null;
+	[SerializeField] private Transform fillBar = null;
 
-	[SerializeField] GameObject breakObject = null;
-	[SerializeField] Transform fillBar = null;
-	private Slot handSlot;
+	public Slot HandSlot { get; private set; }
+	private Item handItem;
 	private ToolType activeTool = ToolType.None;
 	private ToolMaterial toolMaterial = ToolMaterial.All;
 	private float bonusDamage = 0;
@@ -20,9 +22,28 @@ public class Player : MonoBehaviour
 
 	public void ChangeHandSlot(Slot slot)
 	{
-		handSlot?.item?.RemoveFromHand();
-		handSlot = slot;
-		handSlot?.item?.PutInHand();
+		if(HandSlot != null)
+		{
+			HandSlot.OnSlotChanged -= HandSlot_OnSlotChanged;
+		}
+		handItem?.RemoveFromHand();
+		HandSlot = slot;
+		HandSlot?.Item?.PutInHand();
+		handItem = slot?.Item;
+		if(HandSlot != null)
+		{
+			HandSlot.OnSlotChanged += HandSlot_OnSlotChanged;
+		}
+	}
+
+	private void HandSlot_OnSlotChanged(int i)
+	{
+		if (handItem != HandSlot.Item)
+		{
+			handItem?.RemoveFromHand();
+			handItem = HandSlot.Item;
+			handItem?.PutInHand();
+		}
 	}
 
 	public void ChangeTool(ToolType tool, ToolMaterial material)
@@ -40,9 +61,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mouseWorldPosition.z = 0;
-		if ((mouseWorldPosition - transform.position).sqrMagnitude <= 4 * 4)
+		Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
+		if ((mouseWorldPosition - transform.position).sqrMagnitude <= range * range)
 		{
 			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);
 			Block block = BlockGrid.Instance.GetBlock(mouseGridPosition);
@@ -88,28 +108,18 @@ public class Player : MonoBehaviour
 		}
 		if (Input.GetMouseButton(1))
 		{
-			if(handSlot.item.SpecialAction())
+			if (HandSlot != null && HandSlot.Item != null)
 			{
-				handSlot.Consume(1);
+				if (HandSlot.Item.SpecialAction())
+				{
+					HandSlot.Consume(1);
+				}
 			}
 		}
 	}
-	/*
-	private void OnDrawGizmos()
-	{
-		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		var hit = Physics2D.Raycast(transform.position, (mousePosition - transform.position).normalized, 4, 1 << 8);
-		Gizmos.DrawRay(transform.position, (mousePosition - transform.position).normalized * 4);
-
-		Vector2 placeWorldPosition = hit.point + hit.normal * 0.1f;
-		Vector2 breakWorldPosition = hit.point - hit.normal * 0.1f;
-
-		Gizmos.DrawSphere(placeWorldPosition, .05f);
-		Gizmos.DrawSphere(breakWorldPosition, .05f);
-	}
-	*/
 	public bool HoldingBlock()
 	{
-		return handSlot.item is Item.BlockItem;
+		if (HandSlot == null) return false;
+		return HandSlot.Item is Item.BlockItem;
 	}
 }

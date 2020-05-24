@@ -24,9 +24,8 @@ public class BlockType : Enumeration
 
 	public bool TryPlace()
 	{
-		Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		mouseWorldPosition.z = 0;
-		if ((mouseWorldPosition - Player.Instance.transform.position).sqrMagnitude <= 4 * 4)
+		Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
+		if ((mouseWorldPosition - Player.Instance.transform.position).sqrMagnitude <= Player.range * Player.range)
 		{
 			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);
 			Vector3 worldPosition = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);

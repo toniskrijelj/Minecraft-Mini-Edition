@@ -19,7 +19,44 @@ public class ItemData : MonoBehaviour
 	}
 
 	public Sprite oakPlanks;
-	public Sprite diamondSword;
-	public Sprite woodenSword;
-	public Sprite woodenPickaxe;
+	public Sprite acaciaLeaves;
+	public Sprite birchLog;
+	public Sprite birchPlanks;
+	public Sprite Chest;
+	public Sprite Cobblestone;
+	public Sprite craftingTable;
+	public Sprite Dirt;
+	public Sprite grassBlock;
+	public Sprite ironOre;
+	public Sprite oakDoor;
+	public Sprite oakLog;
+	public Sprite Sand;
+	public Sprite spruceLeaves;
+	public Sprite spruceLog;
+	public Sprite sprucePlanks;
+	public Sprite coal;
+	public Sprite Gold;
+	public Sprite ironIngot;
+	public Sprite DiamondAxeTexture;
+	public Sprite GoldAxeTexture;
+	public Sprite IronAxeTexture;
+	public Sprite StoneAxeTexture;
+	public Sprite WoodenAxeTexture;
+	public Sprite ArrowTexture;
+	public Sprite BowTexture;
+	public Sprite DiamondPickaxe;
+	public Sprite GoldPickaxe;
+	public Sprite IronPickaxe;
+	public Sprite StonePickaxe;
+	public Sprite WoodenPickaxe;
+	public Sprite DiamondShovel;
+	public Sprite GoldShovel;
+	public Sprite IronShovel;
+	public Sprite StoneShovel;
+	public Sprite WoodenShovel;
+	public Sprite DiamondSword;
+	public Sprite GoldSword;
+	public Sprite IronSword;
+	public Sprite StoneSword;
+	public Sprite WoodenSword;
 }

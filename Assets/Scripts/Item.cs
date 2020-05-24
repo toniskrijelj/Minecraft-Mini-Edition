@@ -5,10 +5,10 @@ using System;
 
 public class Item : Enumeration
 {
-	public static readonly Item DiamondSword = new SwordItem("Diamond Sword", () => ItemData.icons.diamondSword, 4);
-	public static readonly Item WoodenSword = new SwordItem("Wooden Sword", () => ItemData.icons.woodenSword, 1);
+	public static readonly Item DiamondSword = new SwordItem("Diamond Sword", () => ItemData.icons.DiamondSword, 4);
+	public static readonly Item WoodenSword = new SwordItem("Wooden Sword", () => ItemData.icons.WoodenSword, 1);
 	public static readonly Item OakPlanks = new BlockItem("Oak Planks", () => ItemData.icons.oakPlanks, BlockType.OakPlanks);
-	public static readonly Item WoodenPickaxe = new ToolItem("Wooden Pickaxe", () => ItemData.icons.woodenPickaxe, ToolType.Pickaxe, ToolMaterial.Wood);
+	public static readonly Item WoodenPickaxe = new ToolItem("Wooden Pickaxe", () => ItemData.icons.WoodenPickaxe, ToolType.Pickaxe, ToolMaterial.Wood);
 
 	private Action putInHand = null;
 	private Action removeFromHand = null;

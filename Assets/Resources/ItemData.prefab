@@ -44,7 +44,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oakPlanks: {fileID: 21300000, guid: 382d2d91007947d4ea20aad7a4f12d39, type: 3}
-  diamondSword: {fileID: 0}
-  woodenSword: {fileID: 0}
-  woodenPickaxe: {fileID: 0}
-  oakLeaves: {fileID: 21300000, guid: ef67397ecadec094695141cc9e121e2a, type: 3}
+  acaciaLeaves: {fileID: 0}
+  birchLog: {fileID: 21300000, guid: 382d2d91007947d4ea20aad7a4f12d39, type: 3}
+  birchPlanks: {fileID: 21300000, guid: 4c1bff37e7103fa4982da55192f24333, type: 3}
+  Chest: {fileID: 21300000, guid: b40b7fcfa5155704f9c520dd989928fe, type: 3}
+  Cobblestone: {fileID: 21300000, guid: 5ceeac1c2fee58a4e8205f1491f20724, type: 3}
+  craftingTable: {fileID: 21300000, guid: 682f5df12f5a10741a16144d4889be97, type: 3}
+  Dirt: {fileID: 21300000, guid: efc24c8b95bd676409d1e8a9a389c91d, type: 3}
+  grassBlock: {fileID: 21300000, guid: 9f389a5f814d31b498a2acaa6c80bdc9, type: 3}
+  ironOre: {fileID: 0}
+  oakDoor: {fileID: 21300000, guid: 47e38df9593de844888665f024b228c0, type: 3}
+  oakLog: {fileID: 21300000, guid: a9fb3989d072816498acf54f1f1d32b0, type: 3}
+  Sand: {fileID: 21300000, guid: f4bc3b9c088fd164e9f55b0744f3f828, type: 3}
+  spruceLeaves: {fileID: 21300000, guid: 40fd92c320bf304478b91f24cb162450, type: 3}
+  spruceLog: {fileID: 21300000, guid: cce6bd5d3defad04883edf1e49cba08c, type: 3}
+  sprucePlanks: {fileID: 21300000, guid: 9f2654f03feca0648b180325b0a085d7, type: 3}
+  coal: {fileID: 21300000, guid: 8394cd9d51997704b95fcd67387489d0, type: 3}
+  Gold: {fileID: 21300000, guid: f0ca5d4deeb92174baa7baac0c6e2b48, type: 3}
+  ironIngot: {fileID: 21300000, guid: 115e499be772393479f01db2c1a91f91, type: 3}
+  DiamondAxeTexture: {fileID: 21300000, guid: 2f4fd1d875587af448ea69c70f36d473, type: 3}
+  GoldAxeTexture: {fileID: 21300000, guid: 7dfa87cbc070f874792e1682a11084bf, type: 3}
+  IronAxeTexture: {fileID: 21300000, guid: 9df475814e6fddd4b9dde1df5c9df74d, type: 3}
+  StoneAxeTexture: {fileID: 21300000, guid: 7e8d37cef253a78419249b563ed404ba, type: 3}
+  WoodenAxeTexture: {fileID: 21300000, guid: 47441377e99bec3438cb388f08b53fd1, type: 3}
+  ArrowTexture: {fileID: 21300000, guid: 238a6dcb7ab907b4ba4c1d6b93f48da8, type: 3}
+  BowTexture: {fileID: 21300000, guid: ffb139093efe95e4eaa7f98e12e665c5, type: 3}
+  DiamondPickaxe: {fileID: 21300000, guid: 863f749fb69325546a08e91958c21bc9, type: 3}
+  GoldPickaxe: {fileID: 21300000, guid: 628d5d5a6a27eaf46856b17cdebf50c9, type: 3}
+  IronPickaxe: {fileID: 21300000, guid: 0774f1877c6f4074a9d2d41a7c67acf9, type: 3}
+  StonePickaxe: {fileID: 21300000, guid: 2ab784aba6bf2bd479641b797072850b, type: 3}
+  WoodenPickaxe: {fileID: 21300000, guid: bc042b85a5a0052428b29f7062ee8283, type: 3}
+  DiamondShovel: {fileID: 21300000, guid: 9f022db6c14ed3a4882626d86a5ea8ca, type: 3}
+  GoldShovel: {fileID: 21300000, guid: faf1089652ab01b4f862dfe8008a9d20, type: 3}
+  IronShovel: {fileID: 21300000, guid: 6a536b3e88606684789cda6d20a02554, type: 3}
+  StoneShovel: {fileID: 21300000, guid: c4a238931bbb070478395210af960f71, type: 3}
+  WoodenShovel: {fileID: 21300000, guid: dcbf8a9df20b7e644ab33321586780d2, type: 3}
+  DiamondSword: {fileID: 21300000, guid: 5b08bf1bad22cef409181406357949a6, type: 3}
+  GoldSword: {fileID: 21300000, guid: 4a8ed070ae0f06d4cb82836a05c246b2, type: 3}
+  IronSword: {fileID: 21300000, guid: 0d6adeb3531685047a4658538d575c7c, type: 3}
+  StoneSword: {fileID: 21300000, guid: 883e30b9ce4376a4bac3ebf6f4db29ca, type: 3}
+  WoodenSword: {fileID: 21300000, guid: 3ed4f32c373faf04e862809c31d98275, type: 3}

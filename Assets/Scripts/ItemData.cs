@@ -61,5 +61,7 @@ public class ItemData : MonoBehaviour
 	public Sprite WoodenSword;
 	public Sprite CoalOre;
 	public Sprite Stone;
+	public Sprite Diamond;
+	public Sprite DiamondOre;
 
 }

@@ -62,9 +62,9 @@ public class Block : MonoBehaviour
 
 	public bool Damage(ToolType toolType, ToolMaterial toolMaterial)
 	{
-		if(toolType.CanHarvest(toolType) && toolMaterial.StrongEnough(toolMaterial))
+		if(toolType.CanHarvest(this.toolType) && toolMaterial.StrongEnough(this.toolMaterial))
 		{
-			float multiplier = toolType.RightTool(toolType) ? toolMaterial.Multiplier : 1;
+			float multiplier = toolType.RightTool(this.toolType) ? toolMaterial.Multiplier : 1;
 			currentDamage += Time.deltaTime * multiplier * 0.666666f;
 			if(currentDamage >= totalDamage)
 			{

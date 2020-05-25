@@ -61,6 +61,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+		//Debug.Log(activeTool);
+		//Debug.Log(toolMaterial);
 		Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
 		if ((mouseWorldPosition - transform.position).sqrMagnitude <= range * range)
 		{

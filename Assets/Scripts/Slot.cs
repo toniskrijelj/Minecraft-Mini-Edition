@@ -27,6 +27,11 @@ public class Slot
 			maxAdd = 64 - Amount;
 			Amount += Mathf.Min(maxAdd, amount);
 		}
+		else if(Amount <= 0)
+		{
+			Amount = 1;
+			maxAdd = 1;
+		}
 		OnSlotChanged?.Invoke(Index);
 		return Mathf.Min(maxAdd, amount);
 	}

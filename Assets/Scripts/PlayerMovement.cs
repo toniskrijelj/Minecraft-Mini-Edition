@@ -33,11 +33,7 @@ public class PlayerMovement : MonoBehaviour
 					rb.velocity = new Vector3(rb.velocity.x, Mathf.Sqrt(rb.gravityScale * -2f * jumpHeight));
 				}
 			}
-			if (Input.GetKey(KeyCode.LeftControl))
-			{
-				currentSpeed = runSpeed;
-			}
-			else if (Input.GetKey(KeyCode.LeftShift))
+			if (Input.GetKey(KeyCode.LeftShift))
 			{
 				currentSpeed = crouchSpeed;
 				float dir = -Input.GetAxisRaw("Horizontal");
@@ -55,7 +51,12 @@ public class PlayerMovement : MonoBehaviour
 					}
 				}
 			}
+			else if (Input.GetKey(KeyCode.LeftControl))
+			{
+				currentSpeed = runSpeed;
+			}
 			else
+
 			{
 				currentSpeed = walkSpeed;
 			}

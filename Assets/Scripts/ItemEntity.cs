@@ -26,7 +26,7 @@ public class ItemEntity : MonoBehaviour
 			itemEntity.spriteRenderers[i].sprite = item.GetIcon();
 		}
 		itemEntity.SetAmount(amount);
-		itemEntity.rb.velocity = new Vector2(PlayerSprite.Instance.lastSprite == PlayerSprite.Instance.left ? -itemEntity.throwPower : itemEntity.throwPower, 0);
+		//itemEntity.rb.velocity = new Vector2(-Mathf.Sign(PlayerSprite.Instance.transform.localScale.x) * itemEntity.throwPower, 0);
 		return itemEntity;
 	}
 

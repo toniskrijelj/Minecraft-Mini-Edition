@@ -18,6 +18,7 @@ public class Item : Enumeration
 	public static readonly Item BirchPlanks = new BlockItem("Birch Planks", () => ItemData.icons.birchPlanks, BlockType.BirchPlanks);
 	public static readonly Item SprucePlanks = new BlockItem("Spruce Planks", () => ItemData.icons.sprucePlanks, BlockType.SprucePlanks);
 	public static readonly Item CoalOre = new BlockItem("Coal Ore", () => ItemData.icons.CoalOre, BlockType.CoalOre);
+	public static readonly Item Coal = new Item("Coal Ore", () => ItemData.icons.coal, true);
 	public static readonly Item Cobblestone = new BlockItem("Cobblestone", () => ItemData.icons.Cobblestone, BlockType.Cobblestone);
 	public static readonly Item SpruceLeaves = new BlockItem("Spruce Leaves", () => ItemData.icons.spruceLeaves, BlockType.SpruceLeaves);
 	public static readonly Item Door = new BlockItem("Door", () => ItemData.icons.oakDoor, BlockType.Door);
@@ -26,6 +27,17 @@ public class Item : Enumeration
 	public static readonly Item OakLog = new BlockItem("Oak Log", () => ItemData.icons.oakLog, BlockType.OakLog);
 	public static readonly Item SpruceLog = new BlockItem("Spruce Log", () => ItemData.icons.spruceLog, BlockType.SpruceLog);
 	public static readonly Item StoneBlock = new BlockItem("Stone", () => ItemData.icons.Stone, BlockType.Stone);
+	public static readonly Item StonePickaxe = new ToolItem("Stone Pickaxe", () => ItemData.icons.StonePickaxe, ToolType.Pickaxe, ToolMaterial.Stone);
+	public static readonly Item IronPickaxe = new ToolItem("Iron Pickaxe", () => ItemData.icons.IronPickaxe, ToolType.Pickaxe, ToolMaterial.Iron);
+	public static readonly Item DiamondPickaxe = new ToolItem("Diamond Pickaxe", () => ItemData.icons.DiamondPickaxe, ToolType.Pickaxe, ToolMaterial.Diamond);
+	public static readonly Item GoldPickaxe = new ToolItem("Gold Pickaxe", () => ItemData.icons.GoldPickaxe, ToolType.Pickaxe, ToolMaterial.Gold);
+	public static readonly Item WoodenAxe = new ToolItem("Wooden Axe", () => ItemData.icons.WoodenAxeTexture, ToolType.Axe, ToolMaterial.Wood);
+	public static readonly Item StoneAxe = new ToolItem("Stone Axe", () => ItemData.icons.StoneAxeTexture, ToolType.Axe, ToolMaterial.Stone);
+	public static readonly Item IronAxe = new ToolItem("Iron Axe", () => ItemData.icons.IronAxeTexture, ToolType.Axe, ToolMaterial.Iron);
+	public static readonly Item DiamondAxe = new ToolItem("Diamond Axe", () => ItemData.icons.DiamondAxeTexture, ToolType.Axe, ToolMaterial.Diamond);
+	public static readonly Item GoldenAxe = new ToolItem("Gold Axe", () => ItemData.icons.GoldAxeTexture, ToolType.Axe, ToolMaterial.Gold);
+	public static readonly Item DiamondOre = new BlockItem("Diamond Ore", () => ItemData.icons.DiamondOre, BlockType.DiamondOre);
+	public static readonly Item Diamond = new Item("Diamond", () => ItemData.icons.Diamond, true);
 
 
 
@@ -35,7 +47,6 @@ public class Item : Enumeration
 
 
 
-	
 
 	private Action putInHand = null;
 	private Action removeFromHand = null;

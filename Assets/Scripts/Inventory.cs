@@ -19,6 +19,22 @@ public class Inventory : MonoBehaviour
 		{
 			slots[i] = new Slot(null, 0, i);
 		}
+		slots[0].SetItemAmount(Item.WoodenPickaxe, 1);
+		slots[1].SetItemAmount(Item.StonePickaxe, 1);
+		slots[2].SetItemAmount(Item.IronPickaxe, 1);
+		slots[3].SetItemAmount(Item.GoldPickaxe, 1);
+		slots[4].SetItemAmount(Item.DiamondPickaxe, 1);
+		slots[5].SetItemAmount(Item.WoodenAxe, 1);
+		slots[6].SetItemAmount(Item.StoneAxe, 1);
+		slots[7].SetItemAmount(Item.IronAxe, 1);
+		slots[8].SetItemAmount(Item.GoldenAxe, 1);
+		slots[9].SetItemAmount(Item.DiamondAxe, 1);
+		slots[10].SetItemAmount(Item.CoalOre, 64);
+		slots[11].SetItemAmount(Item.IronOre, 64);
+		slots[12].SetItemAmount(Item.DiamondOre, 64);
+		slots[13].SetItemAmount(Item.CraftingTable, 64);
+		slots[14].SetItemAmount(Item.OakLog, 64);
+		slots[15].SetItemAmount(Item.Sand, 64);
 		player.ChangeHandSlot(slots[0]);
 	}
 

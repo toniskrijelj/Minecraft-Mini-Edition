@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,12 +21,20 @@ public class HeartsHealth : MonoBehaviour
 
     private void Start()
     {
-        HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(4);
+        HeartsHealthSystem heartsHealthSystem = new HeartsHealthSystem(10);
         SetHeartsHealthSystem(heartsHealthSystem);
-
-        heartsHealthSystem.Damage(3);
     }
-
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            heartsHealthSystem.Damage(1);
+        }
+        else if(Input.GetKeyDown(KeyCode.H))
+        {
+            heartsHealthSystem.Heal(1);
+        }
+    }
     public void SetHeartsHealthSystem(HeartsHealthSystem heartsHealthSystem)
     {
         this.heartsHealthSystem = heartsHealthSystem;
@@ -36,33 +45,50 @@ public class HeartsHealth : MonoBehaviour
         {
             HeartsHealthSystem.Heart heart = heartList[i];
             CreateHeartImage(heartAnchoredPosition).SetHeartFragments(heart.GetFragmentAmount());
-            heartAnchoredPosition += new Vector2(30, 0);
+            heartAnchoredPosition += new Vector2(50, 0);
         }
 
         heartsHealthSystem.OnDamaged += HeartsHealthSystem_OnDamaged;
+        heartsHealthSystem.OnHealed += HeartsHealthSystem_OnHealed;
+        heartsHealthSystem.OnDead += HeartsHealthSystem_OnDead;
+    }
+
+    private void HeartsHealthSystem_OnDead(object sender, EventArgs e)
+    {
+        Debug.Log("Dead");
     }
 
     private void HeartsHealthSystem_OnDamaged(object sender, System.EventArgs e)
     {
+        RefreshAllHearts();
+    }
+
+    private void RefreshAllHearts()
+    {
         List<HeartsHealthSystem.Heart> heartList = heartsHealthSystem.GetHeartList();
-        for(int i = 0; i < heartImageList.Count; i++)
+        for (int i = 0; i < heartImageList.Count; i++)
         {
             HeartImage heartImage = heartImageList[i];
             HeartsHealthSystem.Heart heart = heartList[i];
             heartImageList[i].SetHeartFragments(heartsHealthSystem.GetHeartList()[i].GetFragmentAmount());
         }
+
+    }
+    private void HeartsHealthSystem_OnHealed(object sender, System.EventArgs e)
+    {
+        RefreshAllHearts();
     }
 
     private HeartImage CreateHeartImage(Vector2 anchoredPosition)
     {
         GameObject heartGameObject = new GameObject("HeartFull", typeof(Image));
-        heartGameObject.transform.parent = transform;
+        heartGameObject.transform.SetParent(transform);
 
         heartGameObject.GetComponent<Image>().sprite = heartSpriteFull;
         heartGameObject.transform.localPosition = Vector3.zero;
 
         heartGameObject.GetComponent<RectTransform>().anchoredPosition = anchoredPosition;
-        heartGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(10, 10);
+        heartGameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(13, 13);
 
         Image heartImageUI = heartGameObject.GetComponent<Image>();
         heartImageUI.sprite = heartSpriteFull;
@@ -71,15 +97,16 @@ public class HeartsHealth : MonoBehaviour
         heartImageList.Add(heartImage);
 
         return heartImage;
+
     }
 
     public class HeartImage
     {
-        private Image heartImage;
+        private Image heartSprite;
         private HeartsHealth heartsHealth;
         public HeartImage(HeartsHealth heartsHealth, Image heartImage)
         {
-            this.heartImage = heartImage;
+            this.heartSprite = heartImage;
             this.heartsHealth = heartsHealth;
         }
 
@@ -87,11 +114,11 @@ public class HeartsHealth : MonoBehaviour
         {
             switch(fragments)
             {
-                case 0: heartImage.sprite = heartsHealth.heartSpriteEmpty; 
+                case 0: heartSprite.sprite = heartsHealth.heartSpriteEmpty; 
                         break;
-                case 1: heartImage.sprite = heartsHealth.heartSpriteHalf;
+                case 1: heartSprite.sprite = heartsHealth.heartSpriteHalf;
                         break;
-                case 2: heartImage.sprite = heartsHealth.heartSpriteFull;
+                case 2: heartSprite.sprite = heartsHealth.heartSpriteFull;
                         break;
             }
         }

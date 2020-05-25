@@ -1,8 +1,11 @@
 fileFormatVersion: 2
-guid: b643a0d734464e342a302bef81e2241f
+guid: 395e0c48f050ac842a8bc6bc96b32993
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable:
+  - first:
+      74: 7709686125681325085
+    second: Armature|Armature.001Action
   - first:
       74: 4781951162920444690
     second: Armature|ArmatureAction
@@ -37,7 +40,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 0.235
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -45,7 +48,7 @@ ModelImporter:
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
-    importLights: 0
+    importLights: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -84,7 +87,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.00235
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

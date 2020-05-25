@@ -59,4 +59,7 @@ public class ItemData : MonoBehaviour
 	public Sprite IronSword;
 	public Sprite StoneSword;
 	public Sprite WoodenSword;
+	public Sprite CoalOre;
+	public Sprite Stone;
+
 }

@@ -84,3 +84,5 @@ MonoBehaviour:
   IronSword: {fileID: 21300000, guid: 0d6adeb3531685047a4658538d575c7c, type: 3}
   StoneSword: {fileID: 21300000, guid: 883e30b9ce4376a4bac3ebf6f4db29ca, type: 3}
   WoodenSword: {fileID: 21300000, guid: 3ed4f32c373faf04e862809c31d98275, type: 3}
+  CoalOre: {fileID: 21300000, guid: f58c08568da1d014ebd081711cdcf6eb, type: 3}
+  Stone: {fileID: 21300000, guid: ab48f47d12a7a4a43ac670e8dd9e803a, type: 3}

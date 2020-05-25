@@ -18,5 +18,28 @@ public class BlockData : MonoBehaviour
 		}
 	}
 
+	public Sprite dirtBlockTexture;
+	public Sprite sandTexture;
+	public Sprite birchLogTexture;
+	public Sprite chestTexture;
+	public Sprite birchPlanksTexture;
+	public Sprite sprucePlanksTexture;
+	public Sprite chestBackTexture;
+	public Sprite coalOreTexture;
+	public Sprite cobblestoneTexture;
+	public Sprite spruceLeavesTexture;
+	public Sprite diamondOreTexture;
+	public Sprite doorTexture;
+	public Sprite goldOreTexture;
+	public Sprite grassBlockTexture;
+	public Sprite ironOreTexture;
+	public Sprite oakLeavesTexture;
+	public Sprite oakLogTexture;
+	public Sprite openDoorTexture;
 	public Sprite oakPlanksTexture;
+	public Sprite spruceLogTexture;
+	public Sprite stoneBlockTexture;
+	public Sprite CraftingTableTexture;
+
+
 }

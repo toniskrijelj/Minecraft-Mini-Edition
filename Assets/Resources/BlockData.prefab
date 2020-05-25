@@ -43,6 +43,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247278a857d5a5847ba82fbb085f5a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockPrefab: {fileID: 5983052184422762067, guid: d21f3a00cef0ddb4ea2fdd017a2f8414,
+  dirtBlockTexture: {fileID: 21300000, guid: 3f98d759c03712a40933692af27195a0, type: 3}
+  sandTexture: {fileID: 21300000, guid: 04236233a823cd449844b0cc69508adb, type: 3}
+  birchLogTexture: {fileID: 21300000, guid: d65a83b7c10153e4a9a454012813d3ca, type: 3}
+  chestTexture: {fileID: 21300000, guid: 5d9354c26a605b14d9c5523f42ff8abb, type: 3}
+  birchPlanksTexture: {fileID: 21300000, guid: aff007423a637c742a8900587bb6f088, type: 3}
+  sprucePlanksTexture: {fileID: 21300000, guid: 738876d1d5f3a2b449ee2e26b68df6e2,
     type: 3}
+  chestBackTexture: {fileID: 21300000, guid: 34e3a811dd575b143b1492db26a62652, type: 3}
+  coalOreTexture: {fileID: 21300000, guid: f58c08568da1d014ebd081711cdcf6eb, type: 3}
+  cobblestoneTexture: {fileID: 21300000, guid: ace24d022a000c540b1f04825a851dce, type: 3}
+  spruceLeavesTexture: {fileID: 21300000, guid: 7861741f2bc36ed49816fa430bbb77fd,
+    type: 3}
+  diamondOreTexture: {fileID: 21300000, guid: 6f9fd5e63ebafee40b367d1eec28bd31, type: 3}
+  doorTexture: {fileID: 21300000, guid: 20604e09c468dc440ad61d2c7b090801, type: 3}
+  goldOreTexture: {fileID: 21300000, guid: 3991a37d0f02c23458466ae3ce5d0abc, type: 3}
+  grassBlockTexture: {fileID: 21300000, guid: fbf3faadbf07d0f419423ec8cc241dd8, type: 3}
+  ironOreTexture: {fileID: 21300000, guid: 3372d60b48bb5f7499289ad492a78352, type: 3}
+  oakLeavesTexture: {fileID: 21300000, guid: 1078823a93dac4b48983f8aef923a89f, type: 3}
+  oakLogTexture: {fileID: 21300000, guid: c586bfe5c1afee445a5522bcf2b3d85c, type: 3}
+  openDoorTexture: {fileID: 21300000, guid: dd3a0120708fd444ab7c283129c165c1, type: 3}
   oakPlanksTexture: {fileID: 21300000, guid: 01a2bfb2e7841644a8ff39559e92a186, type: 3}
+  spruceLogTexture: {fileID: 21300000, guid: 178dfe6800c192448a016aaea59f3947, type: 3}
+  stoneBlockTexture: {fileID: 21300000, guid: ab48f47d12a7a4a43ac670e8dd9e803a, type: 3}
+  CraftingTableTexture: {fileID: 21300000, guid: 414cd8f67fa3a8340825ea44ae6683f0,
+    type: 3}

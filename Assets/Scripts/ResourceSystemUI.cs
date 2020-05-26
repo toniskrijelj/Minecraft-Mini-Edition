@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ResourceSystemUI : MonoBehaviour
 {
-    [SerializeField] private ResourceSystem resourceSystem;
+    [SerializeField] protected ResourceSystem resourceSystem;
     [SerializeField] private Sprite resourceSpriteFull;
     [SerializeField] private Sprite resourceSpriteHalf;
     [SerializeField] private Sprite resourceSpriteEmpty; 

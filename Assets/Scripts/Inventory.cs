@@ -35,6 +35,10 @@ public class Inventory : MonoBehaviour
 		slots[13].SetItemAmount(Item.CraftingTable, 64);
 		slots[14].SetItemAmount(Item.OakLog, 64);
 		slots[15].SetItemAmount(Item.Sand, 64);
+	}
+
+	private void Start()
+	{
 		player.ChangeHandSlot(slots[0]);
 	}
 
@@ -80,6 +84,7 @@ public class Inventory : MonoBehaviour
 			if (Input.GetKeyDown(KeyCode.Alpha1 + i))
 			{
 				SetActiveSlot(i);
+				Debug.Log("nnn");
 				break;
 			}
 		}

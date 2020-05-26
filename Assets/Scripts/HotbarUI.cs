@@ -38,6 +38,7 @@ public class HotbarUI : MonoBehaviour
 
 	private void Inventory_OnActiveSlotChanged(int i)
 	{
+		Debug.Log("kurcina");
 		selected.anchoredPosition = ((RectTransform)slots[i].transform).anchoredPosition;
 	}
 }

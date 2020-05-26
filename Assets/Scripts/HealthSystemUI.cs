@@ -1,11 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityEngine.SocialPlatforms;
-using UnityEditor.PackageManager.Requests;
 
 public class HealthSystemUI : ResourceSystemUI
 {

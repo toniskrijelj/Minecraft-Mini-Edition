@@ -15,24 +15,54 @@ public class ResourceSystemUI : MonoBehaviour
     protected List<ResourceImage> resourceImageList;
     protected ResourceSystem resourceResourceSystem;
 
+    float lastUpdateTime;
+    bool reseted = true;
+    List<Vector2> spriteOriginalPositions;
+
+    protected void Shake(int numberOfResources)
+    {
+        if (resourceResourceSystem.GetResourceList()[numberOfResources].GetFragmentAmount() == 0)
+        {
+            if (Time.time > lastUpdateTime + 0.05f)
+            {
+                for (int i = 0; i < 10; i++)
+                {
+                    float upOrDown = UnityEngine.Random.Range(-0.5f, 0.5f);
+                    if (upOrDown == 0)
+                    {
+                        upOrDown = 1;
+                    }
+                    resourceImageList[i].resourceSprite.rectTransform.anchoredPosition = spriteOriginalPositions[i] + Vector2.up * upOrDown * 10;
+                }
+                reseted = false;
+                lastUpdateTime = Time.time;
+            }
+        }
+        else if (!reseted)
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                resourceImageList[i].resourceSprite.rectTransform.anchoredPosition = spriteOriginalPositions[i];
+            }
+            reseted = true;
+        }
+    }
     private void Awake()
     {
         resourceImageList = new List<ResourceImage>();
     }
-    private void Start()
+    protected virtual void Start()
     {
         SetResourceSystem(resourceSystem);
+        spriteOriginalPositions = new List<Vector2>();
+        for (int i = 0; i < resourceImageList.Count; i++)
+        {
+            spriteOriginalPositions.Add(resourceImageList[i].resourceSprite.rectTransform.anchoredPosition);
+        }
     }
-    private void Update()
+    protected virtual void Update()
     {
-        if(Input.GetKeyDown(KeyCode.J))
-        {
-            resourceResourceSystem.Decrease(1);
-        }
-        else if(Input.GetKeyDown(KeyCode.H))
-        {
-            resourceResourceSystem.Increase(1);
-        }
+
     }
     public void SetResourceSystem(ResourceSystem resourceSystem)
     {

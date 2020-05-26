@@ -4,6 +4,8 @@ using UnityEngine;
 using System;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.SocialPlatforms;
+using UnityEditor.PackageManager.Requests;
 
 public class HealthSystemUI : ResourceSystemUI
 {
@@ -31,19 +33,19 @@ public class HealthSystemUI : ResourceSystemUI
             SetOutLineColor(Color.black);
         }
     }
-    /*
-    private void Update()
+    protected override void Update()
     {
-        if(resourceResourceSystem.GetResourceList()[2].GetFragmentAmount() == 0)
+        base.Update();
+        if (Input.GetKeyDown(KeyCode.N))
         {
-            for(int i = 0; i < 10; i++)
-            {
-                ((RectTransform)(resourceImageList[i].resourceSprite.transform));
-            }
+            resourceResourceSystem.Decrease(1);
         }
+        else if (Input.GetKeyDown(KeyCode.M))
+        {
+            resourceResourceSystem.Increase(1);
+        }
+        Shake(2);
     }
-    */
-
     private void SetOutLineColor(Color color)
     {
         foreach (var outLine in outLines)

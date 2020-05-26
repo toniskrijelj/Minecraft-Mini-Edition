@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,7 +64,6 @@ public class PlayerMovement : MonoBehaviour
 		}
 		rb.velocity = new Vector3(Input.GetAxis("Horizontal") * currentSpeed, rb.velocity.y);
 	}
-
 	public bool GroundCheck()
 	{
 		if (Physics2D.Raycast(transform.position + new Vector3(-0.15f, -1.05f), Vector2.right, 0.3f , 1 << 8))

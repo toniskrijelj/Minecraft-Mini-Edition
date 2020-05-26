@@ -227,7 +227,6 @@ public static class Recipes
 				}
 				if(sameIngredients)
 				{
-					Debug.Log("ima same ingredients");
 					Item[,] newLayout;
 					for (int i = -1; i <= 1; i++)
 					{
@@ -235,18 +234,9 @@ public static class Recipes
 						{
 							if(recipe.CanMove(j, i))
 							{
-								if(i == 0 && j == 0)
-								{
-									Debug.Log("testiram 0, 0");
-									newLayout = Recipe.Move(recipe.layout, j, i);
-									Recipe.Print(newLayout);
-									Debug.Log("kurcina ");
-									Recipe.Print(recipe.layout);
-								}
 								newLayout = Recipe.Move(recipe.layout, j, i);
 								if (Recipe.CompareLayouts(layout, newLayout))
 								{
-									Debug.Log("pronadjen");
 									return recipes[recipe];
 								}
 							}
@@ -255,7 +245,6 @@ public static class Recipes
 					newLayout = Recipe.Flip(recipe.layout);
 					if (Recipe.CompareLayouts(layout, newLayout))
 					{
-						Debug.Log("pronadjen");
 						return recipes[recipe];
 					}
 				}

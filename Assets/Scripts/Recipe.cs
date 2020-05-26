@@ -17,7 +17,6 @@ public class Recipe
 			layout[0, i] = layout[2, i];
 			layout[2, i] = temp;
 		}
-		Print(layout);
 		this.layout = layout;
 		ingredients = GetIngredients(layout);
 	}
@@ -90,10 +89,11 @@ public class Recipe
 	public static Item[,] Flip(Item[,] layout)
 	{
 		Item[,] newLayout = new Item[3, 3];
-		for(int i = 0; i < 2; i++)
+		for(int i = 0; i < 3; i++)
 		{
-			newLayout[0, i] = layout[2, i];
-			newLayout[2, i] = layout[0, i];
+			newLayout[i, 1] = layout[i, 1];
+			newLayout[i, 0] = layout[i, 2];
+			newLayout[i, 2] = layout[i, 0];
 		}
 		return newLayout;
 	}

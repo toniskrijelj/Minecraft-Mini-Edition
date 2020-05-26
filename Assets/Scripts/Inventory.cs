@@ -84,7 +84,6 @@ public class Inventory : MonoBehaviour
 			if (Input.GetKeyDown(KeyCode.Alpha1 + i))
 			{
 				SetActiveSlot(i);
-				Debug.Log("nnn");
 				break;
 			}
 		}

@@ -31,6 +31,22 @@ public class SlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		Slot.Drop(all);
 	}
 
+	public virtual void QuickTake(SlotUI toSlot)
+	{
+		if (toSlot.Slot.Item != null && toSlot.Slot.TrySetItem(Slot.Item))
+		{
+			int amount = toSlot.Slot.AddAmount(Slot.Amount);
+			Slot.Consume(amount);
+		}
+		else
+		{
+			Item tempItem = Slot.Item;
+			int tempAmount = Slot.Amount;
+			SetSlotValues(toSlot.Slot);
+			toSlot.SetSlotValues(tempItem, tempAmount);
+		}
+	}
+
 	private void OnEnable()
 	{
 		if(Slot != null)
@@ -48,7 +64,6 @@ public class SlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		if (Slot != null)
 		{
 			Slot.OnSlotChanged -= Slot_OnSlotChanged;
-			Slot = null;
 		}
 	}
 
@@ -59,7 +74,14 @@ public class SlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 	public void SetSlotValues(Slot slot)
 	{
-		Slot.SetItemAmount(slot.Item, slot.Amount);
+		if (slot == null)
+		{
+			Slot.SetItemAmount(null, 0);
+		}
+		else
+		{
+			Slot.SetItemAmount(slot.Item, slot.Amount);
+		}
 	}
 	public void SetSlotValues(Item item, int amount)
 	{

@@ -4,12 +4,17 @@ using UnityEngine;
 
 public static class Utilities
 {
-	public static Camera MainCamera { get; private set; }
-
-	[RuntimeInitializeOnLoadMethod]
-	private static void Initialize()
+	private static Camera mainCamera = null;
+	public static Camera MainCamera
 	{
-		MainCamera = Camera.main;
+		get
+		{
+			if(mainCamera == null)
+			{
+				mainCamera = Camera.main;
+			}
+			return mainCamera;
+		}
 	}
 
 	public static Vector2 GetMouseWorldPosition()

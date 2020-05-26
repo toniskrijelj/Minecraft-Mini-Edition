@@ -4,10 +4,10 @@ using UnityEngine;
 
 public abstract class Mob : MonoBehaviour
 {
-    HeartsHealthSystem hp;
+    ResourceSystem hp;
     protected void Awake()
     {
-        hp = new HeartsHealthSystem(HeartsAmount());
+        //hp = new ResourceSystem(HeartsAmount());
     }
 
     protected abstract int HeartsAmount();

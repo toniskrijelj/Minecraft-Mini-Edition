@@ -62,17 +62,17 @@ public class Inventory : MonoBehaviour
 		if(mouseScroll < 0)
 		{
 			int index = player.HandSlot.Index;
-			index -= 1;
-			if(index <= -1)
-			{
-				index = 8;
-			}
+			index = (index + 1) % 9;
 			SetActiveSlot(index);
 		}
 		else if(mouseScroll > 0)
 		{
 			int index = player.HandSlot.Index;
-			index = (index + 1) % 9;
+			index -= 1;
+			if (index <= -1)
+			{
+				index = 8;
+			}
 			SetActiveSlot(index);
 		}
 		for (int i = 0; i < 9; i++)
@@ -101,6 +101,20 @@ public class Inventory : MonoBehaviour
 		index = Mathf.Clamp(index, 0, 8);
 		player.ChangeHandSlot(slots[index]);
 		OnActiveSlotChanged?.Invoke(index);
+	}
+
+	public int MaxAdd(Item item, int amount)
+	{
+		int couldBeAdded = 0;
+		for (int i = 0; i < SLOTS; i++)
+		{
+			couldBeAdded += slots[i].MaxAddAmount(item, amount - couldBeAdded);
+			if (couldBeAdded == amount)
+			{
+				break;
+			}
+		}
+		return couldBeAdded;
 	}
 
 	public int Add(Item item, int amount)

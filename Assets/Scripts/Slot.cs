@@ -14,13 +14,42 @@ public class Slot
 	}
 
 	public event Action<int> OnSlotChanged;
+	/// <summary>
+	/// arg1 = index, arg2 = old item
+	/// </summary>
+	public event Action<int, Item> OnSlotItemChanged;
+	/// <summary>
+	/// arg1 = index, arg2 = old amount
+	/// </summary>
+	public event Action<int, int> OnSlotAmountChanged;
 
 	public Item Item { get; private set; }
 	public int Amount { get; private set; }
 	public int Index { get; private set; }
 
+	/// <summary>
+	/// Returns int that represents amount of items that could be added
+	/// </summary>
+	public int MaxAddAmount(Item item, int amount)
+	{
+		if(Item == null)
+		{
+			return item.stackable ? 64 : 1;
+		}
+		if(Item == item && item.stackable)
+		{
+			return Mathf.Min(64 - Amount, amount);
+		}
+		else if (Amount <= 0)
+		{
+			return 1;
+		}
+		return 0;
+	}
+
 	public int AddAmount(int amount)
 	{
+		int oldAmount = Amount;
 		int maxAdd = 0;
 		if (Item.stackable)
 		{
@@ -33,30 +62,50 @@ public class Slot
 			maxAdd = 1;
 		}
 		OnSlotChanged?.Invoke(Index);
+		OnSlotAmountChanged?.Invoke(Index, oldAmount);
 		return Mathf.Min(maxAdd, amount);
 	}
 	
 	public int Consume(int amount)
 	{
+		if(Amount <= 0)
+		{
+			Amount = 0;
+			return 0;
+		}
+		Item oldItem = Item;
+		int oldAmount = Amount;
 		int consumed = Mathf.Min(Amount, amount);
 		Amount -= consumed;
 		if(Amount <= 0)
 		{
 			Item = null;
+			if (oldItem != null)
+			{
+				OnSlotItemChanged?.Invoke(Index, oldItem);
+			}
 			Amount = 0;
 		}
+		OnSlotAmountChanged?.Invoke(Index, oldAmount);
 		OnSlotChanged?.Invoke(Index);
 		return consumed;
 	}
 
+	public bool CanSetItem(Item item)
+	{
+		return Item == null || Item == item;
+	}
+
 	public bool TrySetItem(Item item)
 	{
-		if(Item == null || Item == item)
+		Item oldItem = Item;
+		if(CanSetItem(item))
 		{
 			if (Item == null)
 			{
 				Item = item;
 				OnSlotChanged?.Invoke(Index);
+				OnSlotItemChanged?.Invoke(Index, oldItem);
 			}
 			return true;
 		}
@@ -65,26 +114,36 @@ public class Slot
 
 	public void SetItem(Item item)
 	{
+		Item oldItem = Item;
 		Item = item;
 		OnSlotChanged?.Invoke(Index);
+		OnSlotItemChanged?.Invoke(Index, oldItem);
 	}
 
 	public void SetAmount(int amount)
 	{
+		Item oldItem = Item;
+		int oldAmount = Amount;
 		Amount = Mathf.Max(amount, 0);
 		if(Amount == 0)
 		{
 			Item = null;
+			OnSlotItemChanged?.Invoke(Index, oldItem);
 		}
 		Amount = amount;
 		OnSlotChanged?.Invoke(Index);
+		OnSlotAmountChanged?.Invoke(Index, oldAmount);
 	}
 	
 	public void SetItemAmount(Item item, int amount)
 	{
+		Item oldItem = Item;
+		int oldAmount = Amount;
 		Item = item;
 		Amount = amount;
 		OnSlotChanged?.Invoke(Index);
+		OnSlotItemChanged?.Invoke(Index, oldItem);
+		OnSlotAmountChanged?.Invoke(Index, oldAmount);
 	}
 
 	public void Drop(bool all = false)

@@ -113,6 +113,7 @@ public class ItemEntity : MonoBehaviour
 		else
 		{
 			ItemEntity itemEntity = collision.GetComponent<ItemEntity>();
+			if (itemEntity.picked) return;
 			if (itemEntity.item == item)
 			{
 				if (item.stackable)

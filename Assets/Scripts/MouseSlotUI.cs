@@ -15,6 +15,16 @@ public class MouseSlotUI : SlotUI
 		SetSlot(new Slot());
 	}
 
+	private void Start()
+	{
+		InventoryUI.Instance.OnInventoryClosed += InventoryUI_OnInventoryClosed;
+	}
+
+	private void InventoryUI_OnInventoryClosed()
+	{
+		Drop(true);
+	}
+
 	void Update()
     {
 		transform.position = Input.mousePosition;

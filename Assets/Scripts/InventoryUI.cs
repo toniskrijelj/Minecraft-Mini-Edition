@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using System;
 
 public class InventoryUI : MonoBehaviour
 {
+	public static InventoryUI Instance { get; private set; }
+
+	public event Action OnInventoryClosed;
+
 	[SerializeField] Inventory inventory = null;
 
 	Canvas canvas;
@@ -13,6 +18,7 @@ public class InventoryUI : MonoBehaviour
 	private void Awake()
 	{
 		canvas = GetComponent<Canvas>();
+		Instance = this;
 		for(int i = 0; i < Inventory.SLOTS; i++)
 		{
 			slots[i] = transform.Find("slot (" + i + ")").GetComponent<InventorySlotUI>();
@@ -26,10 +32,23 @@ public class InventoryUI : MonoBehaviour
 
 	private void Update()
 	{
+		if(Input.GetKeyDown(KeyCode.Escape))
+		{
+			if(canvas.enabled)
+			{
+				Close();
+			}
+		}
 		if(Input.GetKeyDown(KeyCode.E))
 		{
-			canvas.enabled = !canvas.enabled;
-			Player.Instance.enabled = !Player.Instance.enabled;
+			if(canvas.enabled)
+			{
+				Close();
+			}
+			else
+			{
+				Open();
+			}
 		}
 		if(Input.GetKeyDown(KeyCode.Q))
 		{
@@ -57,19 +76,7 @@ public class InventoryUI : MonoBehaviour
 			{
 				if (Input.GetKeyDown(KeyCode.Alpha1 + i))
 				{
-					if (SlotUI.mouseOverSlot.Slot.Item != null && slots[i].Slot.TrySetItem(SlotUI.mouseOverSlot.Slot.Item))
-					{
-						int amount = slots[i].Slot.AddAmount(SlotUI.mouseOverSlot.Slot.Amount);
-						SlotUI.mouseOverSlot.Slot.Consume(amount);
-					}
-					else
-					{
-						Item tempItem = slots[i].Slot.Item;
-						int tempAmount = slots[i].Slot.Amount;
-						slots[i].SetSlotValues(SlotUI.mouseOverSlot.Slot);
-						SlotUI.mouseOverSlot.SetSlotValues(tempItem, tempAmount);
-					}
-					break;
+					SlotUI.mouseOverSlot.QuickTake(slots[i]);
 				}
 			}
 		}
@@ -82,5 +89,18 @@ public class InventoryUI : MonoBehaviour
 		{
 			slots[i].SetSlot(inventory.slots[i]);
 		}
+	}
+
+	public void Open()
+	{
+		canvas.enabled = true;
+		Player.Instance.enabled = false;
+	}
+
+	public void Close()
+	{
+		canvas.enabled = false;
+		Player.Instance.enabled = true;
+		OnInventoryClosed?.Invoke();
 	}
 }

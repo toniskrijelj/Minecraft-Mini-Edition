@@ -47,7 +47,7 @@ MonoBehaviour:
   acaciaLeaves: {fileID: 21300000, guid: ef67397ecadec094695141cc9e121e2a, type: 3}
   birchLog: {fileID: 21300000, guid: 382d2d91007947d4ea20aad7a4f12d39, type: 3}
   birchPlanks: {fileID: 21300000, guid: 4c1bff37e7103fa4982da55192f24333, type: 3}
-  Chest: {fileID: 21300000, guid: b40b7fcfa5155704f9c520dd989928fe, type: 3}
+  Chest: {fileID: 21300000, guid: 5d9354c26a605b14d9c5523f42ff8abb, type: 3}
   Cobblestone: {fileID: 21300000, guid: 5ceeac1c2fee58a4e8205f1491f20724, type: 3}
   craftingTable: {fileID: 21300000, guid: 682f5df12f5a10741a16144d4889be97, type: 3}
   Dirt: {fileID: 21300000, guid: efc24c8b95bd676409d1e8a9a389c91d, type: 3}
@@ -60,7 +60,6 @@ MonoBehaviour:
   spruceLog: {fileID: 21300000, guid: cce6bd5d3defad04883edf1e49cba08c, type: 3}
   sprucePlanks: {fileID: 21300000, guid: 9f2654f03feca0648b180325b0a085d7, type: 3}
   coal: {fileID: 21300000, guid: 8394cd9d51997704b95fcd67387489d0, type: 3}
-  Gold: {fileID: 21300000, guid: f0ca5d4deeb92174baa7baac0c6e2b48, type: 3}
   ironIngot: {fileID: 21300000, guid: 115e499be772393479f01db2c1a91f91, type: 3}
   DiamondAxeTexture: {fileID: 21300000, guid: 2f4fd1d875587af448ea69c70f36d473, type: 3}
   GoldAxeTexture: {fileID: 21300000, guid: 7dfa87cbc070f874792e1682a11084bf, type: 3}
@@ -88,3 +87,6 @@ MonoBehaviour:
   Stone: {fileID: 21300000, guid: 846e7c852e0e0ed479cf140ea229c4e1, type: 3}
   Diamond: {fileID: 21300000, guid: da4e8233ee928624aa6c3d8d1e2ea3eb, type: 3}
   DiamondOre: {fileID: 21300000, guid: 967fad0ec8cb60944bebf16aa95072f8, type: 3}
+  Stick: {fileID: 21300000, guid: 01a402a69bd2213469d901292a1b6394, type: 3}
+  IronIngot: {fileID: 0}
+  Gold: {fileID: 21300000, guid: f0ca5d4deeb92174baa7baac0c6e2b48, type: 3}

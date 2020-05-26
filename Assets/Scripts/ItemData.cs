@@ -35,7 +35,6 @@ public class ItemData : MonoBehaviour
 	public Sprite spruceLog;
 	public Sprite sprucePlanks;
 	public Sprite coal;
-	public Sprite Gold;
 	public Sprite ironIngot;
 	public Sprite DiamondAxeTexture;
 	public Sprite GoldAxeTexture;
@@ -63,5 +62,7 @@ public class ItemData : MonoBehaviour
 	public Sprite Stone;
 	public Sprite Diamond;
 	public Sprite DiamondOre;
-
+	public Sprite Stick;
+	public Sprite IronIngot;
+	public Sprite Gold;
 }

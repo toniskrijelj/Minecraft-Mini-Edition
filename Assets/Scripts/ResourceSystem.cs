@@ -8,7 +8,7 @@ using UnityEngine.Experimental.PlayerLoop;
 public abstract class ResourceSystem : MonoBehaviour
 {
 
-    [SerializeField] int resourceAmount;
+    [SerializeField] int resourceAmount = 0;
     public const int MaxFragmentAmount = 2;
 
     public event EventHandler OnResourceDecreased;

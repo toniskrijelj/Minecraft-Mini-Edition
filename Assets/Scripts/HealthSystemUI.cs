@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class HealthSystemUI : ResourceSystemUI
 {
-    [SerializeField] List<Image> outLines;
+    [SerializeField] List<Image> outLines = null;
     [SerializeField] float timeBetween = 0.1f;
     protected override void ResourceSystem_OnResourceDecreased(object sender, EventArgs e)
     {

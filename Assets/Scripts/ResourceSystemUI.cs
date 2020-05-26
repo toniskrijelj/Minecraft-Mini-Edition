@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class ResourceSystemUI : MonoBehaviour
 {
-    [SerializeField] protected ResourceSystem resourceSystem;
-    [SerializeField] private Sprite resourceSpriteFull;
-    [SerializeField] private Sprite resourceSpriteHalf;
-    [SerializeField] private Sprite resourceSpriteEmpty; 
+    [SerializeField] protected ResourceSystem resourceSystem = null;
+    [SerializeField] private Sprite resourceSpriteFull = null;
+    [SerializeField] private Sprite resourceSpriteHalf = null;
+    [SerializeField] private Sprite resourceSpriteEmpty = null; 
 
     protected List<ResourceImage> resourceImageList;
     protected ResourceSystem resourceResourceSystem;

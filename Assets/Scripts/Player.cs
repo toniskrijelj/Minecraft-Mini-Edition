@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class Player : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class Player : MonoBehaviour
 	[SerializeField] private GameObject breakObject = null;
 	[SerializeField] private Transform fillBar = null;
 
+	private HandBlock handVisualItem;
 	public Slot HandSlot { get; private set; }
 	private Item handItem;
 	private ToolType activeTool = ToolType.None;
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
 	private void Awake()
 	{
 		Instance = this;
+		handVisualItem = GetComponent<HandBlock>();
 	}
 
 	public void ChangeHandSlot(Slot slot)
@@ -30,6 +33,7 @@ public class Player : MonoBehaviour
 		HandSlot = slot;
 		HandSlot?.Item?.PutInHand();
 		handItem = slot?.Item;
+		handVisualItem.SetItem(handItem, activeTool);
 		if(HandSlot != null)
 		{
 			HandSlot.OnSlotChanged += HandSlot_OnSlotChanged;
@@ -43,6 +47,7 @@ public class Player : MonoBehaviour
 			handItem?.RemoveFromHand();
 			handItem = HandSlot.Item;
 			handItem?.PutInHand();
+			handVisualItem.SetItem(handItem, activeTool);
 		}
 	}
 

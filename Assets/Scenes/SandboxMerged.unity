@@ -17603,6 +17603,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1920044601}
   m_CullTransparentMesh: 0
+--- !u!4 &1937855258 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -5098096710836130797, guid: 395e0c48f050ac842a8bc6bc96b32993,
+    type: 3}
+  m_PrefabInstance: {fileID: 1370392067}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1953497218
 GameObject:
   m_ObjectHideFlags: 0
@@ -18759,6 +18765,7 @@ GameObject:
   - component: {fileID: 2096650717}
   - component: {fileID: 2096650716}
   - component: {fileID: 2096650718}
+  - component: {fileID: 2096650719}
   m_Layer: 10
   m_Name: Player
   m_TagString: Player
@@ -18911,6 +18918,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56fcb25c2dc2687429c1e382348647da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2096650719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096650708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779c077fc420e014bb5ca9f0e15d8033, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handTransform: {fileID: 1937855258}
 --- !u!1 &2107591962
 GameObject:
   m_ObjectHideFlags: 0

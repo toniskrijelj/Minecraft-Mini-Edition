@@ -112,3 +112,8 @@ MonoBehaviour:
   EmeraldBlock: {fileID: 21300000, guid: fbfcb480994da2942a1ab906622db05b, type: 3}
   GoldBlock: {fileID: 21300000, guid: defc9408801896a48a01c9abd24e414f, type: 3}
   CoalBlock: {fileID: 21300000, guid: 1edc2d1b20044d942977d337ad32e1a4, type: 3}
+  OakStairs: {fileID: 21300000, guid: 5e04edd364780dd4b8ea8b9d14efafb8, type: 3}
+  SpruceStairs: {fileID: 21300000, guid: 602c0c6d7ffcffe4a9627f23bc5ef425, type: 3}
+  BirchStairs: {fileID: 21300000, guid: 4bb4ad137aff7624fac7862bef187b74, type: 3}
+  CobbleStairs: {fileID: 21300000, guid: 60cdbd7e989fa6942a0bc223741f9a56, type: 3}
+  StoneStairs: {fileID: 21300000, guid: 009455d073e3b9545bd44f33bf0f05f3, type: 3}

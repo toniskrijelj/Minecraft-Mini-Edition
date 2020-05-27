@@ -87,4 +87,9 @@ public class ItemData : MonoBehaviour
 	public Sprite EmeraldBlock;
 	public Sprite GoldBlock;
 	public Sprite CoalBlock;
+	public Sprite OakStairs;
+	public Sprite SpruceStairs;
+	public Sprite BirchStairs;
+	public Sprite CobbleStairs;
+	public Sprite StoneStairs;
 }

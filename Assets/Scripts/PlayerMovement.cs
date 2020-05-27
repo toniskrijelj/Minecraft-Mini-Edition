@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
 	}
 	public bool GroundCheck()
 	{
-		if (Physics2D.Raycast(transform.position + new Vector3(-0.15f, -1.05f), Vector2.right, 0.3f , 1 << 8))
+		if (Physics2D.Raycast(transform.position + new Vector3(-0.15f, -1.05f), Vector2.right, 0.3f, 1 << 8))
 		{
 			return true;
 		}

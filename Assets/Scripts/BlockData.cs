@@ -40,6 +40,7 @@ public class BlockData : MonoBehaviour
 	public Sprite spruceLogTexture;
 	public Sprite stoneBlockTexture;
 	public Sprite CraftingTableTexture;
-
+	public Sprite furnaceUnlit;
+	public Sprite furnaceLit;
 
 }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
 using UnityEngine.XR;
 
 public class Player : MonoBehaviour
@@ -18,16 +17,11 @@ public class Player : MonoBehaviour
 	private ToolMaterial toolMaterial = ToolMaterial.All;
 	private float bonusDamage = 0;
 
-	HungerSytem hungerSytem;
-	HealthSystem healthSystem;
-
 	private void Awake()
 	{
 		Instance = this;
 		handVisualItem = GetComponent<HandBlock>();
-		healthSystem = GetComponent<HealthSystem>();
-		hungerSytem = GetComponent<HungerSytem>();
-		healthSystem.OnResourceEmpty += HealthSystem_OnResourceEmpty;
+		GetComponent<HealthSystem>().OnResourceEmpty += HealthSystem_OnResourceEmpty;
 	}
 
 	private void HealthSystem_OnResourceEmpty(object sender, System.EventArgs e)
@@ -38,7 +32,7 @@ public class Player : MonoBehaviour
 
 	public void ChangeHandSlot(Slot slot)
 	{
-		if(HandSlot != null)
+		if (HandSlot != null)
 		{
 			HandSlot.OnSlotChanged -= HandSlot_OnSlotChanged;
 		}
@@ -47,7 +41,7 @@ public class Player : MonoBehaviour
 		HandSlot?.Item?.PutInHand();
 		handItem = slot?.Item;
 		handVisualItem.SetItem(handItem, activeTool);
-		if(HandSlot != null)
+		if (HandSlot != null)
 		{
 			HandSlot.OnSlotChanged += HandSlot_OnSlotChanged;
 		}
@@ -77,10 +71,8 @@ public class Player : MonoBehaviour
 
 	Block currentBlock = null;
 
-    void Update()
-    {
-		//Debug.Log(activeTool);
-		//Debug.Log(toolMaterial);
+	void Update()
+	{
 		Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
 		if ((mouseWorldPosition - transform.position).sqrMagnitude <= range * range)
 		{
@@ -93,9 +85,9 @@ public class Player : MonoBehaviour
 					currentBlock?.Repair();
 				}
 				currentBlock = block;
-				if (Input.GetMouseButtonDown(0))
+				if (Input.GetMouseButtonDown(1))
 				{
-
+					block?.specialAction?.Invoke();
 				}
 				if (Input.GetMouseButton(0))
 				{

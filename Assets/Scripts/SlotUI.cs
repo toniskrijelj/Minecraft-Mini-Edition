@@ -59,7 +59,7 @@ public class SlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		UnsetSlot();
 	}
 
-	private void UnsetSlot()
+	public void UnsetSlot()
 	{
 		if (Slot != null)
 		{

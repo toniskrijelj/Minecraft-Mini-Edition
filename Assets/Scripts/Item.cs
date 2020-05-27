@@ -29,6 +29,7 @@ public class Item : Enumeration
 	public static readonly Item Iron = new Item("Iron", () => ItemData.icons.IronIngot, true);
 	public static readonly Item Gold = new Item("Gold", () => ItemData.icons.Gold, true);
 	public static readonly Item Stick = new Item("Stick", () => ItemData.icons.Stick, true);
+	public static readonly Item furnace = new BlockItem("Furnace", () => ItemData.icons.furnace, BlockType.Furnace);
 
 	// Tools
 	public static readonly Item DiamondSword = new SwordItem("Diamond Sword", () => ItemData.icons.DiamondSword, 4);
@@ -51,13 +52,6 @@ public class Item : Enumeration
 	public static readonly Item IronShovel = new ToolItem("Iron Shovel", () => ItemData.icons.IronShovel, ToolType.Shovel, ToolMaterial.Iron);
 	public static readonly Item GoldShovel = new ToolItem("Gold Shovel", () => ItemData.icons.GoldShovel, ToolType.Shovel, ToolMaterial.Gold);
 	public static readonly Item DiamondShovel = new ToolItem("Diamond Shovel", () => ItemData.icons.DiamondShovel, ToolType.Shovel, ToolMaterial.Diamond);
-
-
-
-
-
-
-
 
 	private Action putInHand = null;
 	private Action removeFromHand = null;

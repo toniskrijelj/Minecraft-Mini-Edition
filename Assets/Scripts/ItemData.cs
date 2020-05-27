@@ -65,4 +65,5 @@ public class ItemData : MonoBehaviour
 	public Sprite Stick;
 	public Sprite IronIngot;
 	public Sprite Gold;
+	public Sprite furnace;
 }

@@ -88,5 +88,6 @@ MonoBehaviour:
   Diamond: {fileID: 21300000, guid: da4e8233ee928624aa6c3d8d1e2ea3eb, type: 3}
   DiamondOre: {fileID: 21300000, guid: 967fad0ec8cb60944bebf16aa95072f8, type: 3}
   Stick: {fileID: 21300000, guid: 01a402a69bd2213469d901292a1b6394, type: 3}
-  IronIngot: {fileID: 0}
+  IronIngot: {fileID: 21300000, guid: 115e499be772393479f01db2c1a91f91, type: 3}
   Gold: {fileID: 21300000, guid: f0ca5d4deeb92174baa7baac0c6e2b48, type: 3}
+  furnace: {fileID: 21300000, guid: af420685e733c7c48b1cf59485380691, type: 3}

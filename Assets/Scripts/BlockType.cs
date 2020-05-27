@@ -9,7 +9,7 @@ public class BlockType : Enumeration
 	public static readonly BlockType OakLeaves = new BlockType(0.2f, ToolType.None, ToolMaterial.All, () => BlockData.blockData.oakLeavesTexture, () => Item.oakLeaves);
 	public static readonly BlockType Dirt = new BlockType(0.6f, ToolType.Shovel, ToolMaterial.All, () => BlockData.blockData.dirtBlockTexture, () => Item.Dirt);
 	public static readonly BlockType Sand = new BlockType(0.5f, ToolType.Shovel, ToolMaterial.All, () => BlockData.blockData.sandTexture, () => Item.Sand);
-	public static readonly BlockType CraftingTable = new BlockType(2.5f, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.CraftingTableTexture, () => Item.CraftingTable);
+	public static readonly BlockType CraftingTable = new BlockType(2.5f, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.CraftingTableTexture, () => Item.CraftingTable, CraftingGrid3x3UI.Instance.Open);
 	public static readonly BlockType BirchLog = new BlockType(2, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.birchLogTexture, () => Item.BirchLog);
 	public static readonly BlockType Chest = new BlockType(2.5f, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.chestTexture, () => Item.Chest);
 	public static readonly BlockType BirchPlanks = new BlockType(2, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.birchPlanksTexture, () => Item.BirchPlanks);
@@ -24,13 +24,7 @@ public class BlockType : Enumeration
 	public static readonly BlockType SpruceLog = new BlockType(2, ToolType.Axe , ToolMaterial.All, () => BlockData.blockData.spruceLogTexture, () => Item.SpruceLog);
 	public static readonly BlockType Stone = new BlockType(1.5f, ToolType.Pickaxe , ToolMaterial.All, () => BlockData.blockData.stoneBlockTexture, () => Item.StoneBlock);
 	public static readonly BlockType DiamondOre = new BlockType(3f, ToolType.Pickaxe , ToolMaterial.Iron, () => BlockData.blockData.diamondOreTexture, () => Item.Diamond);
-
-
-
-
-
-
-
+	public static readonly BlockType Furnace = new BlockType(3.5f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.furnaceUnlit, () => Item.furnace, null, () => FurnaceData.Prefab);
 
 
 
@@ -39,17 +33,31 @@ public class BlockType : Enumeration
 	public ToolMaterial ToolMaterial { get; }
 	public Func<Sprite> Texture { get; }
 	public Func<Item> GetItem { get; }
+	public Action SpecialAction { get; }
 
-	protected BlockType(float hardness, ToolType toolType, ToolMaterial toolMaterial, Func<Sprite> texture, Func<Item> itemDrop)
+	protected Func<Block> prefab;
+
+	protected BlockType() { }
+
+	protected BlockType(float hardness, ToolType toolType, ToolMaterial toolMaterial, Func<Sprite> texture, Func<Item> itemDrop, Action specialAction = null, Func<Block> blockPrefab = null)
 	{
 		Hardness = hardness;
 		ToolType = toolType;
 		ToolMaterial = toolMaterial;
 		Texture = texture;
 		GetItem = itemDrop;
+		SpecialAction = specialAction;
+		if(blockPrefab == null)
+		{
+			prefab = () => Block.Prefab;
+		}
+		else
+		{
+			prefab = blockPrefab;
+		}
 	}
 
-	public bool TryPlace()
+	public virtual bool TryPlace()
 	{
 		Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
 		if ((mouseWorldPosition - Player.Instance.transform.position).sqrMagnitude <= Player.range * Player.range)
@@ -58,7 +66,7 @@ public class BlockType : Enumeration
 			Vector3 worldPosition = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);
 			if (BlockGrid.Instance.CanPlace(mouseGridPosition))
 			{
-				Block block = Block.Place(worldPosition, Hardness, ToolType, ToolMaterial, Texture(), GetItem(), Input.GetKey(KeyCode.LeftAlt));
+				Block block = Block.Place(prefab(), worldPosition, Hardness, ToolType, ToolMaterial, Texture(), GetItem(), SpecialAction, Input.GetKey(KeyCode.LeftAlt));
 				BlockGrid.Instance.SetBlock(mouseGridPosition, block);
 				return true;
 			}

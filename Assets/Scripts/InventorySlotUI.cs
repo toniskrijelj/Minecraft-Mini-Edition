@@ -15,8 +15,9 @@ public class InventorySlotUI : SlotUI, IPointerDownHandler
 		{
 			if(MouseSlotUI.Instance.Slot.Amount <= 0)
 			{
-				MouseSlotUI.Instance.Slot.SetItemAmount(Slot.Item, Slot.Amount / 2);
-				Slot.Consume(Slot.Amount / 2);
+				int amount = Mathf.CeilToInt(Slot.Amount / 2f);
+				MouseSlotUI.Instance.Slot.SetItemAmount(Slot.Item, amount);
+				Slot.Consume(amount);
 			}
 			else if(Slot.TrySetItem(MouseSlotUI.Instance.Slot.Item))
 			{

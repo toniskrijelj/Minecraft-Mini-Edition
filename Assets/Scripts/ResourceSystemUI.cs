@@ -60,10 +60,6 @@ public class ResourceSystemUI : MonoBehaviour
             spriteOriginalPositions.Add(resourceImageList[i].resourceSprite.rectTransform.anchoredPosition);
         }
     }
-    protected virtual void Update()
-    {
-
-    }
     public void SetResourceSystem(ResourceSystem resourceSystem)
     {
         this.resourceResourceSystem = resourceSystem;

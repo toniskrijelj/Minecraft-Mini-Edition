@@ -4,5 +4,41 @@ using UnityEngine;
 
 public class HungerSytem : ResourceSystem
 {
-    //Dodati update logiku lol
+    float lastUpdateTime;
+    float lastHealTime;
+    float timeBetweenHeal = 4;
+    HealthSystem healthSystem;
+    protected override void Awake()
+    {
+        base.Awake();
+        healthSystem = GetComponent<HealthSystem>();
+    }
+    private void Update()
+    {
+        if(Time.time > lastUpdateTime + 30)
+        {
+            Decrease(1);
+            lastUpdateTime = Time.time;
+        }
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            Increase(1);
+        }
+        if(!healthSystem.IsFull() && resourceList[8].GetFragmentAmount() == 2)
+        {
+            if (IsFull())
+            {
+                timeBetweenHeal = 1.5f;
+            }
+            else
+            {
+                timeBetweenHeal = 4;
+            }
+            if (Time.time > lastHealTime + timeBetweenHeal)
+            {
+                lastHealTime = Time.time;
+                healthSystem.Increase(1);
+            }
+        }
+    }
 }

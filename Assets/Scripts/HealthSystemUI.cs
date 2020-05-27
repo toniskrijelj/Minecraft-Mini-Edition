@@ -31,17 +31,8 @@ public class HealthSystemUI : ResourceSystemUI
             SetOutLineColor(Color.black);
         }
     }
-    protected override void Update()
+    void Update()
     {
-        base.Update();
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            resourceResourceSystem.Decrease(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.M))
-        {
-            resourceResourceSystem.Increase(1);
-        }
         Shake(2);
     }
     private void SetOutLineColor(Color color)

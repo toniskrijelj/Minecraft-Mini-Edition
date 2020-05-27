@@ -4,17 +4,8 @@ using UnityEngine;
 
 public class HungerSystemUI : ResourceSystemUI
 {
-	protected override void Update()
+	void Update()
     {
-        base.Update();
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            resourceResourceSystem.Decrease(1);
-        }
-        else if (Input.GetKeyDown(KeyCode.H))
-        {
-            resourceResourceSystem.Increase(1);
-        }
         Shake(0);
     }
 }

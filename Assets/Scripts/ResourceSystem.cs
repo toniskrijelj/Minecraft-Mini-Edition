@@ -15,9 +15,9 @@ public abstract class ResourceSystem : MonoBehaviour
     public event EventHandler OnResourceIncreased;
     public event EventHandler OnResourceEmpty;
 
-    private List<Resource> resourceList;
+    protected List<Resource> resourceList;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         resourceList = new List<Resource>();
         for (int i = 0; i < resourceAmount; i++)
@@ -86,7 +86,10 @@ public abstract class ResourceSystem : MonoBehaviour
     {
         return resourceList[0].GetFragmentAmount() == 0;
     }
-
+    public bool IsFull()
+    {
+        return resourceList[9].GetFragmentAmount() == 2;
+    }
     public List<Resource> GetResourceList()
     {
         return resourceList;

@@ -23,8 +23,10 @@ public class BlockType : Enumeration
 	public static readonly BlockType OakLog = new BlockType(2, ToolType.Axe , ToolMaterial.All, () => BlockData.blockData.oakLogTexture, () => Item.OakLog);
 	public static readonly BlockType SpruceLog = new BlockType(2, ToolType.Axe , ToolMaterial.All, () => BlockData.blockData.spruceLogTexture, () => Item.SpruceLog);
 	public static readonly BlockType Stone = new BlockType(1.5f, ToolType.Pickaxe , ToolMaterial.All, () => BlockData.blockData.stoneBlockTexture, () => Item.StoneBlock);
-	public static readonly BlockType DiamondOre = new BlockType(3f, ToolType.Pickaxe , ToolMaterial.Iron, () => BlockData.blockData.diamondOreTexture, () => Item.Diamond);
+	public static readonly BlockType DiamondOre = new BlockType(3, ToolType.Pickaxe , ToolMaterial.Iron, () => BlockData.blockData.diamondOreTexture, () => Item.DiamondOre);
 	public static readonly BlockType Furnace = new BlockType(3.5f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.furnaceUnlit, () => Item.furnace, null, () => FurnaceData.Prefab);
+	public static readonly BlockType GoldOre = new BlockType(3, ToolType.Pickaxe, ToolMaterial.Iron, () => BlockData.blockData.goldOreTexture, () => Item.GoldOre); 
+	public static readonly BlockType TNT = new BlockType(0, ToolType.None, ToolMaterial.All, () => BlockData.blockData.TNT, () => Item.TNT); 
 
 
 

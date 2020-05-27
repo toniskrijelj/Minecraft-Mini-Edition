@@ -42,5 +42,6 @@ public class BlockData : MonoBehaviour
 	public Sprite CraftingTableTexture;
 	public Sprite furnaceUnlit;
 	public Sprite furnaceLit;
+	public Sprite TNT;
 
 }

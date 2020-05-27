@@ -77,4 +77,8 @@ public class ItemData : MonoBehaviour
 	public Sprite Carrot;
 	public Sprite Bread;
 	public Sprite Apple;
+	public Sprite Wheat;
+	public Sprite GoldOre;
+	public Sprite Gunpowder;
+	public Sprite TNT;
 }

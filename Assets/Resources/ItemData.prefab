@@ -91,3 +91,17 @@ MonoBehaviour:
   IronIngot: {fileID: 21300000, guid: 115e499be772393479f01db2c1a91f91, type: 3}
   Gold: {fileID: 21300000, guid: f0ca5d4deeb92174baa7baac0c6e2b48, type: 3}
   furnace: {fileID: 21300000, guid: af420685e733c7c48b1cf59485380691, type: 3}
+  RawChicken: {fileID: 21300000, guid: 7c62460ffa0bc074595e4b9d2dd26bfa, type: 3}
+  CookedChicken: {fileID: 21300000, guid: b87841436cf3ccf41afe321896ddec77, type: 3}
+  RawBeef: {fileID: 21300000, guid: b9aa1091b6281a945824035402cde831, type: 3}
+  CookedBeef: {fileID: 21300000, guid: 777bec898e5d71d45a29d8bdd580b87f, type: 3}
+  RawPork: {fileID: 21300000, guid: 3cd7fa942ff0ff74dbeaa11878a7dfcb, type: 3}
+  CookedPork: {fileID: 21300000, guid: 1c61c230c206a434598319033ce7e617, type: 3}
+  Potato: {fileID: 21300000, guid: fd74e019d61f70842bbaec752d903fb5, type: 3}
+  CookedPotato: {fileID: 21300000, guid: f285225e3bad3f641bdaf892d55064cc, type: 3}
+  Carrot: {fileID: 21300000, guid: af906089abb7eaa4a97020dc7a428b3d, type: 3}
+  Bread: {fileID: 21300000, guid: 50503889be128b34f991f9023dd1b1a6, type: 3}
+  Apple: {fileID: 21300000, guid: 18e7ba918f6ba7549b98fd7fd72411fe, type: 3}
+  Wheat: {fileID: 21300000, guid: c6940e5a0d0f75c46b5fe116804262fd, type: 3}
+  GoldOre: {fileID: 21300000, guid: 8f5806e3a7b9f694cb98120e48ff059d, type: 3}
+  Gunpowder: {fileID: 21300000, guid: 7371483f6c7c914439ed2794e91aee7b, type: 3}

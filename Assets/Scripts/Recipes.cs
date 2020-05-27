@@ -171,6 +171,20 @@ public static class Recipes
 			{ Item.OakPlanks,   null,       Item.OakPlanks},
 			{ Item.OakPlanks,   Item.OakPlanks,     Item.OakPlanks},
 		};
+		Item[,] breadRecipe = new Item[3, 3]
+		{
+			{ null,  null,  null},
+			{ Item.Wheat,  Item.Wheat,  Item.Wheat},
+			{ null,  null,  null},
+		};
+		Item[,] tntRecipe = new Item[3, 3]
+		{
+			{ Item.Gunpowder, Item.Sand, Item.Gunpowder},
+			{ Item.Sand, Item.Gunpowder, Item.Sand},
+			{ Item.Gunpowder, Item.Sand, Item.Gunpowder},
+		};
+		recipes.Add(new Recipe(tntRecipe), new Slot(Item.TNT, 1));
+		recipes.Add(new Recipe(breadRecipe), new Slot(Item.Bread, 1));
 		recipes.Add(new Recipe(chestRecipe), new Slot(Item.Chest, 1));
 		recipes.Add(new Recipe(woodenShovelRecipe), new Slot(Item.WoodenShovel, 1));
 		recipes.Add(new Recipe(stoneShovelRecipe), new Slot(Item.StoneShovel, 1));

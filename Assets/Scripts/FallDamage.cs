@@ -17,8 +17,9 @@ public class FallDamage : MonoBehaviour
 		int numberOfBlocks = Mathf.CeilToInt((lastYVelocity * lastYVelocity) / (2 * -rb.gravityScale));
 		if (numberOfBlocks >= 4)
 		{
-			if (Mathf.Abs(rb.velocity.y) <= 0.1f)
+			if (Mathf.Abs(rb.velocity.y) < Mathf.Abs(lastYVelocity))
 			{
+
 				healthSystem.Decrease(numberOfBlocks - 3);
 			}
 		}

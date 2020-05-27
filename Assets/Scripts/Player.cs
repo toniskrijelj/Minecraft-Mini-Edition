@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
 	private ToolMaterial toolMaterial = ToolMaterial.All;
 	private float bonusDamage = 0;
 
+	HungerSytem hungerSytem;
 	HealthSystem healthSystem;
 
 	private void Awake()
@@ -25,6 +26,7 @@ public class Player : MonoBehaviour
 		Instance = this;
 		handVisualItem = GetComponent<HandBlock>();
 		healthSystem = GetComponent<HealthSystem>();
+		hungerSytem = GetComponent<HungerSytem>();
 		healthSystem.OnResourceEmpty += HealthSystem_OnResourceEmpty;
 	}
 

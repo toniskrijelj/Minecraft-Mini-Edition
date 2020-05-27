@@ -12,12 +12,15 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] private float jumpHeight = 1.5f;
 
 	private Rigidbody2D rb;
+	HungerSytem hungerSystem;
 
 	private float currentSpeed;
+
 
 	private void Awake()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		hungerSystem = GetComponent<HungerSytem>();
 	}
 
 	float lastDir;
@@ -57,7 +60,6 @@ public class PlayerMovement : MonoBehaviour
 				currentSpeed = runSpeed;
 			}
 			else
-
 			{
 				currentSpeed = walkSpeed;
 			}

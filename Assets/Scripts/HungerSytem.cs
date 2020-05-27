@@ -5,19 +5,31 @@ using UnityEngine;
 public class HungerSytem : ResourceSystem
 {
     float lastUpdateTime;
+    float lastTimeStarve = 60;
     float lastHealTime;
     float timeBetweenHeal = 4;
+
+    float timeOfChange;
     HealthSystem healthSystem;
+    Rigidbody2D rb;
     protected override void Awake()
     {
         base.Awake();
         healthSystem = GetComponent<HealthSystem>();
+        rb = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
-        if(Time.time > lastUpdateTime + 30)
+        if(Time.time > (timeOfChange + 1) && Mathf.Abs(rb.velocity.x) >= 0.1)
+        {
+            lastTimeStarve -= 1;
+            timeOfChange = Time.time;
+            Debug.Log(lastTimeStarve);
+        }
+        if (Time.time > lastUpdateTime + lastTimeStarve)
         {
             Decrease(1);
+            lastTimeStarve = 60;
             lastUpdateTime = Time.time;
         }
         if(Input.GetKeyDown(KeyCode.H))

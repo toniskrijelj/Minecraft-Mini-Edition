@@ -18,14 +18,6 @@ public class CraftingGrid3x3UI : CraftingGridUI
 		canvas.enabled = false;
 	}
 
-	private void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.R))
-		{
-			Open();
-		}
-	}
-
 	protected override void InventoryUI_OnInventoryClosed()
 	{
 		base.InventoryUI_OnInventoryClosed();

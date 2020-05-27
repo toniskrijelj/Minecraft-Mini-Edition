@@ -68,3 +68,5 @@ MonoBehaviour:
   stoneBlockTexture: {fileID: 21300000, guid: ab48f47d12a7a4a43ac670e8dd9e803a, type: 3}
   CraftingTableTexture: {fileID: 21300000, guid: 414cd8f67fa3a8340825ea44ae6683f0,
     type: 3}
+  furnaceUnlit: {fileID: 21300000, guid: ee63ffd797aebea4890186f75ea56cfd, type: 3}
+  furnaceLit: {fileID: 21300000, guid: 83ca521d5fd9c2a49ac6c79266840572, type: 3}

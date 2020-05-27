@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,25 +18,31 @@ public class Block : MonoBehaviour
 		}
 	}
 
-	[SerializeField] SpriteRenderer spriteRenderer = null;
+	[SerializeField] protected SpriteRenderer spriteRenderer = null;
 	[SerializeField] Collider2D blockCollider = null;
 
-	private float hardness;
-	private ToolType toolType;
-	private ToolMaterial toolMaterial;
-	private Item item;
+	public Action specialAction = null;
 
-	float totalDamage;
-	float currentDamage;
+	protected float hardness;
+	protected ToolType toolType;
+	protected ToolMaterial toolMaterial;
+	protected Item item;
 
-	public static Block Place(Vector3 worldPosition, float hardness, ToolType toolType, ToolMaterial toolMaterial, Sprite texture, Item item, bool background = false)
+	protected float totalDamage;
+	protected float currentDamage;
+
+	public static Block Place(Block prefab, Vector3 worldPosition, float hardness, ToolType toolType, ToolMaterial toolMaterial, Sprite texture, Item item, Action specialAction = null,  bool background = false)
 	{
-		Block block = Instantiate(Prefab, worldPosition, Quaternion.identity);
+		Block block = Instantiate(prefab, worldPosition, Quaternion.identity);
 		block.hardness = hardness;
 		block.toolMaterial = toolMaterial;
 		block.toolType = toolType;
 		block.spriteRenderer.sprite = texture;
 		block.totalDamage = hardness;
+		if (specialAction != null)
+		{
+			block.specialAction = specialAction;
+		}
 		block.item = item;
 		if(background)
 		{

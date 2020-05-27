@@ -72,7 +72,7 @@ public class InventoryUI : MonoBehaviour
 		}
 		if (SlotUI.mouseOverSlot != null)
 		{
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 9; i++)
 			{
 				if (Input.GetKeyDown(KeyCode.Alpha1 + i))
 				{

@@ -24,24 +24,21 @@ public class HungerSytem : ResourceSystem
     private void Update()
     {
         velocityX = Mathf.Abs(rb.velocity.x);
-        if (velocityX >= 0.1f)
+        if (velocityX >= 3)
         {
             if(Time.time > lastTimeChanged + 1)
             {
                 if (velocityX > 5)
                 {
                     timeToStarve -= 1.33f;
-                    Debug.Log("Sprint");
                 }
                 else if (velocityX > 4)
                 {
                     timeToStarve -= 1f;
-                    Debug.Log("Walk");
                 }
                 else
                 {
                     timeToStarve -= 0.5f;
-                    Debug.Log("Crouch");
                 }
                 lastTimeChanged = Time.time;
             }

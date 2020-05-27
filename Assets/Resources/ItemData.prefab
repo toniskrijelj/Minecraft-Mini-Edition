@@ -47,7 +47,7 @@ MonoBehaviour:
   acaciaLeaves: {fileID: 21300000, guid: ef67397ecadec094695141cc9e121e2a, type: 3}
   birchLog: {fileID: 21300000, guid: 382d2d91007947d4ea20aad7a4f12d39, type: 3}
   birchPlanks: {fileID: 21300000, guid: 4c1bff37e7103fa4982da55192f24333, type: 3}
-  Chest: {fileID: 21300000, guid: 5d9354c26a605b14d9c5523f42ff8abb, type: 3}
+  Chest: {fileID: 21300000, guid: ee98ae6812ef4c64fb533dcc55beb2dc, type: 3}
   Cobblestone: {fileID: 21300000, guid: 5ceeac1c2fee58a4e8205f1491f20724, type: 3}
   craftingTable: {fileID: 21300000, guid: 682f5df12f5a10741a16144d4889be97, type: 3}
   Dirt: {fileID: 21300000, guid: efc24c8b95bd676409d1e8a9a389c91d, type: 3}
@@ -102,6 +102,3 @@ MonoBehaviour:
   Carrot: {fileID: 21300000, guid: af906089abb7eaa4a97020dc7a428b3d, type: 3}
   Bread: {fileID: 21300000, guid: 50503889be128b34f991f9023dd1b1a6, type: 3}
   Apple: {fileID: 21300000, guid: 18e7ba918f6ba7549b98fd7fd72411fe, type: 3}
-  Wheat: {fileID: 21300000, guid: c6940e5a0d0f75c46b5fe116804262fd, type: 3}
-  GoldOre: {fileID: 21300000, guid: 8f5806e3a7b9f694cb98120e48ff059d, type: 3}
-  Gunpowder: {fileID: 21300000, guid: 7371483f6c7c914439ed2794e91aee7b, type: 3}

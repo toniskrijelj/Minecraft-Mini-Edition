@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
 	private void Awake()
 	{
 		player = GetComponent<Player>();
-		for(int i = 0; i < SLOTS; i++)
+		for (int i = 0; i < SLOTS; i++)
 		{
 			slots[i] = new Slot(null, 0, i);
 		}
@@ -35,6 +35,7 @@ public class Inventory : MonoBehaviour
 		slots[13].SetItemAmount(Item.CraftingTable, 64);
 		slots[14].SetItemAmount(Item.OakLog, 64);
 		slots[15].SetItemAmount(Item.Sand, 64);
+		slots[16].SetItemAmount(Item.furnace, 64);
 		GetComponent<HealthSystem>().OnResourceEmpty += Inventory_OnResourceEmpty;
 	}
 
@@ -72,13 +73,13 @@ public class Inventory : MonoBehaviour
 
 
 		float mouseScroll = Input.GetAxisRaw("Mouse ScrollWheel");
-		if(mouseScroll < 0)
+		if (mouseScroll < 0)
 		{
 			int index = player.HandSlot.Index;
 			index = (index + 1) % 9;
 			SetActiveSlot(index);
 		}
-		else if(mouseScroll > 0)
+		else if (mouseScroll > 0)
 		{
 			int index = player.HandSlot.Index;
 			index -= 1;
@@ -96,14 +97,14 @@ public class Inventory : MonoBehaviour
 				break;
 			}
 		}
-		if(Input.GetKeyDown(KeyCode.Q))
+		if (Input.GetKeyDown(KeyCode.Q))
 		{
 			if (player.HandSlot != null)
 			{
 				Drop(player.HandSlot.Index, Input.GetKey(KeyCode.LeftControl));
 			}
 		}
-		if(Input.GetKeyDown(KeyCode.P))
+		if (Input.GetKeyDown(KeyCode.P))
 		{
 			Add(Item.OakPlanks, 16);
 		}
@@ -133,12 +134,12 @@ public class Inventory : MonoBehaviour
 	public int Add(Item item, int amount)
 	{
 		int amountAdded = 0;
-		for(int i = 0; i < SLOTS; i++)
+		for (int i = 0; i < SLOTS; i++)
 		{
-			if(slots[i].TrySetItem(item))
+			if (slots[i].TrySetItem(item))
 			{
 				amountAdded += slots[i].AddAmount(amount - amountAdded);
-				if(amountAdded == amount)
+				if (amountAdded == amount)
 				{
 					break;
 				}

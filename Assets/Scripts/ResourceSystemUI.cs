@@ -86,10 +86,8 @@ public class ResourceSystemUI : MonoBehaviour
 
     protected virtual void ResourceSystem_OnResourceEmpty(object sender, EventArgs e)
     {
-        Debug.Log("Dead");
+        
     }
-
-
     protected virtual void ResourceSystem_OnResourceIncreased(object sender, EventArgs e)
     {
         Refresh();

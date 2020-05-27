@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.XR;
 
 public class Player : MonoBehaviour
@@ -17,10 +18,20 @@ public class Player : MonoBehaviour
 	private ToolMaterial toolMaterial = ToolMaterial.All;
 	private float bonusDamage = 0;
 
+	HealthSystem healthSystem;
+
 	private void Awake()
 	{
 		Instance = this;
 		handVisualItem = GetComponent<HandBlock>();
+		healthSystem = GetComponent<HealthSystem>();
+		healthSystem.OnResourceEmpty += HealthSystem_OnResourceEmpty;
+	}
+
+	private void HealthSystem_OnResourceEmpty(object sender, System.EventArgs e)
+	{
+		DeathScreen.Instance.SetActive(true);
+		enabled = false;
 	}
 
 	public void ChangeHandSlot(Slot slot)

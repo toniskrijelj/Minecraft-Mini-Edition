@@ -35,6 +35,15 @@ public class Inventory : MonoBehaviour
 		slots[13].SetItemAmount(Item.CraftingTable, 64);
 		slots[14].SetItemAmount(Item.OakLog, 64);
 		slots[15].SetItemAmount(Item.Sand, 64);
+		GetComponent<HealthSystem>().OnResourceEmpty += Inventory_OnResourceEmpty;
+	}
+
+	private void Inventory_OnResourceEmpty(object sender, EventArgs e)
+	{
+		for (int i = 0; i < SLOTS; i++)
+		{
+			slots[i].Drop(true);
+		}
 	}
 
 	private void Start()

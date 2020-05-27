@@ -53,9 +53,14 @@ public class Item : Enumeration
 	public static readonly Item GoldShovel = new ToolItem("Gold Shovel", () => ItemData.icons.GoldShovel, ToolType.Shovel, ToolMaterial.Gold);
 	public static readonly Item DiamondShovel = new ToolItem("Diamond Shovel", () => ItemData.icons.DiamondShovel, ToolType.Shovel, ToolMaterial.Diamond);
 
+	public static readonly Item Apple = new FoodItem("Apple", () => ItemData.icons.apple, 4);
+
 	private Action putInHand = null;
 	private Action removeFromHand = null;
+
+	private Action onMouseRightClickDown = null;
 	private Func<bool> specialAction = null;
+	private Action onMouseRightClickUp = null;
 
 	public readonly bool stackable;
 
@@ -65,13 +70,6 @@ public class Item : Enumeration
 	{
 		GetIcon = iconFunc;
 		this.stackable = stackable;
-	}
-
-	protected Item(int value, string displayName, Action putInHand, Action removeFromHand, Func<bool> specialAction) : base(displayName)
-	{
-		this.putInHand = putInHand;
-		this.removeFromHand = removeFromHand;
-		this.specialAction = specialAction;
 	}
 
 	public void PutInHand()
@@ -91,6 +89,37 @@ public class Item : Enumeration
 			return false;
 		}
 		return specialAction.Invoke();
+	}
+
+	private class FoodItem : Item
+	{
+		int hungerPointsRestored;
+		float startEatTime;
+
+		public FoodItem(string displayName, Func<Sprite> iconFunc, int hungerPointsRestored) : base(displayName, iconFunc, true)
+		{
+			this.hungerPointsRestored = hungerPointsRestored;
+			onMouseRightClickDown = () =>
+			{
+				startEatTime = Time.time;
+			};
+			specialAction = () =>
+			{
+				if (!Player.Instance.hungerSytem.IsFull())
+				{
+					if (startEatTime + 2 < Time.time)
+					{
+						Player.Instance.hungerSytem.Increase(hungerPointsRestored);
+						return true;
+					}
+				}
+				else
+				{
+					startEatTime = Time.time;
+				}
+				return false;
+			};
+		}
 	}
 
 	private class SwordItem : Item

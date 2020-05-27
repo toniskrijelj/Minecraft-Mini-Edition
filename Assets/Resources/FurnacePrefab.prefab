@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6262409843929825862}
   - component: {fileID: 1878777883585536790}
   - component: {fileID: 8676025012276349311}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FurnacePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

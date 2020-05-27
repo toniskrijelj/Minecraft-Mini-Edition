@@ -47,9 +47,8 @@ public class CraftingOutputSlotUI : SlotUI, IPointerDownHandler
 	{
 		if(toSlot.Slot.MaxAddAmount(Slot.Item, Slot.Amount) >= Slot.Amount)
 		{
-			OnItemTaken?.Invoke();
 			toSlot.Slot.SetItemAmount(Slot.Item, Slot.Amount + toSlot.Slot.Amount);
-			Debug.Log("bruh");
+			OnItemTaken?.Invoke();
 		}
 	}
 

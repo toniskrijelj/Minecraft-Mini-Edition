@@ -53,7 +53,7 @@ public class Item : Enumeration
 	public static readonly Item GoldShovel = new ToolItem("Gold Shovel", () => ItemData.icons.GoldShovel, ToolType.Shovel, ToolMaterial.Gold);
 	public static readonly Item DiamondShovel = new ToolItem("Diamond Shovel", () => ItemData.icons.DiamondShovel, ToolType.Shovel, ToolMaterial.Diamond);
 
-	public static readonly Item Apple = new FoodItem("Apple", () => ItemData.icons.apple, 4);
+	//public static readonly Item Apple = new FoodItem("Apple", () => ItemData.icons.apple, 4);
 
 	private Action putInHand = null;
 	private Action removeFromHand = null;

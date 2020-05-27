@@ -95,6 +95,16 @@ public class Item : Enumeration
 		removeFromHand?.Invoke();
 	}
 
+	public void OnRightClickDown()
+	{
+		onMouseRightClickDown?.Invoke();
+	}
+
+	public void OnRightClickUp()
+	{
+		onMouseRightClickUp?.Invoke();
+	}
+
 	public bool SpecialAction()
 	{
 		if(specialAction == null)

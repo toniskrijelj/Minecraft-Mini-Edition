@@ -121,6 +121,13 @@ public class Player : MonoBehaviour
 			currentBlock = null;
 			breakObject.SetActive(false);
 		}
+		if (Input.GetMouseButtonDown(1))
+		{
+			if (HandSlot != null && HandSlot.Item != null)
+			{
+				HandSlot.Item.OnRightClickDown();
+			}
+		}
 		if (Input.GetMouseButton(1))
 		{
 			if (HandSlot != null && HandSlot.Item != null)
@@ -129,6 +136,13 @@ public class Player : MonoBehaviour
 				{
 					HandSlot.Consume(1);
 				}
+			}
+		}
+		if(Input.GetMouseButtonUp(1))
+		{
+			if (HandSlot != null && HandSlot.Item != null)
+			{
+				HandSlot.Item.OnRightClickUp();
 			}
 		}
 	}

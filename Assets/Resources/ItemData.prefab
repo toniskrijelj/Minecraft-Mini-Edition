@@ -102,3 +102,13 @@ MonoBehaviour:
   Carrot: {fileID: 21300000, guid: af906089abb7eaa4a97020dc7a428b3d, type: 3}
   Bread: {fileID: 21300000, guid: 50503889be128b34f991f9023dd1b1a6, type: 3}
   Apple: {fileID: 21300000, guid: 18e7ba918f6ba7549b98fd7fd72411fe, type: 3}
+  Wheat: {fileID: 21300000, guid: c6940e5a0d0f75c46b5fe116804262fd, type: 3}
+  GoldOre: {fileID: 21300000, guid: 8f5806e3a7b9f694cb98120e48ff059d, type: 3}
+  Gunpowder: {fileID: 21300000, guid: 7371483f6c7c914439ed2794e91aee7b, type: 3}
+  TNT: {fileID: 21300000, guid: 8895b75a732018546bbbf008882346b8, type: 3}
+  DiamonBlock: {fileID: 21300000, guid: dc465121174cfc54bb9414196b387aac, type: 3}
+  IronBlock: {fileID: 21300000, guid: 9e69336aabfce8b45a287415912b9edc, type: 3}
+  Emerald: {fileID: 21300000, guid: 2d905773f25b0384f90d91078438b036, type: 3}
+  EmeraldBlock: {fileID: 21300000, guid: fbfcb480994da2942a1ab906622db05b, type: 3}
+  GoldBlock: {fileID: 21300000, guid: defc9408801896a48a01c9abd24e414f, type: 3}
+  CoalBlock: {fileID: 21300000, guid: 1edc2d1b20044d942977d337ad32e1a4, type: 3}

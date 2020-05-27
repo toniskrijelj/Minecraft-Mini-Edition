@@ -81,4 +81,10 @@ public class ItemData : MonoBehaviour
 	public Sprite GoldOre;
 	public Sprite Gunpowder;
 	public Sprite TNT;
+	public Sprite DiamonBlock;
+	public Sprite IronBlock;
+	public Sprite Emerald;
+	public Sprite EmeraldBlock;
+	public Sprite GoldBlock;
+	public Sprite CoalBlock;
 }

@@ -183,6 +183,33 @@ public static class Recipes
 			{ Item.Sand, Item.Gunpowder, Item.Sand},
 			{ Item.Gunpowder, Item.Sand, Item.Gunpowder},
 		};
+		Item[,] dmdBlockRecipe = new Item[3, 3]
+		{
+			{ Item.Diamond, Item.Diamond, Item.Diamond},
+			{ Item.Diamond, Item.Diamond, Item.Diamond},
+			{ Item.Diamond, Item.Diamond, Item.Diamond}
+		};
+		Item[,] ironBlockRecipe = new Item[3, 3]
+		{
+			{ Item.Iron, Item.Iron, Item.Iron},
+			{ Item.Iron, Item.Iron, Item.Iron},
+			{ Item.Iron, Item.Iron, Item.Iron}
+		};
+		Item[,] EmeraldBlockRecipe = new Item[3, 3]
+		{
+			{ Item.Emerald, Item.Emerald, Item.Emerald},
+			{ Item.Emerald, Item.Emerald, Item.Emerald},
+			{ Item.Emerald, Item.Emerald, Item.Emerald}
+		};
+		Item[,] CoalBlockRecipe = new Item[3, 3]
+		{
+			{ Item.Coal, Item.Coal, Item.Coal},
+			{ Item.Coal, Item.Coal, Item.Coal},
+			{ Item.Coal, Item.Coal, Item.Coal}
+		};
+		recipes.Add(new Recipe(CoalBlockRecipe), new Slot(Item.CoalBlock, 1));
+		recipes.Add(new Recipe(ironBlockRecipe), new Slot(Item.IronBlock, 1));
+		recipes.Add(new Recipe(dmdBlockRecipe), new Slot(Item.DiamondBlock, 1));
 		recipes.Add(new Recipe(tntRecipe), new Slot(Item.TNT, 1));
 		recipes.Add(new Recipe(breadRecipe), new Slot(Item.Bread, 1));
 		recipes.Add(new Recipe(chestRecipe), new Slot(Item.Chest, 1));

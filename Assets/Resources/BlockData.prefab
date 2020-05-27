@@ -71,3 +71,8 @@ MonoBehaviour:
   furnaceUnlit: {fileID: 21300000, guid: ee63ffd797aebea4890186f75ea56cfd, type: 3}
   furnaceLit: {fileID: 21300000, guid: 83ca521d5fd9c2a49ac6c79266840572, type: 3}
   TNT: {fileID: 21300000, guid: 0a7e846b450503a4691dac75c2500484, type: 3}
+  DiamondBlock: {fileID: 21300000, guid: f8db9543477fb2443adb37f3cccac9de, type: 3}
+  IronBlock: {fileID: 21300000, guid: 9411c25eab8c6394abda389bad26c925, type: 3}
+  EmeraldBlock: {fileID: 21300000, guid: 28626f35e967c504d9f26a4818326211, type: 3}
+  GoldBlock: {fileID: 21300000, guid: ec0d88cd06f234b489eb2a254bd2a38d, type: 3}
+  CoalBlock: {fileID: 21300000, guid: f982f16076a02f746874eb35a4c1609d, type: 3}

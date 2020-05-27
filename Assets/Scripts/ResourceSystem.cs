@@ -81,7 +81,6 @@ public abstract class ResourceSystem : MonoBehaviour
             OnResourceIncreased(this, EventArgs.Empty);
         }
     }
-
     public bool IsEmpty()
     {
         return resourceList[0].GetFragmentAmount() == 0;

@@ -66,4 +66,15 @@ public class ItemData : MonoBehaviour
 	public Sprite IronIngot;
 	public Sprite Gold;
 	public Sprite furnace;
+	public Sprite RawChicken;
+	public Sprite CookedChicken;
+	public Sprite RawBeef;
+	public Sprite CookedBeef;
+	public Sprite RawPork;
+	public Sprite CookedPork;
+	public Sprite Potato;
+	public Sprite CookedPotato;
+	public Sprite Carrot;
+	public Sprite Bread;
+	public Sprite Apple;
 }

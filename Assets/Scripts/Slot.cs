@@ -150,11 +150,15 @@ public class Slot
 		OnSlotAmountChanged?.Invoke(Index, oldAmount);
 	}
 
-	public void Drop(bool all = false)
+	public void Drop(bool all = false, Vector3? position = null)
 	{
+		if(position == null)
+		{
+			position = Player.Instance.transform.position;
+		}
 		if (Item != null)
 		{
-			ItemEntity.Spawn(Player.Instance.transform.position, Item, all ? Amount : 1);
+			ItemEntity.Spawn((Vector3)position, Item, all ? Amount : 1);
 			Consume(all ? Amount : 1);
 		}
 	}

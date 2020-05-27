@@ -36,6 +36,8 @@ public class Inventory : MonoBehaviour
 		slots[14].SetItemAmount(Item.OakLog, 64);
 		slots[15].SetItemAmount(Item.Sand, 64);
 		slots[16].SetItemAmount(Item.furnace, 64);
+		slots[17].SetItemAmount(Item.Apple, 64);
+		slots[17].SetItemAmount(Item.RawBeef, 64);
 		GetComponent<HealthSystem>().OnResourceEmpty += Inventory_OnResourceEmpty;
 	}
 

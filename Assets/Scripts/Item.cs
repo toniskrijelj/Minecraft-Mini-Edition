@@ -52,8 +52,21 @@ public class Item : Enumeration
 	public static readonly Item IronShovel = new ToolItem("Iron Shovel", () => ItemData.icons.IronShovel, ToolType.Shovel, ToolMaterial.Iron);
 	public static readonly Item GoldShovel = new ToolItem("Gold Shovel", () => ItemData.icons.GoldShovel, ToolType.Shovel, ToolMaterial.Gold);
 	public static readonly Item DiamondShovel = new ToolItem("Diamond Shovel", () => ItemData.icons.DiamondShovel, ToolType.Shovel, ToolMaterial.Diamond);
+	//Food
+	public static readonly Item Apple = new FoodItem("Apple", () => ItemData.icons.Apple, 4);
+	public static readonly Item BakedPotato = new FoodItem("Baked Potato", () => ItemData.icons.CookedPotato, 5);
+	public static readonly Item Potato = new FoodItem("Potato", () => ItemData.icons.Potato, 2);
+	public static readonly Item CookedChicken = new FoodItem("Cooked Chicken", () => ItemData.icons.CookedChicken, 6);
+	public static readonly Item RawChicken = new FoodItem("Raw Chicken", () => ItemData.icons.RawChicken, 2);
+	public static readonly Item CookedBeef = new FoodItem("Steak", () => ItemData.icons.CookedBeef, 8);
+	public static readonly Item RawBeef = new FoodItem("Raw Beef", () => ItemData.icons.RawBeef, 3);
+	public static readonly Item CookedPork = new FoodItem("Cooked Porkchop", () => ItemData.icons.CookedPork, 8);
+	public static readonly Item RawPork = new FoodItem("Raw Porkchop", () => ItemData.icons.RawPork, 3);
+	public static readonly Item Bread = new FoodItem("Bread", () => ItemData.icons.Bread, 5);
+	public static readonly Item Carrot = new FoodItem("Carrot", () => ItemData.icons.Carrot, 3);
 
-	public static readonly Item Apple = new FoodItem("Apple", () => ItemData.icons.apple, 4);
+
+
 
 	private Action putInHand = null;
 	private Action removeFromHand = null;

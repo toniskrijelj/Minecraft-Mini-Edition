@@ -145,7 +145,7 @@ public class Item : Enumeration
 		}
 	}
 
-	private class SwordItem : Item
+	public class SwordItem : Item
 	{
 		public SwordItem(string displayName, Func<Sprite> icon, int damageIncrease) : base(displayName, icon, false)
 		{

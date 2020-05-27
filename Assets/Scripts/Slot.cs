@@ -34,7 +34,11 @@ public class Slot
 	{
 		if(Item == null)
 		{
-			return item.stackable ? 64 : 1;
+			if(item.stackable)
+			{
+				return Mathf.Min(64, amount);
+			}
+			return Mathf.Min(1, amount);
 		}
 		if(Item == item && item.stackable)
 		{

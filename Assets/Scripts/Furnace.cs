@@ -16,6 +16,12 @@ public class Furnace : Block
 	private void Awake()
 	{
 		specialAction = () => FurnaceUI.Instance.SetFurnace(this);
+		smeltingslot.OnSlotItemChanged += Smeltingslot_OnSlotItemChanged;
+	}
+
+	private void Smeltingslot_OnSlotItemChanged(int arg1, Item arg2)
+	{
+		cookTime = 0;
 	}
 
 	private void Update()
@@ -54,5 +60,12 @@ public class Furnace : Block
 			cookTime = 0;
 			spriteRenderer.sprite = BlockData.blockData.furnaceUnlit;
 		}
+	}
+
+	private void OnDestroy()
+	{
+		smeltingslot.Drop(true);
+		fuelSlot.Drop(true);
+		outputSlot.Drop(true);
 	}
 }

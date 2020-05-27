@@ -54,6 +54,9 @@ public class FurnaceUI : MonoBehaviour
 	private void InventoryUI_OnInventoryClosed()
 	{
 		canvas.enabled = false;
+		smeltingSlot.UnsetSlot();
+		fuelSlot.UnsetSlot();
+		outputSlot.UnsetSlot();
 		furnaceSet = false;
 		furnace = null;
 	}

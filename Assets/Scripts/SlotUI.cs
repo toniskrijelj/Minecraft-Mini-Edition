@@ -64,6 +64,8 @@ public class SlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		if (Slot != null)
 		{
 			Slot.OnSlotChanged -= Slot_OnSlotChanged;
+			number.text = "";
+			icon.sprite = null;
 		}
 	}
 
@@ -90,16 +92,24 @@ public class SlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 	public void Refresh()
 	{
-		icon.sprite = Slot.Item?.GetIcon();
-		if (icon.sprite == null)
+		if (Slot == null)
 		{
-			icon.color = Color.clear;
+			number.text = "";
+			icon.sprite = null;
 		}
 		else
 		{
-			icon.color = Color.white;
+			icon.sprite = Slot.Item?.GetIcon();
+			if (icon.sprite == null)
+			{
+				icon.color = Color.clear;
+			}
+			else
+			{
+				icon.color = Color.white;
+			}
+			number.text = Slot.Amount <= 1 ? "" : Slot.Amount.ToString();
 		}
-		number.text = Slot.Amount <= 1 ? "" : Slot.Amount.ToString();
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)

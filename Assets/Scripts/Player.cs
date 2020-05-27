@@ -17,10 +17,13 @@ public class Player : MonoBehaviour
 	private ToolMaterial toolMaterial = ToolMaterial.All;
 	private float bonusDamage = 0;
 
+	public HungerSytem hungerSytem { get; private set; }
+
 	private void Awake()
 	{
 		Instance = this;
 		handVisualItem = GetComponent<HandBlock>();
+		hungerSytem = GetComponent<HungerSytem>();
 		GetComponent<HealthSystem>().OnResourceEmpty += HealthSystem_OnResourceEmpty;
 	}
 

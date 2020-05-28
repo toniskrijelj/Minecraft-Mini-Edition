@@ -19,7 +19,7 @@ public class Block : MonoBehaviour
 	}
 
 	[SerializeField] protected SpriteRenderer spriteRenderer = null;
-	[SerializeField] Collider2D blockCollider = null;
+	[SerializeField] protected Collider2D blockCollider = null;
 
 	public Action specialAction = null;
 
@@ -47,6 +47,7 @@ public class Block : MonoBehaviour
 		if(background)
 		{
 			block.spriteRenderer.color = new Color(1, 1, 1, 0.7f);
+			block.spriteRenderer.sortingOrder = -1;
 		}
 		else
 		{

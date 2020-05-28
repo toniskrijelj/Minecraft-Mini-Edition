@@ -117,3 +117,4 @@ MonoBehaviour:
   BirchStairs: {fileID: 21300000, guid: 4bb4ad137aff7624fac7862bef187b74, type: 3}
   CobbleStairs: {fileID: 21300000, guid: 60cdbd7e989fa6942a0bc223741f9a56, type: 3}
   StoneStairs: {fileID: 21300000, guid: 009455d073e3b9545bd44f33bf0f05f3, type: 3}
+  CobblestoneSlab: {fileID: 21300000, guid: b9ec09cc06025fa4186e8e25e766a884, type: 3}

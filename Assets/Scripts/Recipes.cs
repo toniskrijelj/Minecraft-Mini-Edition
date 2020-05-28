@@ -207,6 +207,13 @@ public static class Recipes
 			{ Item.Coal, Item.Coal, Item.Coal},
 			{ Item.Coal, Item.Coal, Item.Coal}
 		};
+		Item[,] cobblestoneStairs = new Item[3, 3]
+		{
+			{ Item.Cobblestone,  null,  null},
+			{ Item.Cobblestone,  Item.Cobblestone,  null},
+			{ Item.Cobblestone,  Item.Cobblestone,  Item.Cobblestone},
+		};
+
 		recipes.Add(new Recipe(CoalBlockRecipe), new Slot(Item.CoalBlock, 1));
 		recipes.Add(new Recipe(ironBlockRecipe), new Slot(Item.IronBlock, 1));
 		recipes.Add(new Recipe(dmdBlockRecipe), new Slot(Item.DiamondBlock, 1));
@@ -239,6 +246,7 @@ public static class Recipes
 		recipes.Add(new Recipe(birchPlanksRecipe), new Slot(Item.BirchPlanks, 4));
 		recipes.Add(new Recipe(doorRecipe), new Slot(Item.Door, 3));
 		recipes.Add(new Recipe(stickRecipe), new Slot(Item.Stick, 4));
+		recipes.Add(new Recipe(cobblestoneStairs), new Slot(Item.CobblestoneStairs, 6));
 	}
 
 	public static Slot TryCraft(Item[,] layout)

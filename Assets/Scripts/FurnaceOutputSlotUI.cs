@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class FurnaceOutputSlotUI : SlotUI, IPointerDownHandler
 {
-	[SerializeField] Inventory inventory;
+	[SerializeField] Inventory inventory = null;
 
 	public void OnPointerDown(PointerEventData eventData)
 	{

@@ -14,4 +14,9 @@ public static class Extensions
 	{
 		return tool == toolForBlock;
 	}
+
+	public static int ToInt(this Layer layer)
+	{
+		return (int)layer;
+	}
 }

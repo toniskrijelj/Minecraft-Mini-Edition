@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Layer
+{
+	Background,
+	Ground,
+}
+
 public class BlockGrid : MonoBehaviour
 {
 	public static BlockGrid Instance { get; private set; }
@@ -11,15 +17,15 @@ public class BlockGrid : MonoBehaviour
 	private const int height = 64;
 	private const float cellSize = 1;
 	private static readonly Vector3 originPosition = new Vector3(-32, -32);
-	public Block[,] gridArray;
+	public Block[,,] gridArray;
 
 	private void Awake()
 	{
-		gridArray = new Block[width, height];
+		gridArray = new Block[width, height, 2];
 		for (int i = 0; i < 16; i++)
 		{
 			Block block = Block.Place(Block.Prefab, GetWorldPosition(i+32, 32), 1, ToolType.Axe, ToolMaterial.All, BlockData.blockData.oakPlanksTexture, Item.OakPlanks);
-			SetBlock(i+32, 32, block);
+			SetBlock(i+32, 32, Layer.Ground, block);
 		}
 		Instance = this;
 	}
@@ -66,55 +72,60 @@ public class BlockGrid : MonoBehaviour
         y = Mathf.RoundToInt((worldPosition - originPosition).y / cellSize);
     }
 
-	public void SetBlock(int x, int y, Block block)
+	public void SetBlock(int x, int y, Layer layer, Block block)
 	{
 		if (x >= 0 && y >= 0 && x < width && y < height)
 		{
-			gridArray[x, y] = block;
+			gridArray[x, y, layer.ToInt()] = block;
 		}
 	}
 
-	public void SetBlock(Vector2Int gridPosition, Block value)
+	public void SetBlock(Vector2Int gridPosition, Layer layer, Block block)
 	{
-		SetBlock(gridPosition.x, gridPosition.y, value);
+		SetBlock(gridPosition.x, gridPosition.y, layer, block);
 	}
 
-	public void SetBlock(Vector3 worldPosition, Block value) {
+	public void SetBlock(Vector3 worldPosition, Layer layer, Block block) {
 		GetXY(worldPosition, out int x, out int y);
-		SetBlock(x, y, value);
+		SetBlock(x, y, layer, block);
     }
 
-    public Block GetBlock(int x, int y) {
+    public Block GetBlock(int x, int y, Layer layer) {
         if (x >= 0 && y >= 0 && x < width && y < height) {
-            return gridArray[x, y];
+            return gridArray[x, y, layer.ToInt()];
         } else {
             return default;
         }
     }
 
-	public Block GetBlock(Vector2Int gridPosition)
+	public Block GetBlock(Vector2Int gridPosition, Layer layer)
 	{
-		return GetBlock(gridPosition.x, gridPosition.y);
+		return GetBlock(gridPosition.x, gridPosition.y, layer);
 	}
 
-    public Block GetBlock(Vector3 worldPosition) {
+    public Block GetBlock(Vector3 worldPosition, Layer layer) {
 		GetXY(worldPosition, out int x, out int y);
-		return GetBlock(x, y);
+		return GetBlock(x, y, layer);
     }
 
-	public bool CanPlace(int x, int y)
+	public bool CanPlace(int x, int y, Layer layer, bool checkNearBlocks = true)
 	{
 		return CheckXY(x, y) &&
-				GetBlock(x, y) == null &&
+				GetBlock(x, y, layer) == null &&
 				(!Physics2D.BoxCast(GetWorldPosition(x, y), new Vector2(.8f, .8f), 0, Vector2.zero, 0, 1 << 10) || Input.GetKey(KeyCode.LeftAlt)) &&
-				(GetBlock(x - 1, y) != null ||
-				GetBlock(x + 1, y) != null ||
-				GetBlock(x, y + 1) != null ||
-				GetBlock(x, y - 1) != null);
+				(!checkNearBlocks || 
+				GetBlock(x - 1, y, Layer.Background) != null ||
+				GetBlock(x + 1, y, Layer.Background) != null ||
+				GetBlock(x, y + 1, Layer.Background) != null ||
+				GetBlock(x, y - 1, Layer.Background) != null ||
+				GetBlock(x - 1, y, Layer.Ground) != null ||
+				GetBlock(x + 1, y, Layer.Ground) != null ||
+				GetBlock(x, y + 1, Layer.Ground) != null ||
+				GetBlock(x, y - 1, Layer.Ground) != null);
 	}
 
-	public bool CanPlace(Vector2Int mouseGridPosition)
+	public bool CanPlace(Vector2Int mouseGridPosition, Layer layer, bool checkNearBlocks = true)
 	{
-		return CanPlace(mouseGridPosition.x, mouseGridPosition.y);
+		return CanPlace(mouseGridPosition.x, mouseGridPosition.y, layer, checkNearBlocks);
 	}
 }

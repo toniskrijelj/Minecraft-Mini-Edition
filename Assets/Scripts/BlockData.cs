@@ -48,5 +48,8 @@ public class BlockData : MonoBehaviour
 	public Sprite EmeraldBlock;
 	public Sprite GoldBlock;
 	public Sprite CoalBlock;
-
+	public Sprite doorTextureOpen;
+	public Sprite doorTextureClosed;
+	public Sprite cobbleStoneStairs;
+	public Sprite cobblestoneSlab;
 }

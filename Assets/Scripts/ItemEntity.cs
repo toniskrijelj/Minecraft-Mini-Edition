@@ -31,9 +31,9 @@ public class ItemEntity : MonoBehaviour
 	}
 
 	[SerializeField] private float bobbingSpeed = 2f;
-	[SerializeField] private float throwPower = 3;
+	//[SerializeField] private float throwPower = 3;
 	[SerializeField] private Transform offset = null;
-	[SerializeField] private Rigidbody2D rb = null;
+	//[SerializeField] private Rigidbody2D rb = null;
 	[SerializeField] private SpriteRenderer[] spriteRenderers = null;
 
 	private int amount;

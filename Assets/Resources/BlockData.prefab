@@ -76,3 +76,7 @@ MonoBehaviour:
   EmeraldBlock: {fileID: 21300000, guid: 28626f35e967c504d9f26a4818326211, type: 3}
   GoldBlock: {fileID: 21300000, guid: ec0d88cd06f234b489eb2a254bd2a38d, type: 3}
   CoalBlock: {fileID: 21300000, guid: f982f16076a02f746874eb35a4c1609d, type: 3}
+  doorTextureOpen: {fileID: 21300000, guid: 20604e09c468dc440ad61d2c7b090801, type: 3}
+  doorTextureClosed: {fileID: 21300000, guid: dd3a0120708fd444ab7c283129c165c1, type: 3}
+  cobbleStoneStairs: {fileID: 21300000, guid: cb7588581c9130143866f4b3ac006daa, type: 3}
+  cobblestoneSlab: {fileID: 21300000, guid: b9ec09cc06025fa4186e8e25e766a884, type: 3}

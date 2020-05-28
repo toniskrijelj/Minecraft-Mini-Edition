@@ -76,11 +76,13 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
+		bool blockTriggered = false;
 		Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
 		if ((mouseWorldPosition - transform.position).sqrMagnitude <= range * range)
 		{
 			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);
-			Block block = BlockGrid.Instance.GetBlock(mouseGridPosition);
+			Block block = BlockGrid.Instance.GetBlock(mouseGridPosition, Layer.Ground);
+			if(block == null) block = BlockGrid.Instance.GetBlock(mouseGridPosition, Layer.Background);
 			if (block != null)
 			{
 				if (block != currentBlock)
@@ -90,7 +92,11 @@ public class Player : MonoBehaviour
 				currentBlock = block;
 				if (Input.GetMouseButtonDown(1))
 				{
-					block?.specialAction?.Invoke();
+					if(block != null && block.specialAction != null)
+					{
+						blockTriggered = true;
+						block.specialAction.Invoke();
+					}
 				}
 				if (Input.GetMouseButton(0))
 				{
@@ -121,28 +127,31 @@ public class Player : MonoBehaviour
 			currentBlock = null;
 			breakObject.SetActive(false);
 		}
-		if (Input.GetMouseButtonDown(1))
+		if (!blockTriggered)
 		{
-			if (HandSlot != null && HandSlot.Item != null)
+			if (Input.GetMouseButtonDown(1))
 			{
-				HandSlot.Item.OnRightClickDown();
-			}
-		}
-		if (Input.GetMouseButton(1))
-		{
-			if (HandSlot != null && HandSlot.Item != null)
-			{
-				if (HandSlot.Item.SpecialAction())
+				if (HandSlot != null && HandSlot.Item != null)
 				{
-					HandSlot.Consume(1);
+					HandSlot.Item.OnRightClickDown();
 				}
 			}
-		}
-		if(Input.GetMouseButtonUp(1))
-		{
-			if (HandSlot != null && HandSlot.Item != null)
+			if (Input.GetMouseButton(1))
 			{
-				HandSlot.Item.OnRightClickUp();
+				if (HandSlot != null && HandSlot.Item != null)
+				{
+					if (HandSlot.Item.SpecialAction())
+					{
+						HandSlot.Consume(1);
+					}
+				}
+			}
+			if (Input.GetMouseButtonUp(1))
+			{
+				if (HandSlot != null && HandSlot.Item != null)
+				{
+					HandSlot.Item.OnRightClickUp();
+				}
 			}
 		}
 	}

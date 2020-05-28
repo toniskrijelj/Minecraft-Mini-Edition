@@ -92,4 +92,5 @@ public class ItemData : MonoBehaviour
 	public Sprite BirchStairs;
 	public Sprite CobbleStairs;
 	public Sprite StoneStairs;
+	public Sprite CobblestoneSlab;
 }

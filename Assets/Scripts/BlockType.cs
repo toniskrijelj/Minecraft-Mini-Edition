@@ -17,7 +17,7 @@ public class BlockType : Enumeration
 	public static readonly BlockType CoalOre = new BlockType(3, ToolType.Pickaxe, ToolMaterial.All, () => BlockData.blockData.coalOreTexture, () => Item.Coal);
 	public static readonly BlockType Cobblestone = new BlockType(2, ToolType.Pickaxe, ToolMaterial.All, () => BlockData.blockData.cobblestoneTexture, () => Item.Cobblestone);
 	public static readonly BlockType SpruceLeaves = new BlockType(0.2f, ToolType.None, ToolMaterial.All, () => BlockData.blockData.spruceLeavesTexture, () => Item.SpruceLeaves);
-	public static readonly BlockType Door = new BlockType(3, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.doorTexture, () => Item.Door);
+	public static readonly BlockType Door = new DoorType(3, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.doorTexture, () => Item.Door, null, () => CustomBlockData.Door);
 	public static readonly BlockType GrassBlock = new BlockType(0.6f, ToolType.Shovel , ToolMaterial.All, () => BlockData.blockData.grassBlockTexture, () => Item.GrassBlock);
 	public static readonly BlockType IronOre = new BlockType(3, ToolType.Pickaxe , ToolMaterial.Stone, () => BlockData.blockData.ironOreTexture, () => Item.IronOre);
 	public static readonly BlockType OakLog = new BlockType(2, ToolType.Axe , ToolMaterial.All, () => BlockData.blockData.oakLogTexture, () => Item.OakLog);
@@ -31,8 +31,9 @@ public class BlockType : Enumeration
 	public static readonly BlockType IronBlock = new BlockType(5, ToolType.Pickaxe, ToolMaterial.Stone, () => BlockData.blockData.IronBlock, () => Item.IronBlock); 
 	public static readonly BlockType EmeraldBlock = new BlockType(5, ToolType.Pickaxe, ToolMaterial.Iron, () => BlockData.blockData.EmeraldBlock, () => Item.EmeraldBlock); 
 	public static readonly BlockType CoalBlock = new BlockType(5, ToolType.Pickaxe, ToolMaterial.Stone, () => BlockData.blockData.CoalBlock, () => Item.CoalBlock); 
-	public static readonly BlockType GoldBlock = new BlockType(5, ToolType.Pickaxe, ToolMaterial.Iron, () => BlockData.blockData.GoldBlock, () => Item.GoldBlock); 
-
+	public static readonly BlockType GoldBlock = new BlockType(5, ToolType.Pickaxe, ToolMaterial.Iron, () => BlockData.blockData.GoldBlock, () => Item.GoldBlock);
+	public static readonly BlockType CobblestoneStairs = new BlockType(2, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.cobbleStoneStairs, () => Item.CobblestoneStairs, null, ()=>CustomBlockData.Stairs);
+	public static readonly BlockType CobblestoneSlab = new BlockType(2, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.cobblestoneSlab, () => Item.CobblestoneSlab, null, ()=>CustomBlockData.Slab);
 
 
 
@@ -45,8 +46,6 @@ public class BlockType : Enumeration
 
 	protected Func<Block> prefab;
 
-	protected BlockType() { }
-
 	protected BlockType(float hardness, ToolType toolType, ToolMaterial toolMaterial, Func<Sprite> texture, Func<Item> itemDrop, Action specialAction = null, Func<Block> blockPrefab = null)
 	{
 		Hardness = hardness;
@@ -55,7 +54,7 @@ public class BlockType : Enumeration
 		Texture = texture;
 		GetItem = itemDrop;
 		SpecialAction = specialAction;
-		if(blockPrefab == null)
+		if (blockPrefab == null)
 		{
 			prefab = () => Block.Prefab;
 		}
@@ -67,18 +66,45 @@ public class BlockType : Enumeration
 
 	public virtual bool TryPlace()
 	{
+		Layer layer = Input.GetKey(KeyCode.LeftAlt) ? Layer.Background : Layer.Ground;
 		Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
 		if ((mouseWorldPosition - Player.Instance.transform.position).sqrMagnitude <= Player.range * Player.range)
 		{
 			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);
 			Vector3 worldPosition = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);
-			if (BlockGrid.Instance.CanPlace(mouseGridPosition))
+			if (BlockGrid.Instance.CanPlace(mouseGridPosition, layer))
 			{
 				Block block = Block.Place(prefab(), worldPosition, Hardness, ToolType, ToolMaterial, Texture(), GetItem(), SpecialAction, Input.GetKey(KeyCode.LeftAlt));
-				BlockGrid.Instance.SetBlock(mouseGridPosition, block);
+				BlockGrid.Instance.SetBlock(mouseGridPosition, layer, block);
 				return true;
 			}
 		}
 		return false;
+	}
+
+	public class DoorType : BlockType
+	{
+		public DoorType(float hardness, ToolType toolType, ToolMaterial toolMaterial, Func<Sprite> texture, Func<Item> itemDrop, Action specialAction = null, Func<Block> blockPrefab = null) : base(hardness, toolType, toolMaterial, texture, itemDrop, specialAction, blockPrefab)
+		{
+		}
+
+		public override bool TryPlace()
+		{
+			Layer layer = Input.GetKey(KeyCode.LeftAlt) ? Layer.Background : Layer.Ground;
+			Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
+			if ((mouseWorldPosition - Player.Instance.transform.position).sqrMagnitude <= Player.range * Player.range)
+			{
+				Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);
+				Vector3 worldPosition = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);
+				if (BlockGrid.Instance.CanPlace(mouseGridPosition, layer) && BlockGrid.Instance.CanPlace(mouseGridPosition + Vector2Int.up, layer, false))
+				{
+					Block block = Block.Place(prefab(), worldPosition, Hardness, ToolType, ToolMaterial, Texture(), GetItem(), SpecialAction, Input.GetKey(KeyCode.LeftAlt));
+					BlockGrid.Instance.SetBlock(mouseGridPosition, layer, block);
+					BlockGrid.Instance.SetBlock(mouseGridPosition + Vector2Int.up, layer, block);
+					return true;
+				}
+			}
+			return false;
+		}
 	}
 }

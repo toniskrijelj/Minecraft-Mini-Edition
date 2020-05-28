@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class CraftingOutputSlotUI : SlotUI, IPointerDownHandler
 {
-	[SerializeField] Inventory inventory;
+	[SerializeField] Inventory inventory = null;
 
 	public event Action OnItemTaken;
 

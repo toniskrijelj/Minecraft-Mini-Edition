@@ -75,6 +75,8 @@ public class Item : Enumeration
 	public static readonly Item Bread = new FoodItem("Bread", () => ItemData.icons.Bread, 5);
 	public static readonly Item Carrot = new FoodItem("Carrot", () => ItemData.icons.Carrot, 3);
 
+	public static readonly Item CobblestoneStairs = new BlockItem("Cobblestone Stairs", () => ItemData.icons.CobbleStairs, BlockType.CobblestoneStairs);
+	public static readonly Item CobblestoneSlab = new BlockItem("Cobblestone Slab", () => ItemData.icons.CobblestoneSlab, BlockType.CobblestoneSlab);
 
 
 
@@ -143,6 +145,7 @@ public class Item : Enumeration
 				{
 					if (startEatTime + 2 < Time.time)
 					{
+						startEatTime = Time.time;
 						Player.Instance.hungerSytem.Increase(hungerPointsRestored);
 						return true;
 					}

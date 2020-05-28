@@ -17,7 +17,8 @@ public class BlockOutline : MonoBehaviour
 		if ((mouseWorldPosition - Player.Instance.transform.position).sqrMagnitude <= Player.range * Player.range)
 		{
 			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);
-			Block block = BlockGrid.Instance.GetBlock(mouseGridPosition);
+			Block block = BlockGrid.Instance.GetBlock(mouseGridPosition, Layer.Background);
+			if(block == null) block = BlockGrid.Instance.GetBlock(mouseGridPosition, Layer.Ground);
 			if (block != null)
 			{
 				transform.position = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);
@@ -25,7 +26,7 @@ public class BlockOutline : MonoBehaviour
 			}
 			else if(Player.Instance.HoldingBlock())
 			{
-				if (BlockGrid.Instance.CanPlace(mouseGridPosition))
+				if (BlockGrid.Instance.CanPlace(mouseGridPosition, Layer.Background) || BlockGrid.Instance.CanPlace(mouseGridPosition, Layer.Ground))
 				{
 					transform.position = BlockGrid.Instance.GetWorldPosition(mouseGridPosition);
 					blockOutline.enabled = true;

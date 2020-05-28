@@ -62,7 +62,7 @@ public class Furnace : Block
 		}
 	}
 
-	private void OnDestroy()
+	private void OnDisable()
 	{
 		smeltingslot.Drop(true, transform.position);
 		fuelSlot.Drop(true, transform.position);

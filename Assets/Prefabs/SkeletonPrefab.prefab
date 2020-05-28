@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7781056712416211581}
   - component: {fileID: -1259917887050649939}
   - component: {fileID: -5282723392727902107}
+  - component: {fileID: 3467954426548254715}
   m_Layer: 10
   m_Name: SkeletonPrefab
   m_TagString: Untagged
@@ -117,8 +118,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.88235295, y: 1.882353}
+  m_Offset: {x: -0.17637745, y: 0}
+  m_Size: {x: 0.52959806, y: 1.882353}
   m_Direction: 0
 --- !u!114 &-5282723392727902107
 MonoBehaviour:
@@ -132,4 +133,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a729243cfeff094a98e2973404447cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 2
+  damage: 10
+  movementSpeed: 1
+--- !u!114 &3467954426548254715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781056712416211583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4a1ce84d6b5704a9fec8be6ae5540b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceAmount: 10

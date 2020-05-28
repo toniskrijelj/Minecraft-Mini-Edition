@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,11 +20,11 @@ public class MobSwpawn : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             int tempY = y;
-            randX = Random.Range(0, 10);
+            randX = Random.Range(-60, 60);
             nextSpawn = Time.time + spawnRate;
             while (true)
             {
-                if(BlockGrid.Instance.GetBlock(randX, tempY, Layer.Ground) != null)
+                if(BlockGrid.Instance.GetBlock(new Vector3(randX, tempY), Layer.Ground) != null)
                 {
                     tempY++;
                 }

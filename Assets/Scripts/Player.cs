@@ -92,21 +92,26 @@ public class Player : MonoBehaviour
 	void Update()
 	{
 		Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
-		var allHits = Physics2D.RaycastAll(transform.position, mouseWorldPosition, 4, 1 << 10);
-
-		for (int i = 0; i < allHits.Length; i++)
+		mouseWorldPosition.z = 0;
+		Vector3 pos = transform.position;
+		pos.z = 0;
+		if (Input.GetMouseButtonDown(0))
 		{
-			if (allHits[i].transform == transform)
+			var allHits = Physics2D.RaycastAll(pos, (mouseWorldPosition - pos).normalized, 4, 1 << 10);
+
+			for (int i = 0; i < allHits.Length; i++)
 			{
-				continue;
-			}
-			HealthSystem health = allHits[i].transform.GetComponent<HealthSystem>();
-			if (health != null)
-			{
-				health.Decrease(1 + bonusDamage);
+				if (allHits[i].transform == transform)
+				{
+					continue;
+				}
+				HealthSystem health = allHits[i].transform.GetComponent<HealthSystem>();
+				if (health != null)
+				{
+					health.Decrease(1 + bonusDamage);
+				}
 			}
 		}
-
 		bool blockTriggered = false;
 		if ((mouseWorldPosition - transform.position).sqrMagnitude <= range * range)
 		{

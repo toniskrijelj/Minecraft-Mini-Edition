@@ -97,7 +97,7 @@ public class ItemEntity : MonoBehaviour
 	private void OnTriggerStay2D(Collider2D collision)
 	{
 		if (picked) return;
-		if(collision.CompareTag("Player"))
+		if(collision.transform == Player.Instance.transform)
 		{
 			if(spawnTime + 2 < Time.time)
 			{
@@ -118,6 +118,7 @@ public class ItemEntity : MonoBehaviour
 		else
 		{
 			ItemEntity itemEntity = collision.GetComponent<ItemEntity>();
+			if (itemEntity == null) return;
 			if (itemEntity.picked) return;
 			if (itemEntity.item == item)
 			{

@@ -62,7 +62,7 @@ public class BlockGrid : MonoBehaviour
 
 		for(int i = 0; i < 4; i++)
 		{
-			for (int j = 0; j < 5; j++)
+			for (int j = 0; j < 4; j++)
 			{
 				BlockType.OakLog.Place(GetWorldPosition(10 + j * 30, i+64), Layer.Background);
 				BlockType.SpruceLog.Place(GetWorldPosition(20 + j * 30, i+64), Layer.Background);

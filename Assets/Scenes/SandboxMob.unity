@@ -11985,51 +11985,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 958378322}
   m_CullTransparentMesh: 0
---- !u!1 &965491057
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 965491059}
-  - component: {fileID: 965491058}
-  m_Layer: 0
-  m_Name: SkeletonSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &965491058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 965491057}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de80b99b81c15ea48a1f6c2856111993, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mob1: {fileID: 7781056712416211583, guid: 0800eac52ada9cc48b4b42f190532553, type: 3}
-  spawnRate: 30
---- !u!4 &965491059
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 965491057}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -180.25049}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &970317110
 GameObject:
   m_ObjectHideFlags: 0
@@ -12993,7 +12948,7 @@ GameObject:
   - component: {fileID: 1001350410}
   - component: {fileID: 1001350409}
   m_Layer: 0
-  m_Name: CreeperSpawner
+  m_Name: MobSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13011,8 +12966,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0017d284de2fa0c469240fa04ebee2de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mob1: {fileID: 7781056712416211583, guid: 8e52dd13e9b38f14aac14dfab4ad229d, type: 3}
-  spawnRate: 30
+  mobs:
+  - {fileID: 7781056712416211583, guid: 0800eac52ada9cc48b4b42f190532553, type: 3}
+  - {fileID: 7781056712416211583, guid: 8e52dd13e9b38f14aac14dfab4ad229d, type: 3}
+  - {fileID: 7781056712416211583, guid: 0b27f301e46b9bd4fa6398fd163ed46e, type: 3}
+  spawnRate: 10
 --- !u!4 &1001350410
 Transform:
   m_ObjectHideFlags: 0
@@ -21485,51 +21443,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616814727}
   m_CullTransparentMesh: 0
---- !u!1 &1620449803
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1620449805}
-  - component: {fileID: 1620449804}
-  m_Layer: 0
-  m_Name: ZombieSpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1620449804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1620449803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 334aa04efac600b4f8e46bf84b4dc73b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mob1: {fileID: 7781056712416211583, guid: 0b27f301e46b9bd4fa6398fd163ed46e, type: 3}
-  spawnRate: 30
---- !u!4 &1620449805
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1620449803}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -180.25049}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1629556542
 GameObject:
   m_ObjectHideFlags: 0

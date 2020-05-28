@@ -33,7 +33,7 @@ public class MobSwpawn : MonoBehaviour
                     break;
                 }
             }
-            whereToSpawn = new Vector2(randX, tempY);
+            whereToSpawn = new Vector2(randX, tempY + 1);
             GameObject mob = mobs[Random.Range(0, mobs.Length)];
             Instantiate(mob, whereToSpawn, Quaternion.identity);
         }

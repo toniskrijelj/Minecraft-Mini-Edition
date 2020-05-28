@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
+using JetBrains.Annotations;
+using System.Runtime.InteropServices.ComTypes;
 
 public class InventoryUI : MonoBehaviour
 {
+	public bool open;
 	public static InventoryUI Instance { get; private set; }
 
 	public event Action OnInventoryClosed;
@@ -29,9 +32,13 @@ public class InventoryUI : MonoBehaviour
 	{
 		SetInventory(inventory);
 	}
-
+	public bool locked = false;
 	private void Update()
 	{
+		if(locked)
+		{
+			return;
+		}
 		if(Input.GetKeyDown(KeyCode.Escape))
 		{
 			if(canvas.enabled)
@@ -95,6 +102,7 @@ public class InventoryUI : MonoBehaviour
 	{
 		canvas.enabled = true;
 		Player.Instance.enabled = false;
+		open = true;
 	}
 
 	public void Close()
@@ -102,5 +110,6 @@ public class InventoryUI : MonoBehaviour
 		canvas.enabled = false;
 		Player.Instance.enabled = true;
 		OnInventoryClosed?.Invoke();
+		open = false;
 	}
 }

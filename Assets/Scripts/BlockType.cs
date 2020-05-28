@@ -18,11 +18,11 @@ public class BlockType : Enumeration
 	public static readonly BlockType Cobblestone = new BlockType(2, ToolType.Pickaxe, ToolMaterial.All, () => BlockData.blockData.cobblestoneTexture, () => Item.Cobblestone);
 	public static readonly BlockType SpruceLeaves = new BlockType(0.2f, ToolType.None, ToolMaterial.All, () => BlockData.blockData.spruceLeavesTexture, () => Item.SpruceLeaves);
 	public static readonly BlockType Door = new DoorType(3, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.doorTexture, () => Item.Door, null, () => CustomBlockData.Door);
-	public static readonly BlockType GrassBlock = new BlockType(0.6f, ToolType.Shovel , ToolMaterial.All, () => BlockData.blockData.grassBlockTexture, () => Item.GrassBlock);
+	public static readonly BlockType GrassBlock = new BlockType(0.6f, ToolType.Shovel , ToolMaterial.All, () => BlockData.blockData.grassBlockTexture, () => Item.Dirt);
 	public static readonly BlockType IronOre = new BlockType(3, ToolType.Pickaxe , ToolMaterial.Stone, () => BlockData.blockData.ironOreTexture, () => Item.IronOre);
 	public static readonly BlockType OakLog = new BlockType(2, ToolType.Axe , ToolMaterial.All, () => BlockData.blockData.oakLogTexture, () => Item.OakLog);
 	public static readonly BlockType SpruceLog = new BlockType(2, ToolType.Axe , ToolMaterial.All, () => BlockData.blockData.spruceLogTexture, () => Item.SpruceLog);
-	public static readonly BlockType Stone = new BlockType(1.5f, ToolType.Pickaxe , ToolMaterial.All, () => BlockData.blockData.stoneBlockTexture, () => Item.StoneBlock);
+	public static readonly BlockType Stone = new BlockType(1.5f, ToolType.Pickaxe , ToolMaterial.All, () => BlockData.blockData.stoneBlockTexture, () => Item.Cobblestone);
 	public static readonly BlockType DiamondOre = new BlockType(3, ToolType.Pickaxe , ToolMaterial.Iron, () => BlockData.blockData.diamondOreTexture, () => Item.DiamondOre);
 	public static readonly BlockType Furnace = new BlockType(3.5f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.furnaceUnlit, () => Item.furnace, null, () => CustomBlockData.Furnace);
 	public static readonly BlockType GoldOre = new BlockType(3, ToolType.Pickaxe, ToolMaterial.Iron, () => BlockData.blockData.goldOreTexture, () => Item.GoldOre); 
@@ -32,8 +32,27 @@ public class BlockType : Enumeration
 	public static readonly BlockType EmeraldBlock = new BlockType(5, ToolType.Pickaxe, ToolMaterial.Iron, () => BlockData.blockData.EmeraldBlock, () => Item.EmeraldBlock); 
 	public static readonly BlockType CoalBlock = new BlockType(5, ToolType.Pickaxe, ToolMaterial.Stone, () => BlockData.blockData.CoalBlock, () => Item.CoalBlock); 
 	public static readonly BlockType GoldBlock = new BlockType(5, ToolType.Pickaxe, ToolMaterial.Iron, () => BlockData.blockData.GoldBlock, () => Item.GoldBlock);
+	public static readonly BlockType Diorite = new BlockType(1.5f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.Diorite, () => Item.Diorite);
+	public static readonly BlockType SmoothStone = new BlockType(1.5f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.SmoothStone, () => Item.SmoothStone);
+	public static readonly BlockType Sandstone = new BlockType(0.8f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.Sandstone, () => Item.Sandstone);
+	public static readonly BlockType StoneBrick = new BlockType(1.5f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.StoneBrick, () => Item.StoneBrick);
+	//Stairs
 	public static readonly BlockType CobblestoneStairs = new BlockType(2, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.cobbleStoneStairs, () => Item.CobblestoneStairs, null, ()=>CustomBlockData.Stairs);
+	public static readonly BlockType StoneStairs = new BlockType(2, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.StoneStairs, () => Item.StoneStairs, null, ()=>CustomBlockData.Stairs);
+	public static readonly BlockType OakStairs = new BlockType(2, ToolType.Axe, ToolMaterial.Wood, () => BlockData.blockData.OakStairs, () => Item.OakStairs, null, ()=>CustomBlockData.Stairs);
+	public static readonly BlockType BirchStairs = new BlockType(2, ToolType.Axe, ToolMaterial.Wood, () => BlockData.blockData.BirchStairs, () => Item.BirchStairs, null, ()=>CustomBlockData.Stairs);
+	public static readonly BlockType SpruceStairs = new BlockType(2, ToolType.Axe, ToolMaterial.Wood, () => BlockData.blockData.SpruceStairs, () => Item.SpruceStairs, null, ()=>CustomBlockData.Stairs);
+	public static readonly BlockType StoneBrickStairs = new BlockType(1.5f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.StoneBrickStairs, () => Item.StoneBrickStairs, null, ()=>CustomBlockData.Stairs);
+	
+	//Slab
 	public static readonly BlockType CobblestoneSlab = new BlockType(2, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.cobblestoneSlab, () => Item.CobblestoneSlab, null, ()=>CustomBlockData.Slab);
+	public static readonly BlockType DioriteSlab = new BlockType(1.5f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.DioriteSlab, () => Item.DioriteSlab, null, ()=>CustomBlockData.Slab);
+	public static readonly BlockType OakSlab = new BlockType(2, ToolType.Axe, ToolMaterial.Wood, () => BlockData.blockData.OakSlab, () => Item.OakSlab, null, ()=>CustomBlockData.Slab);
+	public static readonly BlockType SandstoneSlab = new BlockType(0.8f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.SandstoneSlab, () => Item.SandstoneSlab, null, ()=>CustomBlockData.Slab);
+	public static readonly BlockType SpruceSlab = new BlockType(2, ToolType.Axe, ToolMaterial.Wood, () => BlockData.blockData.SpruceSlab, () => Item.SpruceSlab, null, ()=>CustomBlockData.Slab);
+	public static readonly BlockType StoneBrickSlab = new BlockType(1.5f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.StoneBrickSlab, () => Item.StoneBrickSlab, null, ()=>CustomBlockData.Slab);
+	
+
 
 
 

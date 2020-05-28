@@ -40,6 +40,11 @@ public class Item : Enumeration
 	public static readonly Item EmeraldBlock = new BlockItem("Block of Emerald", () => ItemData.icons.EmeraldBlock, BlockType.EmeraldBlock);
 	public static readonly Item CoalBlock = new BlockItem("Block of Coal", () => ItemData.icons.CoalBlock, BlockType.CoalBlock);
 	public static readonly Item GoldBlock = new BlockItem("Block of Gold", () => ItemData.icons.GoldBlock, BlockType.GoldBlock);
+	public static readonly Item Diorite = new BlockItem("Diorite", () => ItemData.icons.Diorite, BlockType.Diorite);
+	public static readonly Item SmoothStone = new BlockItem("SoothStone", () => ItemData.icons.SmoothStone, BlockType.SmoothStone);
+	public static readonly Item Sandstone = new BlockItem("Sandstone", () => ItemData.icons.Sandstone, BlockType.Sandstone);
+	public static readonly Item StoneBrick = new BlockItem("Stone Bricks", () => ItemData.icons.StoneBrick, BlockType.StoneBrick);
+	
 
 	// Tools
 	public static readonly Item DiamondSword = new SwordItem("Diamond Sword", () => ItemData.icons.DiamondSword, 4);
@@ -74,12 +79,25 @@ public class Item : Enumeration
 	public static readonly Item RawPork = new FoodItem("Raw Porkchop", () => ItemData.icons.RawPork, 3);
 	public static readonly Item Bread = new FoodItem("Bread", () => ItemData.icons.Bread, 5);
 	public static readonly Item Carrot = new FoodItem("Carrot", () => ItemData.icons.Carrot, 3);
-
+	//Stairs
 	public static readonly Item CobblestoneStairs = new BlockItem("Cobblestone Stairs", () => ItemData.icons.CobbleStairs, BlockType.CobblestoneStairs);
+	public static readonly Item StoneStairs = new BlockItem("Stone Stairs", () => ItemData.icons.StoneStairs, BlockType.StoneStairs);
+	public static readonly Item OakStairs = new BlockItem("Oak Stairs", () => ItemData.icons.OakStairs, BlockType.OakStairs);
+	public static readonly Item BirchStairs = new BlockItem("Birch Stairs", () => ItemData.icons.BirchStairs, BlockType.BirchStairs);
+	public static readonly Item SpruceStairs = new BlockItem("Spruce Stairs", () => ItemData.icons.SpruceStairs, BlockType.SpruceStairs);
+	public static readonly Item StoneBrickStairs = new BlockItem("Stone Brick Stairs", () => ItemData.icons.StoneBrichStairs, BlockType.StoneBrickStairs);
+
+
+	//Slabs
 	public static readonly Item CobblestoneSlab = new BlockItem("Cobblestone Slab", () => ItemData.icons.CobblestoneSlab, BlockType.CobblestoneSlab);
+	public static readonly Item DioriteSlab = new BlockItem("Diorite Slab", () => ItemData.icons.DioriteSlab, BlockType.DioriteSlab);
+	public static readonly Item OakSlab = new BlockItem("Oak Slab", () => ItemData.icons.OakSlab, BlockType.OakSlab);
+	public static readonly Item SandstoneSlab = new BlockItem("Sandstone Slab", () => ItemData.icons.SandStoneSlab, BlockType.SandstoneSlab);
+	public static readonly Item SpruceSlab = new BlockItem("Spruce Slab", () => ItemData.icons.SpruceSlab, BlockType.SpruceSlab);
+	public static readonly Item StoneBrickSlab = new BlockItem("Stone Brick Slab", () => ItemData.icons.StoneBrickSlab, BlockType.StoneBrickSlab);
 
 
-
+	
 
 	private Action putInHand = null;
 	private Action removeFromHand = null;

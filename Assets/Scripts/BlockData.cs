@@ -52,4 +52,20 @@ public class BlockData : MonoBehaviour
 	public Sprite doorTextureClosed;
 	public Sprite cobbleStoneStairs;
 	public Sprite cobblestoneSlab;
+	public Sprite OakStairs;
+	public Sprite BirchStairs;
+	public Sprite SpruceStairs;
+	public Sprite StoneStairs;
+
+	public Sprite Diorite;
+	public Sprite DioriteSlab;
+	public Sprite SmoothStone;
+	public Sprite OakSlab;
+	public Sprite Sandstone;
+	public Sprite SandstoneSlab;
+	public Sprite StoneBrick;
+	public Sprite SpruceSlab;
+	public Sprite StoneBrickSlab;
+	public Sprite StoneBrickStairs;
+
 }

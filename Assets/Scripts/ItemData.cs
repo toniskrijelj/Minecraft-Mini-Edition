@@ -93,4 +93,20 @@ public class ItemData : MonoBehaviour
 	public Sprite CobbleStairs;
 	public Sprite StoneStairs;
 	public Sprite CobblestoneSlab;
+	public Sprite Andesite;
+	public Sprite AndesiteSlab;
+	public Sprite BirchSlab;
+	public Sprite Diorite;
+	public Sprite DioriteSlab;
+	public Sprite SmoothStone;
+	public Sprite OakSlab;
+	public Sprite Sandstone;
+	public Sprite SandStoneSlab;
+	public Sprite SmoothStoneSlab;
+	public Sprite SpruceSlab;
+	public Sprite StoneBrick;
+	public Sprite StoneBrichStairs;
+	public Sprite StoneBrickSlab;
+
+	
 }

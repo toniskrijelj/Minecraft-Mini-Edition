@@ -31,6 +31,8 @@ public class Block : MonoBehaviour
 	protected float totalDamage;
 	protected float currentDamage;
 
+	protected virtual void OnDestroyed() { }
+
 	public static Block Place(Block prefab, Vector3 worldPosition, float hardness, ToolType toolType, ToolMaterial toolMaterial, Sprite texture, Item item, Action specialAction = null,  bool background = false)
 	{
 		Block block = Instantiate(prefab, worldPosition, Quaternion.identity);
@@ -89,6 +91,7 @@ public class Block : MonoBehaviour
 		if(currentDamage >= totalDamage)
 		{
 			destroyed = true;
+			OnDestroyed();
 			Destroy(gameObject);
 			return true;
 		}

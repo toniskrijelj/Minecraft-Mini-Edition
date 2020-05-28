@@ -13,21 +13,86 @@ public class BlockGrid : MonoBehaviour
 {
 	public static BlockGrid Instance { get; private set; }
 
-    private const int width = 64;
-	private const int height = 64;
+    private const int width = 127;
+	private const int height = 127;
 	private const float cellSize = 1;
-	private static readonly Vector3 originPosition = new Vector3(-32, -32);
+	private static readonly Vector3 originPosition = new Vector3(-63, -63);
 	public Block[,,] gridArray;
 
 	private void Awake()
 	{
-		gridArray = new Block[width, height, 2];
-		for (int i = 0; i < 16; i++)
-		{
-			Block block = Block.Place(Block.Prefab, GetWorldPosition(i+32, 32), 1, ToolType.Axe, ToolMaterial.All, BlockData.blockData.oakPlanksTexture, Item.OakPlanks);
-			SetBlock(i+32, 32, Layer.Ground, block);
-		}
 		Instance = this;
+		gridArray = new Block[width, height, 2];
+		for (int i = 0; i < 127; i++)
+		{
+			BlockType.GrassBlock.Place(GetWorldPosition(i, 63), Layer.Ground);
+			for (int j = 62; j >= 53; j--)
+			{
+				BlockType.Dirt.Place(GetWorldPosition(i, j), Layer.Ground);
+			}
+			for (int j = 52; j >= 0; j--)
+			{
+				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Background);
+			}
+			for (int j = 52; j >= 45; j--)
+			{
+				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
+			}
+			BlockType.CoalOre.Place(GetWorldPosition(i, 44), Layer.Ground);
+			for (int j = 43; j >= 35; j--)
+			{
+				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
+			}
+			BlockType.IronOre.Place(GetWorldPosition(i, 34), Layer.Ground);
+			for (int j = 33; j >= 26; j--)
+			{
+				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
+			}
+			BlockType.GoldOre.Place(GetWorldPosition(i, 25), Layer.Ground);
+			for (int j = 24; j >= 15; j--)
+			{
+				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
+			}
+			BlockType.DiamondOre.Place(GetWorldPosition(i, 14), Layer.Ground);
+			for (int j = 13; j >= 0; j--)
+			{
+				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
+			}
+		}
+
+		for(int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				BlockType.OakLog.Place(GetWorldPosition(10 + j * 30, i+64), Layer.Background);
+				BlockType.SpruceLog.Place(GetWorldPosition(20 + j * 30, i+64), Layer.Background);
+				BlockType.BirchLog.Place(GetWorldPosition(30 + j * 30, i+64), Layer.Background);
+			}
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 5; j++)
+			{
+				BlockType.OakLeaves.Place(GetWorldPosition(10 + i * 30 - 2 + j, 3 + 64), Layer.Ground);
+				BlockType.SpruceLeaves.Place(GetWorldPosition(20 + i * 30 - 2 + j, 3 + 64), Layer.Ground);
+				BlockType.OakLeaves.Place(GetWorldPosition(30 + i * 30 - 2 + j, 3 + 64), Layer.Ground);
+
+				BlockType.OakLeaves.Place(GetWorldPosition(10 + i * 30 - 2 + j, 4 + 64), Layer.Ground);
+				BlockType.SpruceLeaves.Place(GetWorldPosition(20 + i * 30 - 2 + j, 4 + 64), Layer.Ground);
+				BlockType.OakLeaves.Place(GetWorldPosition(30 + i * 30 - 2 + j, 4 + 64), Layer.Ground);
+			}
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			for (int j = 0; j < 3; j++)
+			{
+				BlockType.OakLeaves.Place(GetWorldPosition(10 + i * 30 - 1 + j, 5 + 64), Layer.Ground);
+				BlockType.SpruceLeaves.Place(GetWorldPosition(20 + i * 30 - 1 + j, 5 + 64), Layer.Ground);
+				BlockType.OakLeaves.Place(GetWorldPosition(30 + i * 30 - 1 + j, 5 + 64), Layer.Ground);
+			}
+		}
 	}
 
     public int GetWidth() {

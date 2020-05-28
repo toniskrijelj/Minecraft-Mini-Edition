@@ -14,11 +14,13 @@ public static class FurnaceData
 		productDictionary = new Dictionary<Item, Item>();
 		burnDictionary = new Dictionary<Item, float>();
 		productDictionary.Add(Item.Cobblestone, Item.StoneBlock);
+		productDictionary.Add(Item.Dirt, Item.GrassBlock);
 		productDictionary.Add(Item.IronOre, Item.Iron);
 		productDictionary.Add(Item.BirchLog, Item.Coal);
 		productDictionary.Add(Item.OakLog, Item.Coal);
 		productDictionary.Add(Item.DiamondOre, Item.Diamond);
 		productDictionary.Add(Item.CoalOre, Item.Coal);
+		productDictionary.Add(Item.GoldOre, Item.Gold);
 		productDictionary.Add(Item.RawBeef, Item.CookedBeef);
 		productDictionary.Add(Item.RawChicken, Item.CookedChicken);
 		productDictionary.Add(Item.RawPork, Item.CookedPork);

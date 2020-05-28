@@ -67,34 +67,48 @@ public class DeveloperConsole : MonoBehaviour
 
 	private void CheckCommand()
 	{
-		if(input[0] == '/')
+		if (input != null && input.Length > 0)
 		{
-			string[] words = input.Split(' ');
-			if(Commands.ContainsKey(words[0]))
+			if (input[0] == '/')
 			{
-				string command = words[0];
-				List<string> kurcina = new List<string>(words);
-				kurcina.RemoveAt(0);
-				words = kurcina.ToArray();
-				Commands[command](words);
+				string[] words = input.Split(' ');
+				if (words != null && words.Length > 0)
+				{
+					if (Commands.ContainsKey(words[0]))
+					{
+						string command = words[0];
+						List<string> kurcina = new List<string>(words);
+						kurcina.RemoveAt(0);
+						words = kurcina.ToArray();
+						Commands[command](words);
+					}
+				}
 			}
 		}
 	}
 
 	private void Give(params string[] arguments)
 	{
-		var fields = typeof(Item).GetFields();
-		foreach (var item in fields)
+		if (arguments.Length == 2)
 		{
-			if (item.FieldType == typeof(Item))
+			var fields = typeof(Item).GetFields();
+			foreach (var item in fields)
 			{
-				Item current = (Item)item.GetValue(null);
-				if (current.DisplayName == arguments[0])
+				if (item.FieldType == typeof(Item))
 				{
-					Inventory.Instance.Add(current, int.Parse(arguments[1]));
-					break;
+					Item current = (Item)item.GetValue(null);
+					if (current.DisplayName == arguments[0])
+					{
+						int number;
+						if (int.TryParse(arguments[1], out number))
+						{
+							Inventory.Instance.Add(current, number);
+						}
+						break;
+					}
 				}
 			}
+
 		}
 	}
 	

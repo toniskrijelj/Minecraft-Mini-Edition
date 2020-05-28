@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,8 @@ public class Player : MonoBehaviour
 	private ToolMaterial toolMaterial = ToolMaterial.All;
 	private float bonusDamage = 0;
 
+	public event Action OnPlayerRespawn;
+
 	public HungerSytem hungerSytem { get; private set; }
 
 	private void Awake()
@@ -33,6 +36,17 @@ public class Player : MonoBehaviour
 		enabled = false;
 	}
 
+	public void Respawn()
+	{
+		Debug.Log("respawn");
+		transform.position = new Vector3(0, 1, 0);
+		OnPlayerRespawn?.Invoke();
+		DeathScreen.Instance.SetActive(false);
+		GetComponent<HealthSystem>().Increase(20);
+		hungerSytem.Increase(20);
+		enabled = true;
+	}
+
 	public void ChangeHandSlot(Slot slot)
 	{
 		if (HandSlot != null)
@@ -44,6 +58,7 @@ public class Player : MonoBehaviour
 		HandSlot?.Item?.PutInHand();
 		handItem = slot?.Item;
 		handVisualItem.SetItem(handItem, activeTool);
+		ItemText.Instance.SetItem(slot?.Item);
 		if (HandSlot != null)
 		{
 			HandSlot.OnSlotChanged += HandSlot_OnSlotChanged;

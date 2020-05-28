@@ -69,10 +69,34 @@ public static class Recipes
 			{null ,   Item.Stick,       null},
 			{null ,   Item.Stick,     null},
 		};
+		Item[,] woodenPickRecipeBirch = new Item[3, 3]
+		{
+			{Item.BirchPlanks ,   Item.BirchPlanks,    Item.BirchPlanks},
+			{null ,   Item.Stick,       null},
+			{null ,   Item.Stick,     null},
+		};
+		Item[,] woodenPickRecipeSpruce = new Item[3, 3]
+		{
+			{Item.SprucePlanks ,   Item.SprucePlanks,    Item.SprucePlanks},
+			{null ,   Item.Stick,       null},
+			{null ,   Item.Stick,     null},
+		};
 		Item[,] woodenSwordRecipe = new Item[3, 3]
 		{
 			{null,   Item.OakPlanks,       null},
 			{null ,   Item.OakPlanks,       null},
+			{null ,   Item.Stick,     null},
+		};
+		Item[,] woodenSwordRecipeSpruce = new Item[3, 3]
+		{
+			{null,   Item.SprucePlanks,       null},
+			{null ,   Item.SprucePlanks,       null},
+			{null ,   Item.Stick,     null},
+		};
+		Item[,] woodenSwordRecipeBirch = new Item[3, 3]
+		{
+			{null,   Item.BirchPlanks,       null},
+			{null ,   Item.BirchPlanks,       null},
 			{null ,   Item.Stick,     null},
 		};
 		Item[,] stoneSwordRecipe = new Item[3, 3]
@@ -129,9 +153,33 @@ public static class Recipes
 			{null ,   Item.Stick,       Item.OakPlanks},
 			{null ,   Item.Stick,     null},
 		};
+		Item[,] woodenAxeRecipeSpruce = new Item[3, 3]
+		{
+			{null,   Item.SprucePlanks,       Item.SprucePlanks},
+			{null ,   Item.Stick,       Item.SprucePlanks},
+			{null ,   Item.Stick,     null},
+		};
+		Item[,] woodenAxeRecipeBirch = new Item[3, 3]
+		{
+			{null,   Item.BirchPlanks,       Item.BirchPlanks},
+			{null ,   Item.Stick,       Item.BirchPlanks},
+			{null ,   Item.Stick,     null},
+		};
 		Item[,] woodenShovelRecipe = new Item[3, 3]
 		{
 			{null,   Item.OakPlanks,       null},
+			{null ,   Item.Stick,       null},
+			{null ,   Item.Stick,     null},
+		};
+		Item[,] woodenShovelRecipeSpruce = new Item[3, 3]
+		{
+			{null,   Item.SprucePlanks,       null},
+			{null ,   Item.Stick,       null},
+			{null ,   Item.Stick,     null},
+		};
+		Item[,] woodenShovelRecipeBirch = new Item[3, 3]
+		{
+			{null,   Item.SprucePlanks,       null},
 			{null ,   Item.Stick,       null},
 			{null ,   Item.Stick,     null},
 		};
@@ -297,6 +345,41 @@ public static class Recipes
 			{ Item.StoneBrick, Item.StoneBrick, null},
 			{Item.StoneBrick, Item.StoneBrick, Item.StoneBrick}
 		};
+		Item[,] craftingTableBirch = new Item[3, 3]
+		{
+			{ null, null, null},
+			{ Item.BirchPlanks, Item.BirchPlanks, null},
+			{Item.BirchPlanks, Item.BirchPlanks, null}
+		};
+		Item[,] stickBirch = new Item[3, 3]
+		{
+			{ null, null, null},
+			{ null, Item.BirchPlanks, null},
+			{null, Item.BirchPlanks, null}
+		};
+		Item[,] craftingTableSpruce = new Item[3, 3]
+		{
+			{ null, null, null},
+			{ Item.SprucePlanks, Item.SprucePlanks, null},
+			{Item.SprucePlanks, Item.SprucePlanks, null}
+		};
+		Item[,] stickSpruce = new Item[3, 3]
+		{
+			{ null, null, null},
+			{ null, Item.SprucePlanks, null},
+			{null, Item.SprucePlanks, null}
+		};
+		Item[,] furnace = new Item[3, 3]
+		{
+			{ Item.Cobblestone, Item.Cobblestone, Item.Cobblestone},
+			{ Item.Cobblestone, null, Item.Cobblestone},
+			{Item.Cobblestone,Item.Cobblestone , Item.Cobblestone}
+		};
+		recipes.Add(new Recipe(furnace), new Slot(Item.furnace, 1));
+		recipes.Add(new Recipe(stickBirch), new Slot(Item.Stick, 4));
+		recipes.Add(new Recipe(craftingTableBirch), new Slot(Item.CraftingTable, 1));
+		recipes.Add(new Recipe(stickSpruce), new Slot(Item.Stick, 4));
+		recipes.Add(new Recipe(craftingTableSpruce), new Slot(Item.CraftingTable, 1));
 		recipes.Add(new Recipe(StoneBrickStairsRecipe), new Slot(Item.StoneBrickStairs, 6));
 		recipes.Add(new Recipe(StoneBrickSlabRecipe), new Slot(Item.StoneBrickSlab, 6));
 		recipes.Add(new Recipe(StoneBricksRecipe), new Slot(Item.StoneBrick, 4));
@@ -318,6 +401,8 @@ public static class Recipes
 		recipes.Add(new Recipe(breadRecipe), new Slot(Item.Bread, 1));
 		recipes.Add(new Recipe(chestRecipe), new Slot(Item.Chest, 1));
 		recipes.Add(new Recipe(woodenShovelRecipe), new Slot(Item.WoodenShovel, 1));
+		recipes.Add(new Recipe(woodenShovelRecipeBirch), new Slot(Item.WoodenShovel, 1));
+		recipes.Add(new Recipe(woodenShovelRecipeSpruce), new Slot(Item.WoodenShovel, 1));
 		recipes.Add(new Recipe(stoneShovelRecipe), new Slot(Item.StoneShovel, 1));
 		recipes.Add(new Recipe(ironShovelRecipe), new Slot(Item.IronShovel, 1));
 		recipes.Add(new Recipe(goldShovelRecipe), new Slot(Item.GoldShovel, 1));
@@ -327,14 +412,20 @@ public static class Recipes
 		recipes.Add(new Recipe(goldAxeRecipe), new Slot(Item.GoldenAxe, 1));
 		recipes.Add(new Recipe(stoneAxeRecipe), new Slot(Item.StoneAxe, 1));
 		recipes.Add(new Recipe(woodenAxeRecipe), new Slot(Item.WoodenAxe, 1));
+		recipes.Add(new Recipe(woodenAxeRecipeSpruce), new Slot(Item.WoodenAxe, 1));
+		recipes.Add(new Recipe(woodenAxeRecipeBirch), new Slot(Item.WoodenAxe, 1));
 		recipes.Add(new Recipe(diamondPickRecipe), new Slot(Item.DiamondPickaxe, 1));
 		recipes.Add(new Recipe(goldPickRecipe), new Slot(Item.GoldPickaxe, 1));
 		recipes.Add(new Recipe(ironPickRecipe), new Slot(Item.IronPickaxe, 1));
 		recipes.Add(new Recipe(stonePickRecipe), new Slot(Item.StonePickaxe, 1));
 		recipes.Add(new Recipe(woodenPickRecipe), new Slot(Item.WoodenPickaxe, 1));
+		recipes.Add(new Recipe(woodenPickRecipeSpruce), new Slot(Item.WoodenPickaxe, 1));
+		recipes.Add(new Recipe(woodenPickRecipeBirch), new Slot(Item.WoodenPickaxe, 1));
 		recipes.Add(new Recipe(diamondSwordRecipe), new Slot(Item.DiamondSword, 1));
 		recipes.Add(new Recipe(stoneSwordRecipe), new Slot(Item.StoneSword, 1));
 		recipes.Add(new Recipe(woodenSwordRecipe), new Slot(Item.WoodenSword, 1));
+		recipes.Add(new Recipe(woodenSwordRecipeSpruce), new Slot(Item.WoodenSword, 1));
+		recipes.Add(new Recipe(woodenSwordRecipeBirch), new Slot(Item.WoodenSword, 1));
 		recipes.Add(new Recipe(goldSwordRecipe), new Slot(Item.GoldSword, 1));
 		recipes.Add(new Recipe(ironSwordRecipe), new Slot(Item.IronSword, 1));
 		recipes.Add(new Recipe(craftingTableRecipe), new Slot(Item.CraftingTable, 1));

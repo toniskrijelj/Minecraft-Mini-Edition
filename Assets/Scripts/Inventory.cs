@@ -18,10 +18,12 @@ public class Inventory : MonoBehaviour
 	{
 		Instance = this;
 		player = GetComponent<Player>();
+		player.OnPlayerRespawn += Player_OnPlayerRespawn;
 		for (int i = 0; i < SLOTS; i++)
 		{
 			slots[i] = new Slot(null, 0, i);
 		}
+		/*
 		slots[0].SetItemAmount(Item.WoodenPickaxe, 1);
 		slots[1].SetItemAmount(Item.StonePickaxe, 1);
 		slots[2].SetItemAmount(Item.IronPickaxe, 1);
@@ -41,8 +43,13 @@ public class Inventory : MonoBehaviour
 		slots[16].SetItemAmount(Item.furnace, 64);
 		slots[17].SetItemAmount(Item.Apple, 64);
 		slots[18].SetItemAmount(Item.RawBeef, 64);
-		slots[19].SetItemAmount(Item.CobblestoneSlab, 64);
+		slots[19].SetItemAmount(Item.CobblestoneSlab, 64);*/
 		GetComponent<HealthSystem>().OnResourceEmpty += Inventory_OnResourceEmpty;
+	}
+
+	private void Player_OnPlayerRespawn()
+	{
+		enabled = true;
 	}
 
 	private void Inventory_OnResourceEmpty(object sender, EventArgs e)
@@ -51,6 +58,7 @@ public class Inventory : MonoBehaviour
 		{
 			slots[i].Drop(true);
 		}
+		enabled = false;
 	}
 
 	private void Start()
@@ -139,6 +147,7 @@ public class Inventory : MonoBehaviour
 
 	public int Add(Item item, int amount)
 	{
+		if (!enabled) return 0;
 		int amountAdded = 0;
 		for (int i = 0; i < SLOTS; i++)
 		{

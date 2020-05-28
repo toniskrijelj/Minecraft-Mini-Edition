@@ -105,7 +105,7 @@ public class ItemData : MonoBehaviour
 	public Sprite SmoothStoneSlab;
 	public Sprite SpruceSlab;
 	public Sprite StoneBrick;
-	public Sprite StoneBrichStairs;
+	public Sprite StoneBrickStairs;
 	public Sprite StoneBrickSlab;
 
 	

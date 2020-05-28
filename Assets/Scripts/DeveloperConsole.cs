@@ -1,10 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class DeveloperConsole : MonoBehaviour
 {
+	Dictionary<string, Action<string[]>> Commands;
+
     string input;
     TextMeshProUGUI text;
     Canvas canvas;
@@ -13,6 +16,9 @@ public class DeveloperConsole : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();
         canvas = GetComponent<Canvas>();
         canvas.enabled = false;
+		Commands = new Dictionary<string, Action<string[]>>();
+		Commands.Add("/give", Give);
+
     }
     private void Update()
     {
@@ -49,7 +55,7 @@ public class DeveloperConsole : MonoBehaviour
         }
         else if (c == '\n' || c == '\r')
         {
-            Debug.Log(input);
+			CheckCommand();
             input = "";
         }
         else
@@ -58,4 +64,38 @@ public class DeveloperConsole : MonoBehaviour
         }
         text.text = input;
     }
+
+	private void CheckCommand()
+	{
+		if(input[0] == '/')
+		{
+			string[] words = input.Split(' ');
+			if(Commands.ContainsKey(words[0]))
+			{
+				string command = words[0];
+				List<string> kurcina = new List<string>(words);
+				kurcina.RemoveAt(0);
+				words = kurcina.ToArray();
+				Commands[command](words);
+			}
+		}
+	}
+
+	private void Give(params string[] arguments)
+	{
+		var fields = typeof(Item).GetFields();
+		foreach (var item in fields)
+		{
+			if (item.FieldType == typeof(Item))
+			{
+				Item current = (Item)item.GetValue(null);
+				if (current.DisplayName == arguments[0])
+				{
+					Inventory.Instance.Add(current, int.Parse(arguments[1]));
+					break;
+				}
+			}
+		}
+	}
+	
 }

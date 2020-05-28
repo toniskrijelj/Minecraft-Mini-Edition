@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class Inventory : MonoBehaviour
 {
+	public static Inventory Instance { get; private set; }
+
 	public const int SLOTS = 36;
 	public event Action<int> OnSlotChanged;
 	public event Action<int> OnActiveSlotChanged;
@@ -14,6 +16,7 @@ public class Inventory : MonoBehaviour
 
 	private void Awake()
 	{
+		Instance = this;
 		player = GetComponent<Player>();
 		for (int i = 0; i < SLOTS; i++)
 		{

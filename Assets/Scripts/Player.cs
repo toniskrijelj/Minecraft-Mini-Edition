@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 	private Item handItem;
 	private ToolType activeTool = ToolType.None;
 	private ToolMaterial toolMaterial = ToolMaterial.All;
-	private float bonusDamage = 0;
+	private int bonusDamage = 0;
 
 	public event Action OnPlayerRespawn;
 
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
 		toolMaterial = material;
 	}
 
-	public void ChangeBonusDamage(float difference)
+	public void ChangeBonusDamage(int difference)
 	{
 		bonusDamage += difference;
 	}
@@ -91,8 +91,23 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		bool blockTriggered = false;
 		Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
+		var allHits = Physics2D.RaycastAll(transform.position, mouseWorldPosition, 4, 1 << 10);
+
+		for (int i = 0; i < allHits.Length; i++)
+		{
+			if (allHits[i].transform == transform)
+			{
+				continue;
+			}
+			HealthSystem health = allHits[i].transform.GetComponent<HealthSystem>();
+			if (health != null)
+			{
+				health.Decrease(1 + bonusDamage);
+			}
+		}
+
+		bool blockTriggered = false;
 		if ((mouseWorldPosition - transform.position).sqrMagnitude <= range * range)
 		{
 			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);

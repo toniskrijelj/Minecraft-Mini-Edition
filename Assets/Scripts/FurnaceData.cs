@@ -4,19 +4,6 @@ using UnityEngine;
 
 public static class FurnaceData
 {
-	private static Furnace prefab;
-	public static Furnace Prefab
-	{
-		get
-		{
-			if (prefab == null)
-			{
-				prefab = Resources.Load<Furnace>("FurnacePrefab");
-			}
-			return prefab;
-		}
-	}
-
 	private static Dictionary<Item, Item> productDictionary;
 	private static Dictionary<Item, float> burnDictionary;
 

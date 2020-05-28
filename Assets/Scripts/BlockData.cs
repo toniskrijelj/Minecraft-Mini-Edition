@@ -42,5 +42,11 @@ public class BlockData : MonoBehaviour
 	public Sprite CraftingTableTexture;
 	public Sprite furnaceUnlit;
 	public Sprite furnaceLit;
+	public Sprite TNT;
+	public Sprite DiamondBlock;
+	public Sprite IronBlock;
+	public Sprite EmeraldBlock;
+	public Sprite GoldBlock;
+	public Sprite CoalBlock;
 
 }

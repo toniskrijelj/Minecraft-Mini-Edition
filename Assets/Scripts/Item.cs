@@ -29,7 +29,17 @@ public class Item : Enumeration
 	public static readonly Item Iron = new Item("Iron", () => ItemData.icons.IronIngot, true);
 	public static readonly Item Gold = new Item("Gold", () => ItemData.icons.Gold, true);
 	public static readonly Item Stick = new Item("Stick", () => ItemData.icons.Stick, true);
+	public static readonly Item Wheat = new Item("Wheat", () => ItemData.icons.Wheat, true);
+	public static readonly Item Gunpowder = new Item("Gunpowder", () => ItemData.icons.Gunpowder, true);
+	public static readonly Item Emerald = new Item("Emerald", () => ItemData.icons.Emerald, true);
 	public static readonly Item furnace = new BlockItem("Furnace", () => ItemData.icons.furnace, BlockType.Furnace);
+	public static readonly Item GoldOre = new BlockItem("Gold Ore", () => ItemData.icons.GoldOre, BlockType.GoldOre);
+	public static readonly Item TNT = new BlockItem("TNT", () => ItemData.icons.TNT, BlockType.TNT);
+	public static readonly Item DiamondBlock = new BlockItem("Block of diamond", () => ItemData.icons.DiamonBlock, BlockType.DiamondBlock);
+	public static readonly Item IronBlock = new BlockItem("Block of Iron", () => ItemData.icons.IronBlock, BlockType.IronBlock);
+	public static readonly Item EmeraldBlock = new BlockItem("Block of Emerald", () => ItemData.icons.EmeraldBlock, BlockType.EmeraldBlock);
+	public static readonly Item CoalBlock = new BlockItem("Block of Coal", () => ItemData.icons.CoalBlock, BlockType.CoalBlock);
+	public static readonly Item GoldBlock = new BlockItem("Block of Gold", () => ItemData.icons.GoldBlock, BlockType.GoldBlock);
 
 	// Tools
 	public static readonly Item DiamondSword = new SwordItem("Diamond Sword", () => ItemData.icons.DiamondSword, 4);
@@ -64,6 +74,7 @@ public class Item : Enumeration
 	public static readonly Item RawPork = new FoodItem("Raw Porkchop", () => ItemData.icons.RawPork, 3);
 	public static readonly Item Bread = new FoodItem("Bread", () => ItemData.icons.Bread, 5);
 	public static readonly Item Carrot = new FoodItem("Carrot", () => ItemData.icons.Carrot, 3);
+
 
 
 

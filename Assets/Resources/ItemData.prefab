@@ -47,7 +47,7 @@ MonoBehaviour:
   acaciaLeaves: {fileID: 21300000, guid: ef67397ecadec094695141cc9e121e2a, type: 3}
   birchLog: {fileID: 21300000, guid: 382d2d91007947d4ea20aad7a4f12d39, type: 3}
   birchPlanks: {fileID: 21300000, guid: 4c1bff37e7103fa4982da55192f24333, type: 3}
-  Chest: {fileID: 21300000, guid: 5d9354c26a605b14d9c5523f42ff8abb, type: 3}
+  Chest: {fileID: 21300000, guid: ee98ae6812ef4c64fb533dcc55beb2dc, type: 3}
   Cobblestone: {fileID: 21300000, guid: 5ceeac1c2fee58a4e8205f1491f20724, type: 3}
   craftingTable: {fileID: 21300000, guid: 682f5df12f5a10741a16144d4889be97, type: 3}
   Dirt: {fileID: 21300000, guid: efc24c8b95bd676409d1e8a9a389c91d, type: 3}
@@ -91,3 +91,29 @@ MonoBehaviour:
   IronIngot: {fileID: 21300000, guid: 115e499be772393479f01db2c1a91f91, type: 3}
   Gold: {fileID: 21300000, guid: f0ca5d4deeb92174baa7baac0c6e2b48, type: 3}
   furnace: {fileID: 21300000, guid: af420685e733c7c48b1cf59485380691, type: 3}
+  RawChicken: {fileID: 21300000, guid: 7c62460ffa0bc074595e4b9d2dd26bfa, type: 3}
+  CookedChicken: {fileID: 21300000, guid: b87841436cf3ccf41afe321896ddec77, type: 3}
+  RawBeef: {fileID: 21300000, guid: b9aa1091b6281a945824035402cde831, type: 3}
+  CookedBeef: {fileID: 21300000, guid: 777bec898e5d71d45a29d8bdd580b87f, type: 3}
+  RawPork: {fileID: 21300000, guid: 3cd7fa942ff0ff74dbeaa11878a7dfcb, type: 3}
+  CookedPork: {fileID: 21300000, guid: 1c61c230c206a434598319033ce7e617, type: 3}
+  Potato: {fileID: 21300000, guid: fd74e019d61f70842bbaec752d903fb5, type: 3}
+  CookedPotato: {fileID: 21300000, guid: f285225e3bad3f641bdaf892d55064cc, type: 3}
+  Carrot: {fileID: 21300000, guid: af906089abb7eaa4a97020dc7a428b3d, type: 3}
+  Bread: {fileID: 21300000, guid: 50503889be128b34f991f9023dd1b1a6, type: 3}
+  Apple: {fileID: 21300000, guid: 18e7ba918f6ba7549b98fd7fd72411fe, type: 3}
+  Wheat: {fileID: 21300000, guid: c6940e5a0d0f75c46b5fe116804262fd, type: 3}
+  GoldOre: {fileID: 21300000, guid: 8f5806e3a7b9f694cb98120e48ff059d, type: 3}
+  Gunpowder: {fileID: 21300000, guid: 7371483f6c7c914439ed2794e91aee7b, type: 3}
+  TNT: {fileID: 21300000, guid: 8895b75a732018546bbbf008882346b8, type: 3}
+  DiamonBlock: {fileID: 21300000, guid: dc465121174cfc54bb9414196b387aac, type: 3}
+  IronBlock: {fileID: 21300000, guid: 9e69336aabfce8b45a287415912b9edc, type: 3}
+  Emerald: {fileID: 21300000, guid: 2d905773f25b0384f90d91078438b036, type: 3}
+  EmeraldBlock: {fileID: 21300000, guid: fbfcb480994da2942a1ab906622db05b, type: 3}
+  GoldBlock: {fileID: 21300000, guid: defc9408801896a48a01c9abd24e414f, type: 3}
+  CoalBlock: {fileID: 21300000, guid: 1edc2d1b20044d942977d337ad32e1a4, type: 3}
+  OakStairs: {fileID: 21300000, guid: 5e04edd364780dd4b8ea8b9d14efafb8, type: 3}
+  SpruceStairs: {fileID: 21300000, guid: 602c0c6d7ffcffe4a9627f23bc5ef425, type: 3}
+  BirchStairs: {fileID: 21300000, guid: 4bb4ad137aff7624fac7862bef187b74, type: 3}
+  CobbleStairs: {fileID: 21300000, guid: 60cdbd7e989fa6942a0bc223741f9a56, type: 3}
+  StoneStairs: {fileID: 21300000, guid: 009455d073e3b9545bd44f33bf0f05f3, type: 3}

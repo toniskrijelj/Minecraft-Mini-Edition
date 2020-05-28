@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
 	public void Respawn()
 	{
-		Debug.Log("respawn");
+		if (enabled) return;
 		transform.position = new Vector3(0, 1, 0);
 		OnPlayerRespawn?.Invoke();
 		DeathScreen.Instance.SetActive(false);

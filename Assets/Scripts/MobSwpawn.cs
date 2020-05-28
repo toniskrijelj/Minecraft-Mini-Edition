@@ -20,11 +20,19 @@ public class MobSwpawn : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             int tempY = y;
+<<<<<<< HEAD
             randX = Random.Range(-60, 60);
             nextSpawn = Time.time + spawnRate;
             while (true)
             {
                 if(BlockGrid.Instance.GetBlock(new Vector3(randX, tempY), Layer.Ground) != null)
+=======
+            randX = Random.Range(0, 10);
+            nextSpawn = Time.time + spawnRate;
+            while (true)
+            {
+                if(BlockGrid.Instance.GetBlock(randX, tempY, Layer.Ground) != null)
+>>>>>>> parent of 6309ae3... Mob Animations and spawn
                 {
                     tempY++;
                 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -30,10 +31,30 @@ public class Mob : MonoBehaviour
     {
         ItemEntity.Spawn(transform.position, Item.Apple, 1);
         Destroy(gameObject);
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public abstract class Mob : MonoBehaviour
+{
+    ResourceSystem hp;
+    protected void Awake()
+    {
+        //hp = new ResourceSystem(HeartsAmount());
+    }
+
+    protected abstract int HeartsAmount();
+
+    void Start()
+    {
+        
+>>>>>>> parent of 6309ae3... Mob Animations and spawn
     }
 
     void Update()
     {
+<<<<<<< HEAD
         direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
         rb.velocity = new Vector2(direction * movementSpeed, rb.velocity.y);
 		transform.localScale = new Vector3(direction, 1, 1);
@@ -54,4 +75,8 @@ public class Mob : MonoBehaviour
     }
 
 
+=======
+        
+    }
+>>>>>>> parent of 6309ae3... Mob Animations and spawn
 }

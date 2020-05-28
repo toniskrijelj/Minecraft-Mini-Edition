@@ -12,8 +12,11 @@ GameObject:
   - component: {fileID: 7781056712416211554}
   - component: {fileID: 7781056712416211581}
   - component: {fileID: -4184652417161087827}
+<<<<<<< HEAD
   - component: {fileID: -148512598836333402}
   - component: {fileID: 8205717700309027675}
+=======
+>>>>>>> parent of 6309ae3... Mob Animations and spawn
   m_Layer: 10
   m_Name: CreeperPrefab
   m_TagString: Untagged
@@ -118,6 +121,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
+<<<<<<< HEAD
   m_Offset: {x: -0.011460185, y: 0}
   m_Size: {x: 0.33915067, y: 1.5294118}
   m_Direction: 0
@@ -148,3 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceAmount: 10
+=======
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.7058824, y: 1.5294118}
+  m_Direction: 0
+>>>>>>> parent of 6309ae3... Mob Animations and spawn

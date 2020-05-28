@@ -12,8 +12,11 @@ GameObject:
   - component: {fileID: 7781056712416211554}
   - component: {fileID: 7781056712416211581}
   - component: {fileID: -1259917887050649939}
+<<<<<<< HEAD
   - component: {fileID: -5282723392727902107}
   - component: {fileID: 3467954426548254715}
+=======
+>>>>>>> parent of 6309ae3... Mob Animations and spawn
   m_Layer: 10
   m_Name: SkeletonPrefab
   m_TagString: Untagged
@@ -118,6 +121,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
+<<<<<<< HEAD
   m_Offset: {x: -0.17637745, y: 0}
   m_Size: {x: 0.52959806, y: 1.882353}
   m_Direction: 0
@@ -148,3 +152,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceAmount: 10
+=======
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.88235295, y: 1.882353}
+  m_Direction: 0
+>>>>>>> parent of 6309ae3... Mob Animations and spawn

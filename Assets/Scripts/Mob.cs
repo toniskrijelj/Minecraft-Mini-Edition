@@ -1,24 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Dynamic;
 using UnityEngine;
 
-public abstract class Mob : MonoBehaviour
+public class Mob : MonoBehaviour
 {
-    ResourceSystem hp;
+    [SerializeField] int damage;
+    [SerializeField] float movementSpeed = 1f;
+
+    float direction;
+
+    private Animator animator;
+    private Rigidbody2D rb;
+    private HealthSystem playerHealth;
+    private Transform playerTransform;
     protected void Awake()
     {
-        //hp = new ResourceSystem(HeartsAmount());
+        rb = GetComponent<Rigidbody2D>();
+        playerHealth = Player.Instance.GetComponent<HealthSystem>();
+        playerTransform = Player.Instance.GetComponent<Transform>();
+        GetComponent<HealthSystem>().OnResourceEmpty += Mob_OnResourceEmpty;
+        //animator = GetComponent<Animator>();
+        //animator.SetInteger("Speed", Mathf.RoundToInt(rb.velocity.x));
     }
 
-    protected abstract int HeartsAmount();
-
-    void Start()
+    private void Mob_OnResourceEmpty(object sender, System.EventArgs e)
     {
-        
+        ItemEntity.Spawn(transform.position, Item.Apple, 1);
+        Destroy(gameObject);
     }
 
     void Update()
     {
-        
+        direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
+        rb.velocity = Vector2.right * direction * movementSpeed;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject == Player.Instance.gameObject)
+        {
+            playerHealth.Decrease(damage);
+        }
     }
 }

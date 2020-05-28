@@ -17,13 +17,15 @@ public class Mob : MonoBehaviour
     protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerHealth = Player.Instance.GetComponent<HealthSystem>();
-        playerTransform = Player.Instance.GetComponent<Transform>();
         GetComponent<HealthSystem>().OnResourceEmpty += Mob_OnResourceEmpty;
         //animator = GetComponent<Animator>();
         //animator.SetInteger("Speed", Mathf.RoundToInt(rb.velocity.x));
     }
-
+    private void Start()
+    { 
+        playerHealth = Player.Instance.GetComponent<HealthSystem>();
+        playerTransform = Player.Instance.GetComponent<Transform>();
+    }
     private void Mob_OnResourceEmpty(object sender, System.EventArgs e)
     {
         ItemEntity.Spawn(transform.position, Item.Apple, 1);

@@ -49,10 +49,6 @@ public class HungerSytem : ResourceSystem
             timeToStarve = 60;
             lastUpdateTime = Time.time;
         }
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            Increase(1);
-        }
         if(!healthSystem.IsFull() && resourceList[8].GetFragmentAmount() == 2)
         {
             if (IsFull())

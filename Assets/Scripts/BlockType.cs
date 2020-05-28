@@ -51,6 +51,7 @@ public class BlockType : Enumeration
 	public static readonly BlockType SandstoneSlab = new BlockType(0.8f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.SandstoneSlab, () => Item.SandstoneSlab, null, ()=>CustomBlockData.Slab);
 	public static readonly BlockType SpruceSlab = new BlockType(2, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.SpruceSlab, () => Item.SpruceSlab, null, ()=>CustomBlockData.Slab);
 	public static readonly BlockType StoneBrickSlab = new BlockType(1.5f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.StoneBrickSlab, () => Item.StoneBrickSlab, null, ()=>CustomBlockData.Slab);
+	public static readonly BlockType BirchSlab = new BlockType(1.5f, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.BirchSlab, () => Item.BirchSlab, null, ()=>CustomBlockData.Slab);
 	
 
 

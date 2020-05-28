@@ -95,6 +95,7 @@ public class Item : Enumeration
 	public static readonly Item SandstoneSlab = new BlockItem("Sandstone_Slab", () => ItemData.icons.SandStoneSlab, BlockType.SandstoneSlab);
 	public static readonly Item SpruceSlab = new BlockItem("Spruce_Slab", () => ItemData.icons.SpruceSlab, BlockType.SpruceSlab);
 	public static readonly Item StoneBrickSlab = new BlockItem("Stone_Brick_Slab", () => ItemData.icons.StoneBrickSlab, BlockType.StoneBrickSlab);
+	public static readonly Item BirchSlab = new BlockItem("Birch_Slab", () => ItemData.icons.BirchSlab, BlockType.BirchSlab);
 
 
 	

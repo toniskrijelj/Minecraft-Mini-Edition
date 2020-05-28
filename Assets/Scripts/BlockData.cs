@@ -67,5 +67,6 @@ public class BlockData : MonoBehaviour
 	public Sprite SpruceSlab;
 	public Sprite StoneBrickSlab;
 	public Sprite StoneBrickStairs;
+	public Sprite BirchSlab;
 
 }

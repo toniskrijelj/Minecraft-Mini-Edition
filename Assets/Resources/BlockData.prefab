@@ -85,12 +85,13 @@ MonoBehaviour:
   SpruceStairs: {fileID: 21300000, guid: 0b3870c1f05f8be42a06ca516e4ea2a2, type: 3}
   StoneStairs: {fileID: 21300000, guid: 523547a67a6084342a5c55e6691afcb7, type: 3}
   Diorite: {fileID: 21300000, guid: a4c4239ef8f9a8543aa069ceb25c938c, type: 3}
-  DioriteSlab: {fileID: 0}
+  DioriteSlab: {fileID: 21300000, guid: dfed6148d21953947a1c47b279dcca8d, type: 3}
   SmoothStone: {fileID: 21300000, guid: 5d7bf5b50f5ed9046bd2806033d6d985, type: 3}
-  OakSlab: {fileID: 0}
+  OakSlab: {fileID: 21300000, guid: 3d681ab429cf13c47b93c165d7983bbf, type: 3}
   Sandstone: {fileID: 21300000, guid: 200353eb962daab429326b2b1646c94b, type: 3}
-  SandstoneSlab: {fileID: 0}
+  SandstoneSlab: {fileID: 21300000, guid: 2c1fb9189b9b7e1458b5b0f0924ac32e, type: 3}
   StoneBrick: {fileID: 21300000, guid: 4096bdc2e0d8b3245bf486d6a4c41677, type: 3}
-  SpruceSlab: {fileID: 0}
-  StoneBrickSlab: {fileID: 0}
+  SpruceSlab: {fileID: 21300000, guid: cc695b92b60977045aa567145c4954db, type: 3}
+  StoneBrickSlab: {fileID: 21300000, guid: 858872a50853fcc46987e8db0fafefd6, type: 3}
   StoneBrickStairs: {fileID: 21300000, guid: 68fd4b571e83ef547b6e482011ff724e, type: 3}
+  BirchSlab: {fileID: 21300000, guid: 05588791b9d4a4e44bf0c2ce9c3ec50b, type: 3}

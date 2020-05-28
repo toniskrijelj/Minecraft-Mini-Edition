@@ -213,7 +213,104 @@ public static class Recipes
 			{ Item.Cobblestone,  Item.Cobblestone,  null},
 			{ Item.Cobblestone,  Item.Cobblestone,  Item.Cobblestone},
 		};
-
+		Item[,] OakStairsRecipe = new Item[3, 3]
+		{
+			{ Item.OakPlanks, null, null },
+			{ Item.OakPlanks, Item.OakPlanks, null},
+			{ Item.OakPlanks, Item.OakPlanks, Item.OakPlanks}
+		};
+		Item[,] SpruceStairsRecipe = new Item[3, 3]
+		{
+			{ Item.SprucePlanks, null, null },
+			{ Item.SprucePlanks, Item.SprucePlanks, null},
+			{ Item.SprucePlanks, Item.SprucePlanks, Item.SprucePlanks}
+		};
+		Item[,] BirchStairsRecipe = new Item[3, 3]
+		{
+			{ Item.BirchPlanks, null, null },
+			{ Item.BirchPlanks, Item.BirchPlanks, null},
+			{ Item.BirchPlanks, Item.BirchPlanks, Item.BirchPlanks}
+		};
+		Item[,] CobblestoneStairsRecipe = new Item[3, 3]
+		{
+			{ Item.Cobblestone, null, null },
+			{ Item.Cobblestone, Item.Cobblestone, null},
+			{ Item.Cobblestone, Item.Cobblestone, Item.Cobblestone}
+		};
+		Item[,] StoneStairsRecipe = new Item[3, 3]
+		{
+			{ Item.StoneBlock, null, null },
+			{ Item.StoneBlock, Item.StoneBlock, null},
+			{ Item.StoneBlock, Item.StoneBlock, Item.StoneBlock}
+		};
+		Item[,] CobblestoneSlabRecipe = new Item[3, 3]
+		{
+			{ null, null , null},
+			{ Item.Cobblestone, Item.Cobblestone, Item.Cobblestone},
+			{ null, null ,null}
+		};
+		Item[,] BirchSlabRecipe = new Item[3, 3]
+		{
+			{ null, null , null},
+			{ Item.BirchPlanks, Item.BirchPlanks, Item.BirchPlanks},
+			{ null, null ,null}
+		};
+		Item[,] DioriteSlabRecipe = new Item[3, 3]
+		{
+			{ null, null, null},
+			{ Item.Diorite, Item.Diorite, Item.Diorite},
+			{ null, null, null},
+		};
+		Item[,] OakSlabRecipe = new Item[3, 3]
+		{
+			{ null, null, null},
+			{ Item.OakPlanks, Item.OakPlanks, Item.OakPlanks},
+			{ null, null, null},
+		};
+		Item[,] SandstoneSlabRecipe = new Item[3, 3]
+		{
+			{ null, null, null},
+			{ Item.Sandstone, Item.Sandstone, Item.Sandstone},
+			{ null, null, null},
+		};
+		Item[,] SpruceSlabRecipe = new Item[3, 3]
+		{
+			{ null, null, null},
+			{ Item.SprucePlanks, Item.SprucePlanks, Item.SprucePlanks},
+			{ null, null, null},
+		};
+		Item[,] StoneBricksRecipe = new Item[3, 3]
+		{
+			{ null, null, null},
+			{ Item.StoneBlock, Item.StoneBlock, null},
+			{ Item.StoneBlock, Item.StoneBlock, null}
+		};
+		Item[,] StoneBrickSlabRecipe = new Item[3, 3]
+		{
+			{ null, null, null},
+			{ Item.StoneBrick, Item.StoneBrick, Item.StoneBrick},
+			{ null, null, null}
+		};
+		Item[,] StoneBrickStairsRecipe = new Item[3, 3]
+		{
+			{ Item.StoneBrick, null, null},
+			{ Item.StoneBrick, Item.StoneBrick, null},
+			{Item.StoneBrick, Item.StoneBrick, Item.StoneBrick}
+		};
+		recipes.Add(new Recipe(StoneBrickStairsRecipe), new Slot(Item.StoneBrickStairs, 6));
+		recipes.Add(new Recipe(StoneBrickSlabRecipe), new Slot(Item.StoneBrickSlab, 6));
+		recipes.Add(new Recipe(StoneBricksRecipe), new Slot(Item.StoneBrick, 4));
+		recipes.Add(new Recipe(SpruceSlabRecipe), new Slot(Item.SpruceSlab, 6));
+		recipes.Add(new Recipe(SandstoneSlabRecipe), new Slot(Item.SandstoneSlab, 6));
+		recipes.Add(new Recipe(OakSlabRecipe), new Slot(Item.OakSlab, 6));
+		recipes.Add(new Recipe(DioriteSlabRecipe), new Slot(Item.DioriteSlab, 6));
+		recipes.Add(new Recipe(BirchSlabRecipe), new Slot(Item.BirchSlab, 6));
+		recipes.Add(new Recipe(CobblestoneSlabRecipe), new Slot(Item.CobblestoneSlab, 6));
+		recipes.Add(new Recipe(StoneStairsRecipe), new Slot(Item.StoneStairs, 6));
+		recipes.Add(new Recipe(CobblestoneStairsRecipe), new Slot(Item.CobblestoneStairs, 6));
+		recipes.Add(new Recipe(BirchStairsRecipe), new Slot(Item.BirchStairs, 6));
+		recipes.Add(new Recipe(SpruceStairsRecipe), new Slot(Item.SpruceStairs, 6));
+		recipes.Add(new Recipe(OakStairsRecipe), new Slot(Item.OakStairs, 6));
 		recipes.Add(new Recipe(CoalBlockRecipe), new Slot(Item.CoalBlock, 1));
 		recipes.Add(new Recipe(ironBlockRecipe), new Slot(Item.IronBlock, 1));
 		recipes.Add(new Recipe(dmdBlockRecipe), new Slot(Item.DiamondBlock, 1));

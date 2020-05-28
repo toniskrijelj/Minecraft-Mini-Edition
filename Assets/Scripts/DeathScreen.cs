@@ -1,15 +1,10 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class DeathScreen : MonoBehaviour
 {
-    public void Respawn()
-    {
-        SetActive(false);
-        Player.Instance.enabled = true;
-    }
     public void Quit()
     {
         SceneManager.LoadScene(0);

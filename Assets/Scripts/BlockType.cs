@@ -9,7 +9,7 @@ public class BlockType : Enumeration
 	public static readonly BlockType OakLeaves = new BlockType(0.2f, ToolType.None, ToolMaterial.All, () => BlockData.blockData.oakLeavesTexture, () => Item.oakLeaves);
 	public static readonly BlockType Dirt = new BlockType(0.6f, ToolType.Shovel, ToolMaterial.All, () => BlockData.blockData.dirtBlockTexture, () => Item.Dirt);
 	public static readonly BlockType Sand = new BlockType(0.5f, ToolType.Shovel, ToolMaterial.All, () => BlockData.blockData.sandTexture, () => Item.Sand);
-	public static readonly BlockType CraftingTable = new BlockType(2.5f, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.CraftingTableTexture, () => Item.CraftingTable, CraftingGrid3x3UI.Instance.Open);
+	public static readonly BlockType CraftingTable = new BlockType(2.5f, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.CraftingTableTexture, () => Item.CraftingTable, () =>CraftingGrid3x3UI.Instance.Open());
 	public static readonly BlockType BirchLog = new BlockType(2, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.birchLogTexture, () => Item.BirchLog);
 	public static readonly BlockType Chest = new BlockType(2.5f, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.chestTexture, () => Item.Chest, null, () => CustomBlockData.Chest);
 	public static readonly BlockType BirchPlanks = new BlockType(2, ToolType.Axe, ToolMaterial.All, () => BlockData.blockData.birchPlanksTexture, () => Item.BirchPlanks);
@@ -23,7 +23,7 @@ public class BlockType : Enumeration
 	public static readonly BlockType OakLog = new BlockType(2, ToolType.Axe , ToolMaterial.All, () => BlockData.blockData.oakLogTexture, () => Item.OakLog);
 	public static readonly BlockType SpruceLog = new BlockType(2, ToolType.Axe , ToolMaterial.All, () => BlockData.blockData.spruceLogTexture, () => Item.SpruceLog);
 	public static readonly BlockType Stone = new BlockType(1.5f, ToolType.Pickaxe , ToolMaterial.All, () => BlockData.blockData.stoneBlockTexture, () => Item.Cobblestone);
-	public static readonly BlockType DiamondOre = new BlockType(3, ToolType.Pickaxe , ToolMaterial.Iron, () => BlockData.blockData.diamondOreTexture, () => Item.DiamondOre);
+	public static readonly BlockType DiamondOre = new BlockType(3, ToolType.Pickaxe , ToolMaterial.Iron, () => BlockData.blockData.diamondOreTexture, () => Item.Diamond);
 	public static readonly BlockType Furnace = new BlockType(3.5f, ToolType.Pickaxe, ToolMaterial.Wood, () => BlockData.blockData.furnaceUnlit, () => Item.furnace, null, () => CustomBlockData.Furnace);
 	public static readonly BlockType GoldOre = new BlockType(3, ToolType.Pickaxe, ToolMaterial.Iron, () => BlockData.blockData.goldOreTexture, () => Item.GoldOre); 
 	public static readonly BlockType TNT = new BlockType(0, ToolType.None, ToolMaterial.All, () => BlockData.blockData.TNT, () => Item.TNT); 
@@ -100,6 +100,12 @@ public class BlockType : Enumeration
 			}
 		}
 		return false;
+	}
+
+	public void Place(Vector3 worldPosition, Layer layer)
+	{
+		Block block = Block.Place(prefab(), worldPosition, Hardness, ToolType, ToolMaterial, Texture(), GetItem(), SpecialAction, layer == Layer.Background ? true : false);
+		BlockGrid.Instance.SetBlock(worldPosition, layer, block);
 	}
 
 	public class DoorType : BlockType

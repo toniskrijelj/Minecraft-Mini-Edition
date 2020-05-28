@@ -15,7 +15,7 @@ public class Chest : Block
 		}
 	}
 
-	private void OnDisable()
+	protected override void OnDestroyed()
 	{
 		for (int i = 0; i < 27; i++)
 		{

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -49,7 +49,7 @@ public class HungerSytem : ResourceSystem
             timeToStarve = 60;
             lastUpdateTime = Time.time;
         }
-        if(!healthSystem.IsFull() && resourceList[8].GetFragmentAmount() == 2)
+        if(!healthSystem.IsFull() && !healthSystem.IsEmpty() && resourceList[8].GetFragmentAmount() == 2)
         {
             if (IsFull())
             {

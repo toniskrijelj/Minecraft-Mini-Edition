@@ -36,6 +36,7 @@ public class Furnace : Block
 				{
 					burnTime = 0;
 					cookTime = 0;
+					spriteRenderer.sprite = BlockData.blockData.furnaceUnlit;
 					return;
 				}
 				else
@@ -62,7 +63,7 @@ public class Furnace : Block
 		}
 	}
 
-	private void OnDisable()
+	protected override void OnDestroyed()
 	{
 		smeltingslot.Drop(true, transform.position);
 		fuelSlot.Drop(true, transform.position);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,9 @@ public class Player : MonoBehaviour
 	private Item handItem;
 	private ToolType activeTool = ToolType.None;
 	private ToolMaterial toolMaterial = ToolMaterial.All;
-	private float bonusDamage = 0;
+	private int bonusDamage = 0;
+
+	public event Action OnPlayerRespawn;
 
 	public HungerSytem hungerSytem { get; private set; }
 
@@ -33,6 +36,17 @@ public class Player : MonoBehaviour
 		enabled = false;
 	}
 
+	public void Respawn()
+	{
+		Debug.Log("respawn");
+		transform.position = new Vector3(0, 1, 0);
+		OnPlayerRespawn?.Invoke();
+		DeathScreen.Instance.SetActive(false);
+		GetComponent<HealthSystem>().Increase(20);
+		hungerSytem.Increase(20);
+		enabled = true;
+	}
+
 	public void ChangeHandSlot(Slot slot)
 	{
 		if (HandSlot != null)
@@ -44,6 +58,7 @@ public class Player : MonoBehaviour
 		HandSlot?.Item?.PutInHand();
 		handItem = slot?.Item;
 		handVisualItem.SetItem(handItem, activeTool);
+		ItemText.Instance.SetItem(slot?.Item);
 		if (HandSlot != null)
 		{
 			HandSlot.OnSlotChanged += HandSlot_OnSlotChanged;
@@ -67,7 +82,7 @@ public class Player : MonoBehaviour
 		toolMaterial = material;
 	}
 
-	public void ChangeBonusDamage(float difference)
+	public void ChangeBonusDamage(int difference)
 	{
 		bonusDamage += difference;
 	}
@@ -76,8 +91,23 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
-		bool blockTriggered = false;
 		Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
+		var allHits = Physics2D.RaycastAll(transform.position, mouseWorldPosition, 4, 1 << 10);
+
+		for (int i = 0; i < allHits.Length; i++)
+		{
+			if (allHits[i].transform == transform)
+			{
+				continue;
+			}
+			HealthSystem health = allHits[i].transform.GetComponent<HealthSystem>();
+			if (health != null)
+			{
+				health.Decrease(1 + bonusDamage);
+			}
+		}
+
+		bool blockTriggered = false;
 		if ((mouseWorldPosition - transform.position).sqrMagnitude <= range * range)
 		{
 			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);

@@ -49,6 +49,11 @@ public class ItemEntity : MonoBehaviour
 	private void Update()
 	{
 		offset.localPosition = Vector3.up * Mathf.Sin((Time.time - spawnTime) * bobbingSpeed) / 10f;
+		if (Time.time > spawnTime + 300)
+		{
+			picked = true;
+			Destroy(gameObject);
+		}
 	}
 
 	private void SetAmount(int amount)

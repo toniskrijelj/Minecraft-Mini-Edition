@@ -117,7 +117,7 @@ MonoBehaviour:
   BirchStairs: {fileID: 21300000, guid: 4bb4ad137aff7624fac7862bef187b74, type: 3}
   CobbleStairs: {fileID: 21300000, guid: 60cdbd7e989fa6942a0bc223741f9a56, type: 3}
   StoneStairs: {fileID: 21300000, guid: 009455d073e3b9545bd44f33bf0f05f3, type: 3}
-  CobblestoneSlab: {fileID: 21300000, guid: b9ec09cc06025fa4186e8e25e766a884, type: 3}
+  CobblestoneSlab: {fileID: 21300000, guid: c52ecb6c3f1248846a8dd3ce34c489f2, type: 3}
   Andesite: {fileID: 21300000, guid: 307dca46840179f44b7e22716267ac92, type: 3}
   AndesiteSlab: {fileID: 21300000, guid: ea5942ece75be8a4591fd9c8a0b70418, type: 3}
   BirchSlab: {fileID: 21300000, guid: af39deb591f40634cb9808dcd152b013, type: 3}
@@ -130,6 +130,5 @@ MonoBehaviour:
   SmoothStoneSlab: {fileID: 21300000, guid: a6a25cc1350f274468795ef27363e9ef, type: 3}
   SpruceSlab: {fileID: 21300000, guid: 2bead531a1c3fd7409f1715df553b523, type: 3}
   StoneBrick: {fileID: 21300000, guid: 1c3fbd627b3b1574e9415414d11dd341, type: 3}
-  StoneBrichStairs: {fileID: 21300000, guid: fa709bed3ed306a4a949df19c805427a, type: 3}
+  StoneBrickStairs: {fileID: 0}
   StoneBrickSlab: {fileID: 21300000, guid: abadb65dbf380724b830981e2cf2ddbf, type: 3}
-  StoneSlab: {fileID: 21300000, guid: 9d4b208bea7ad7b4abdfb1c8eccb3f41, type: 3}

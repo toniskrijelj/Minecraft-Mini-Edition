@@ -58,6 +58,7 @@ public class Block : MonoBehaviour
 
 	public float Percentage()
 	{
+		if (totalDamage == 0) return 0;
 		return currentDamage / totalDamage;
 	}
 

@@ -29,11 +29,5 @@ public class DeathScreen : MonoBehaviour
         canvas.enabled = false;
     }
 
-	private void Update()
-	{
-		if(Input.GetKeyDown(KeyCode.O))
-		{
-			Quit();
-		}
-	}
+
 }

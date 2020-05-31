@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
@@ -27,7 +27,7 @@ public abstract class ResourceSystem : MonoBehaviour
         }
     }
 
-    public void Decrease(int decreaseAmount)
+    public virtual void Decrease(int decreaseAmount)
     {
         for(int i = resourceList.Count-1; i>=0; i--)
         {
@@ -81,6 +81,18 @@ public abstract class ResourceSystem : MonoBehaviour
             OnResourceIncreased(this, EventArgs.Empty);
         }
     }
+
+	public int GetMissingPoints()
+	{
+		int missing = 0;
+		for(int i = 9; i >= 0; i--)
+		{
+			Debug.Log(i);
+			missing += 2 - resourceList[i].GetFragmentAmount();
+		}
+		return missing;
+	}
+
     public bool IsEmpty()
     {
         return resourceList[0].GetFragmentAmount() == 0;

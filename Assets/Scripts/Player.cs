@@ -1,8 +1,28 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.XR;
+
+[Serializable]
+public class PlayerData
+{
+	public float[] position;
+	public int healthMissingPoints;
+	public int hungerMissingPoints;
+
+	public PlayerData(Player player)
+	{
+		Vector3 playerPosition = player.transform.position;
+		position = new float[3];
+		position[0] = playerPosition.x;
+		position[1] = playerPosition.y;
+		position[2] = playerPosition.z;
+		healthMissingPoints = player.GetComponent<HealthSystem>().GetMissingPoints();
+		hungerMissingPoints = player.hungerSytem.GetMissingPoints();
+	}
+}
 
 public class Player : MonoBehaviour
 {
@@ -28,6 +48,12 @@ public class Player : MonoBehaviour
 		handVisualItem = GetComponent<HandBlock>();
 		hungerSytem = GetComponent<HungerSytem>();
 		GetComponent<HealthSystem>().OnResourceEmpty += HealthSystem_OnResourceEmpty;
+		DeathScreen.OnQuit += Save;
+	}
+
+	private void Start()
+	{
+		Load();
 	}
 
 	private void HealthSystem_OnResourceEmpty(object sender, System.EventArgs e)
@@ -91,28 +117,21 @@ public class Player : MonoBehaviour
 
 	void Update()
 	{
+		bool blockTriggered = false;
 		Vector3 mouseWorldPosition = Utilities.GetMouseWorldPosition();
 		mouseWorldPosition.z = 0;
 		Vector3 pos = transform.position;
 		pos.z = 0;
-		if (Input.GetMouseButtonDown(0))
+		if(Input.GetMouseButtonDown(0))
 		{
-			var allHits = Physics2D.RaycastAll(pos, (mouseWorldPosition - pos).normalized, 4, 1 << 10);
-
-			for (int i = 0; i < allHits.Length; i++)
+			var hits = Physics2D.RaycastAll(pos, (mouseWorldPosition - pos).normalized, 4, 1 << 10);
+			for(int i = 0; i < hits.Length; i++)
 			{
-				if (allHits[i].transform == transform)
-				{
-					continue;
-				}
-				HealthSystem health = allHits[i].transform.GetComponent<HealthSystem>();
-				if (health != null)
-				{
-					health.Decrease(1 + bonusDamage);
-				}
+				if (hits[i].transform == transform) continue;
+				hits[i].transform.GetComponent<HealthSystem>().Decrease(1 + bonusDamage);
 			}
 		}
-		bool blockTriggered = false;
+
 		if ((mouseWorldPosition - transform.position).sqrMagnitude <= range * range)
 		{
 			Vector2Int mouseGridPosition = BlockGrid.Instance.GetXY(mouseWorldPosition);
@@ -194,5 +213,26 @@ public class Player : MonoBehaviour
 	{
 		if (HandSlot == null) return false;
 		return HandSlot.Item is Item.BlockItem;
+	}
+
+	private bool Load()
+	{
+		if (File.Exists(Application.dataPath + "/player.txt"))
+		{
+			string saveString = File.ReadAllText(Application.dataPath + "/player.txt");
+
+			PlayerData data = JsonUtility.FromJson<PlayerData>(saveString);
+			transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
+			hungerSytem.Decrease(data.hungerMissingPoints);
+			GetComponent<HealthSystem>().Decrease(data.healthMissingPoints);
+			return true;
+		}
+		return false;
+	}
+
+	public void Save()
+	{
+		string json = JsonUtility.ToJson(new PlayerData(this));
+		File.WriteAllText(Application.dataPath + "/player.txt", json);
 	}
 }

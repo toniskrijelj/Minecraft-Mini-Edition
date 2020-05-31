@@ -1,12 +1,76 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public enum Layer
 {
 	Background,
 	Ground,
+}
+
+[System.Serializable]
+public class BlockSaveData
+{
+	public string blockName;
+	public int x, y, z;
+
+	public BlockSaveData(string name, int x, int y, int z)
+	{
+		blockName = name;
+		this.x = x;
+		this.y = y;
+		this.z = z;
+	}
+}
+
+public class BlockGridSaveData
+{
+	public BlockSaveData[] blocks;
+	public ChestData[] chests;
+	public FurnaceSaveData[] furnaces;
+	public DoorSave[] doors;
+	public StairsSave[] stairs;
+
+	public void Setup()
+	{
+		blocks = blocksList.ToArray();
+		chests = chestsList.ToArray();
+		furnaces = furnacesList.ToArray();
+		doors = doorsList.ToArray();
+		stairs = stairsList.ToArray();
+	}
+
+	private List<BlockSaveData> blocksList = new List<BlockSaveData>();
+	private List<ChestData> chestsList = new List<ChestData>();
+	private List<FurnaceSaveData> furnacesList = new List<FurnaceSaveData>();
+	private List<DoorSave> doorsList = new List<DoorSave>();
+	private List<StairsSave> stairsList= new List<StairsSave>();
+
+	public void Add(Block block, int x, int y, int z)
+	{
+		if(block is Furnace)
+		{
+			furnacesList.Add(((Furnace)block).Save(x,y,z));
+		}
+		else if(block is Chest)
+		{
+			chestsList.Add(((Chest)block).Save(x,y,z));
+		}
+		else if (block is Door)
+		{
+			doorsList.Add(((Door)block).Save(x,y,z));
+		}
+		else if (block is Stairs)
+		{
+			stairsList.Add(((Stairs)block).Save(x,y,z));
+		}
+		else
+		{
+			blocksList.Add(new BlockSaveData(block.BlockName, x, y, z));
+		}
+	}
 }
 
 public class BlockGrid : MonoBehaviour
@@ -22,80 +86,142 @@ public class BlockGrid : MonoBehaviour
 	private void Awake()
 	{
 		Instance = this;
+		DeathScreen.OnQuit += Save;
 		gridArray = new Block[width, height, 2];
-		for (int i = 0; i < 127; i++)
-		{
-			BlockType.GrassBlock.Place(GetWorldPosition(i, 63), Layer.Ground);
-			for (int j = 62; j >= 53; j--)
-			{
-				BlockType.Dirt.Place(GetWorldPosition(i, j), Layer.Ground);
-			}
-			for (int j = 52; j >= 0; j--)
-			{
-				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Background);
-			}
-			for (int j = 52; j >= 45; j--)
-			{
-				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
-			}
-			BlockType.CoalOre.Place(GetWorldPosition(i, 44), Layer.Ground);
-			for (int j = 43; j >= 35; j--)
-			{
-				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
-			}
-			BlockType.IronOre.Place(GetWorldPosition(i, 34), Layer.Ground);
-			for (int j = 33; j >= 26; j--)
-			{
-				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
-			}
-			BlockType.GoldOre.Place(GetWorldPosition(i, 25), Layer.Ground);
-			for (int j = 24; j >= 15; j--)
-			{
-				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
-			}
-			BlockType.DiamondOre.Place(GetWorldPosition(i, 14), Layer.Ground);
-			for (int j = 13; j >= 0; j--)
-			{
-				BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
-			}
-		}
+	}
 
-		for(int i = 0; i < 4; i++)
+	private void Start()
+	{
+		if (!Load())
 		{
-			for (int j = 0; j < 4; j++)
+			for (int i = 0; i < 127; i++)
 			{
-				BlockType.OakLog.Place(GetWorldPosition(10 + j * 30, i+64), Layer.Background);
-				BlockType.SpruceLog.Place(GetWorldPosition(20 + j * 30, i+64), Layer.Background);
-				BlockType.BirchLog.Place(GetWorldPosition(30 + j * 30, i+64), Layer.Background);
+				BlockType.GrassBlock.Place(GetWorldPosition(i, 63), Layer.Ground);
+				for (int j = 62; j >= 53; j--)
+				{
+					BlockType.Dirt.Place(GetWorldPosition(i, j), Layer.Ground);
+				}
+				for (int j = 52; j >= 0; j--)
+				{
+					BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Background);
+				}
+				for (int j = 52; j >= 45; j--)
+				{
+					BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
+				}
+				BlockType.CoalOre.Place(GetWorldPosition(i, 44), Layer.Ground);
+				for (int j = 43; j >= 35; j--)
+				{
+					BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
+				}
+				BlockType.IronOre.Place(GetWorldPosition(i, 34), Layer.Ground);
+				for (int j = 33; j >= 26; j--)
+				{
+					BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
+				}
+				BlockType.GoldOre.Place(GetWorldPosition(i, 25), Layer.Ground);
+				for (int j = 24; j >= 15; j--)
+				{
+					BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
+				}
+				BlockType.DiamondOre.Place(GetWorldPosition(i, 14), Layer.Ground);
+				for (int j = 13; j >= 0; j--)
+				{
+					BlockType.Stone.Place(GetWorldPosition(i, j), Layer.Ground);
+				}
 			}
-		}
 
-		for (int i = 0; i < 4; i++)
-		{
-			for (int j = 0; j < 5; j++)
+			for (int i = 0; i < 4; i++)
 			{
-				BlockType.OakLeaves.Place(GetWorldPosition(10 + i * 30 - 2 + j, 3 + 64), Layer.Ground);
-				BlockType.SpruceLeaves.Place(GetWorldPosition(20 + i * 30 - 2 + j, 3 + 64), Layer.Ground);
-				BlockType.OakLeaves.Place(GetWorldPosition(30 + i * 30 - 2 + j, 3 + 64), Layer.Ground);
-
-				BlockType.OakLeaves.Place(GetWorldPosition(10 + i * 30 - 2 + j, 4 + 64), Layer.Ground);
-				BlockType.SpruceLeaves.Place(GetWorldPosition(20 + i * 30 - 2 + j, 4 + 64), Layer.Ground);
-				BlockType.OakLeaves.Place(GetWorldPosition(30 + i * 30 - 2 + j, 4 + 64), Layer.Ground);
+				for (int j = 0; j < 4; j++)
+				{
+					BlockType.OakLog.Place(GetWorldPosition(10 + j * 30, i + 64), Layer.Background);
+					BlockType.SpruceLog.Place(GetWorldPosition(20 + j * 30, i + 64), Layer.Background);
+					BlockType.BirchLog.Place(GetWorldPosition(30 + j * 30, i + 64), Layer.Background);
+				}
 			}
-		}
 
-		for (int i = 0; i < 4; i++)
-		{
-			for (int j = 0; j < 3; j++)
+			for (int i = 0; i < 4; i++)
 			{
-				BlockType.OakLeaves.Place(GetWorldPosition(10 + i * 30 - 1 + j, 5 + 64), Layer.Ground);
-				BlockType.SpruceLeaves.Place(GetWorldPosition(20 + i * 30 - 1 + j, 5 + 64), Layer.Ground);
-				BlockType.OakLeaves.Place(GetWorldPosition(30 + i * 30 - 1 + j, 5 + 64), Layer.Ground);
+				for (int j = 0; j < 5; j++)
+				{
+					BlockType.OakLeaves.Place(GetWorldPosition(10 + i * 30 - 2 + j, 3 + 64), Layer.Ground);
+					BlockType.SpruceLeaves.Place(GetWorldPosition(20 + i * 30 - 2 + j, 3 + 64), Layer.Ground);
+					BlockType.OakLeaves.Place(GetWorldPosition(30 + i * 30 - 2 + j, 3 + 64), Layer.Ground);
+
+					BlockType.OakLeaves.Place(GetWorldPosition(10 + i * 30 - 2 + j, 4 + 64), Layer.Ground);
+					BlockType.SpruceLeaves.Place(GetWorldPosition(20 + i * 30 - 2 + j, 4 + 64), Layer.Ground);
+					BlockType.OakLeaves.Place(GetWorldPosition(30 + i * 30 - 2 + j, 4 + 64), Layer.Ground);
+				}
+			}
+
+			for (int i = 0; i < 4; i++)
+			{
+				for (int j = 0; j < 3; j++)
+				{
+					BlockType.OakLeaves.Place(GetWorldPosition(10 + i * 30 - 1 + j, 5 + 64), Layer.Ground);
+					BlockType.SpruceLeaves.Place(GetWorldPosition(20 + i * 30 - 1 + j, 5 + 64), Layer.Ground);
+					BlockType.OakLeaves.Place(GetWorldPosition(30 + i * 30 - 1 + j, 5 + 64), Layer.Ground);
+				}
 			}
 		}
 	}
 
-    public int GetWidth() {
+	private bool Load()
+	{
+		if (File.Exists(Application.dataPath + "/blocks.txt"))
+		{
+			BlockGridSaveData data = JsonUtility.FromJson<BlockGridSaveData>(File.ReadAllText(Application.dataPath + "/blocks.txt"));
+			for (int i = 0; i < data.blocks.Length; i++)
+			{
+				BlockType.GetBlockType(data.blocks[i].blockName).Place(GetWorldPosition(data.blocks[i].x, data.blocks[i].y), (Layer)data.blocks[i].z);
+			}
+			for(int i = 0; i < data.chests.Length; i ++)
+			{
+				Chest chest = (Chest)BlockType.Chest.Place(GetWorldPosition(data.chests[i].x, data.chests[i].y), (Layer)data.chests[i].z);
+				chest.Load(data.chests[i]);
+			}
+			for(int i = 0; i < data.furnaces.Length; i++)
+			{
+				Furnace furnace = (Furnace)BlockType.Furnace.Place(GetWorldPosition(data.furnaces[i].x, data.furnaces[i].y), (Layer)data.furnaces[i].z);
+				furnace.Load(data.furnaces[i]);
+			}
+			for (int i = 0; i < data.stairs.Length; i++)
+			{
+				Stairs stairs = (Stairs)BlockType.GetBlockType(data.stairs[i].name).Place(GetWorldPosition(data.stairs[i].x, data.stairs[i].y), (Layer)data.stairs[i].z);
+				stairs.Load(data.stairs[i]);
+			}
+			for (int i = 0; i < data.doors.Length; i++)
+			{
+				Door door = (Door)BlockType.Door.Place(GetWorldPosition(data.doors[i].x, data.doors[i].y), (Layer)data.doors[i].z);
+				door.Load(data.doors[i]);
+			}
+			return true;
+		}
+		return false;
+	}
+
+	private void Save()
+	{
+		BlockGridSaveData save = new BlockGridSaveData();
+		for(int i = 0; i < width; i++)
+		{
+			for(int j = 0; j < height; j++)
+			{
+				for(int k = 0; k < 2; k++)
+				{
+					if(gridArray[i, j, k] != null)
+					{
+						save.Add(gridArray[i, j, k], i, j, k);
+					}
+				}
+			}
+		}
+		save.Setup();
+		File.WriteAllText(Application.dataPath + "/blocks.txt", JsonUtility.ToJson(save));
+	}
+
+	public int GetWidth() {
         return width;
     }
 

@@ -1,0 +1,1 @@
+{"position":[-1.973884105682373,2.4049975872039797,0.0],"healthMissingPoints":0,"hungerMissingPoints":0}

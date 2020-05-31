@@ -179,7 +179,7 @@ public static class Recipes
 		};
 		Item[,] woodenShovelRecipeBirch = new Item[3, 3]
 		{
-			{null,   Item.SprucePlanks,       null},
+			{null,   Item.BirchPlanks,       null},
 			{null ,   Item.Stick,       null},
 			{null ,   Item.Stick,     null},
 		};

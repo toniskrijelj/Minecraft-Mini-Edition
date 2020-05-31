@@ -1,82 +1,69 @@
-<<<<<<< HEAD
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using UnityEngine;
 
-public class Mob : MonoBehaviour
+public abstract class Mob : MonoBehaviour
 {
-    [SerializeField] int damage;
-    [SerializeField] float movementSpeed = 1f;
+    [SerializeField] protected int damage;
+    [SerializeField] protected float movementSpeed = 1f;
 
-    float direction;
+    protected float direction;
 
-    private Animator animator;
-    private Rigidbody2D rb;
-    private HealthSystem playerHealth;
-    private Transform playerTransform;
+    protected Rigidbody2D rb;
+    protected HealthSystem playerHealth;
+    protected Rigidbody2D playerRigidbody2D;
+
     protected void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerHealth = Player.Instance.GetComponent<HealthSystem>();
+		playerRigidbody2D = Player.Instance.GetComponent<Rigidbody2D>();
         GetComponent<HealthSystem>().OnResourceEmpty += Mob_OnResourceEmpty;
     }
 
-	private void Start()
+    protected virtual void Mob_OnResourceEmpty(object sender, System.EventArgs e)
+    {
+        Destroy(gameObject);
+    }
+
+	public static float SignClamp(float value, float sign, float min, float max)
 	{
-		playerHealth = Player.Instance.GetComponent<HealthSystem>();
-		playerTransform = Player.Instance.GetComponent<Transform>();
+		if (sign > 0)
+		{
+			return Mathf.Min(value, max);
+		}
+		return Mathf.Max(value, min);
 	}
 
-	private void Mob_OnResourceEmpty(object sender, System.EventArgs e)
+	void Update()
     {
-        ItemEntity.Spawn(transform.position, Item.Apple, 1);
-        Destroy(gameObject);
-=======
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+        direction = Mathf.Sign(playerRigidbody2D.position.x - transform.position.x);
+        rb.velocity = new Vector2(SignClamp(rb.velocity.x + direction * movementSpeed * Time.deltaTime * 10, direction, direction * movementSpeed, direction * movementSpeed), rb.velocity.y);
 
-public abstract class Mob : MonoBehaviour
-{
-    ResourceSystem hp;
-    protected void Awake()
-    {
-        //hp = new ResourceSystem(HeartsAmount());
-    }
-
-    protected abstract int HeartsAmount();
-
-    void Start()
-    {
-        
->>>>>>> parent of 6309ae3... Mob Animations and spawn
-    }
-
-    void Update()
-    {
-<<<<<<< HEAD
-        direction = Mathf.Sign(playerTransform.position.x - transform.position.x);
-        rb.velocity = new Vector2(direction * movementSpeed, rb.velocity.y);
-		transform.localScale = new Vector3(direction, 1, 1);
 		if (Physics2D.Raycast(transform.position + new Vector3(-0.15f, -1.05f), Vector2.right, 0.3f, 1 << 8))
 		{
-			if(Physics2D.Raycast(transform.position + Vector3.right * direction, Vector2.up, 0.25f, 1 << 8))
+			if (Physics2D.Raycast(transform.position + Vector3.right * 0.25f * direction, Vector2.up, 0.3f, 1 << 8))
 			{
-				rb.velocity = new Vector3(rb.velocity.x, Mathf.Sqrt(rb.gravityScale * -2f * 3f));
+				rb.velocity = new Vector3(rb.velocity.x, Mathf.Sqrt(rb.gravityScale * -2f * 1.5f));
 			}
 		}
-	}
-    private void OnCollisionEnter2D(Collision2D collision)
+
+		transform.localScale = new Vector3(direction, 1, 1);
+    }
+
+	float lastHitTime = 0;
+
+    private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject == Player.Instance.gameObject)
-        {
-            playerHealth.Decrease(damage);
-        }
+		if (collision.gameObject == Player.Instance.gameObject)
+		{
+			if (lastHitTime + 1 < Time.time)
+			{
+				lastHitTime = Time.time;
+				playerHealth.Decrease(damage);
+				playerRigidbody2D.AddForce(new Vector3(direction * 100, 5), ForceMode2D.Impulse);
+			}
+		}
     }
-
-
-=======
-        
-    }
->>>>>>> parent of 6309ae3... Mob Animations and spawn
 }

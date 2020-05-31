@@ -2,6 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class DoorSave
+{
+	public int x, y, z;
+	public float xScale;
+}
+
 public class Door : Block
 {
 	bool open;
@@ -25,5 +32,16 @@ public class Door : Block
 				open = false;
 			}
 		};
+	}
+
+	public DoorSave Save(int x, int y, int z)
+	{
+		return new DoorSave() { xScale = transform.localScale.x , x = x, y = y, z = z};
+	}
+
+	
+	public void Load(DoorSave data)
+	{
+		transform.localScale = new Vector3(data.xScale, 1, 1);
 	}
 }

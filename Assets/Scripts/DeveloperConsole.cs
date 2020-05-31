@@ -18,8 +18,11 @@ public class DeveloperConsole : MonoBehaviour
         canvas.enabled = false;
 		Commands = new Dictionary<string, Action<string[]>>();
 		Commands.Add("/give", Give);
+		Commands.Add("/spawn", Spawn);
 
     }
+
+
     private void Update()
     {
         if(InventoryUI.Instance.open)
@@ -77,9 +80,9 @@ public class DeveloperConsole : MonoBehaviour
 					if (Commands.ContainsKey(words[0]))
 					{
 						string command = words[0];
-						List<string> kurcina = new List<string>(words);
-						kurcina.RemoveAt(0);
-						words = kurcina.ToArray();
+						List<string> temp = new List<string>(words);
+						temp.RemoveAt(0);
+						words = temp.ToArray();
 						Commands[command](words);
 					}
 				}
@@ -92,24 +95,36 @@ public class DeveloperConsole : MonoBehaviour
 		if (arguments.Length == 2)
 		{
 			var fields = typeof(Item).GetFields();
-			foreach (var item in fields)
+			Item current = Item.GetItem(arguments[0].ToLower());
+			if (current != null)
 			{
-				if (item.FieldType == typeof(Item))
+				if (int.TryParse(arguments[1], out int number))
 				{
-					Item current = (Item)item.GetValue(null);
-					if (current.DisplayName == arguments[0])
-					{
-						int number;
-						if (int.TryParse(arguments[1], out number))
-						{
-							Inventory.Instance.Add(current, number);
-						}
-						break;
-					}
+					Inventory.Instance.Add(current, number);
 				}
 			}
 
 		}
 	}
-	
-}
+
+	private void Spawn(params string[] arguments)
+	{
+		if (arguments.Length == 1)
+		{
+			arguments[0] = arguments[0].ToLower();
+			if (arguments[0] == "on")
+			{
+				MobSwpawn.Instance.SetActive(true);
+			}
+			else if(arguments[0] == "off")
+			{
+				MobSwpawn.Instance.SetActive(false);
+				foreach(var mob in FindObjectsOfType<Mob>())
+				{
+					Destroy(mob.gameObject);
+				}
+			}
+		}
+	}
+
+	}

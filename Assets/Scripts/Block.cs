@@ -23,6 +23,7 @@ public class Block : MonoBehaviour
 
 	public Action specialAction = null;
 
+	public string BlockName{get; protected set;}
 	protected float hardness;
 	protected ToolType toolType;
 	protected ToolMaterial toolMaterial;
@@ -33,9 +34,10 @@ public class Block : MonoBehaviour
 
 	protected virtual void OnDestroyed() { }
 
-	public static Block Place(Block prefab, Vector3 worldPosition, float hardness, ToolType toolType, ToolMaterial toolMaterial, Sprite texture, Item item, Action specialAction = null,  bool background = false)
+	public static Block Place(Block prefab, Vector3 worldPosition, string name, float hardness, ToolType toolType, ToolMaterial toolMaterial, Sprite texture, Item item, Action specialAction = null,  bool background = false)
 	{
 		Block block = Instantiate(prefab, worldPosition, Quaternion.identity);
+		block.BlockName = name;
 		block.hardness = hardness;
 		block.toolMaterial = toolMaterial;
 		block.toolType = toolType;

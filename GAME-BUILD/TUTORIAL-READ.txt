@@ -1,0 +1,16 @@
+To start game, run "Minecraft-Mini-Edition.exe" in "GAME-BUILD" folder.
+
+Left click and hold to break blocks.
+Press "Space" to jump.
+Press "E" to open inventory.
+Right click to place blocks and eat food.
+Left click to attack mobs.
+Hold "Left-Alt" to place blocks in background.
+Press "Q" to drop items.
+Use command /give to get every block existing (/give 'itemName' 'amount') 
+Use command /spawn to toggle mob spawning (on / off)
+Crafting recipes can be looked up there: https://www.minecraft-crafting.net/
+
+All items in the game can be looked up in "AllItems.txt"
+
+TO RESET WORLD DELETE "blocks.txt" FILE IN DATA FOLDER

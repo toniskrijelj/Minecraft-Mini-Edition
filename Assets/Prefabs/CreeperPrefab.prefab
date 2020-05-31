@@ -12,11 +12,9 @@ GameObject:
   - component: {fileID: 7781056712416211554}
   - component: {fileID: 7781056712416211581}
   - component: {fileID: -4184652417161087827}
-<<<<<<< HEAD
-  - component: {fileID: -148512598836333402}
-  - component: {fileID: 8205717700309027675}
-=======
->>>>>>> parent of 6309ae3... Mob Animations and spawn
+  - component: {fileID: 631027038898453799}
+  - component: {fileID: 7607510614669556803}
+  - component: {fileID: 3062575534504622980}
   m_Layer: 10
   m_Name: CreeperPrefab
   m_TagString: Untagged
@@ -100,7 +98,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: -100
   m_Material: {fileID: 0}
@@ -121,25 +119,10 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-<<<<<<< HEAD
-  m_Offset: {x: -0.011460185, y: 0}
-  m_Size: {x: 0.33915067, y: 1.5294118}
+  m_Offset: {x: -0.008248091, y: 0}
+  m_Size: {x: 0.33746243, y: 1.5294118}
   m_Direction: 0
---- !u!114 &-148512598836333402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7781056712416211583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a729243cfeff094a98e2973404447cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 6
-  movementSpeed: 1
---- !u!114 &8205717700309027675
+--- !u!114 &631027038898453799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -152,8 +135,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceAmount: 10
-=======
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.7058824, y: 1.5294118}
-  m_Direction: 0
->>>>>>> parent of 6309ae3... Mob Animations and spawn
+  material: {fileID: 0}
+--- !u!114 &7607510614669556803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781056712416211583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ec7f72399093840ac9c2296b42f78f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 8
+  movementSpeed: 1
+--- !u!114 &3062575534504622980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781056712416211583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fcb25c2dc2687429c1e382348647da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

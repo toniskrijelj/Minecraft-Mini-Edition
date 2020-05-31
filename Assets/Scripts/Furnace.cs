@@ -2,9 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class FurnaceSaveData
+{
+	public int x, y, z;
+	public SlotData smeltingSlot;
+	public SlotData fuelSlot;
+	public SlotData outputSlot;
+	public float cookTime;
+	public float burnTimeTotal;
+	public float burnTime;
+
+	public FurnaceSaveData(Furnace furnace)
+	{
+		smeltingSlot = new SlotData(furnace.smeltingslot);
+		fuelSlot = new SlotData(furnace.fuelSlot);
+		outputSlot = new SlotData(furnace.outputSlot);
+		cookTime = furnace.cookTime;
+		burnTimeTotal = furnace.burnTimeTotal;
+		burnTime = furnace.burnTime;
+	}
+}
+
+
 public class Furnace : Block
 {
-	public Slot smeltingslot { get; private set; } = new Slot();
+	public Slot smeltingslot { get; private set; }
 	public Slot fuelSlot { get; private set; } = new Slot();
 	public Slot outputSlot { get; private set; } = new Slot();
 
@@ -16,7 +39,17 @@ public class Furnace : Block
 	private void Awake()
 	{
 		specialAction = () => FurnaceUI.Instance.SetFurnace(this);
-		smeltingslot.OnSlotItemChanged += Smeltingslot_OnSlotItemChanged;
+		SetSmeltingSlot(new Slot());
+	}
+
+	private void SetSmeltingSlot(Slot slot)
+	{
+		if(smeltingslot != null)
+		{
+			smeltingslot.OnSlotItemChanged -= Smeltingslot_OnSlotItemChanged;
+		}
+		smeltingslot = slot;
+		slot.OnSlotItemChanged += Smeltingslot_OnSlotItemChanged;
 	}
 
 	private void Smeltingslot_OnSlotItemChanged(int arg1, Item arg2)
@@ -68,5 +101,21 @@ public class Furnace : Block
 		smeltingslot.Drop(true, transform.position);
 		fuelSlot.Drop(true, transform.position);
 		outputSlot.Drop(true, transform.position);
+	}
+
+	public FurnaceSaveData Save(int x, int y, int z)
+	{
+		return new FurnaceSaveData(this) { x = x, y = y, z = z };
+	}
+
+	public void Load(FurnaceSaveData saveData)
+	{
+		SetSmeltingSlot(saveData.smeltingSlot.GetSlot());
+		fuelSlot = saveData.fuelSlot.GetSlot();
+		outputSlot = saveData.outputSlot.GetSlot();
+
+		burnTime = saveData.burnTime;
+		burnTimeTotal = saveData.burnTimeTotal;
+		cookTime = saveData.cookTime;
 	}
 }

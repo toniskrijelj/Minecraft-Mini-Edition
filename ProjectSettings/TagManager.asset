@@ -16,7 +16,7 @@ TagManager:
   - Blocks
   - NoPlayerLayer
   - Player
-  - ItemEntity
+  - Entity
   - 
   - 
   - 

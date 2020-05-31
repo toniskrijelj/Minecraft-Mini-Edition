@@ -12,11 +12,9 @@ GameObject:
   - component: {fileID: 7781056712416211554}
   - component: {fileID: 7781056712416211581}
   - component: {fileID: -1259917887050649939}
-<<<<<<< HEAD
-  - component: {fileID: -5282723392727902107}
-  - component: {fileID: 3467954426548254715}
-=======
->>>>>>> parent of 6309ae3... Mob Animations and spawn
+  - component: {fileID: 1316856119108651848}
+  - component: {fileID: 3292560750203450450}
+  - component: {fileID: -2357263025199221730}
   m_Layer: 10
   m_Name: SkeletonPrefab
   m_TagString: Untagged
@@ -100,7 +98,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: -100
   m_Material: {fileID: 0}
@@ -121,25 +119,10 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-<<<<<<< HEAD
-  m_Offset: {x: -0.17637745, y: 0}
-  m_Size: {x: 0.52959806, y: 1.882353}
+  m_Offset: {x: -0.20935678, y: 0}
+  m_Size: {x: 0.21153784, y: 1.882353}
   m_Direction: 0
---- !u!114 &-5282723392727902107
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7781056712416211583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a729243cfeff094a98e2973404447cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 10
-  movementSpeed: 1
---- !u!114 &3467954426548254715
+--- !u!114 &1316856119108651848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,9 +134,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4a1ce84d6b5704a9fec8be6ae5540b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceAmount: 10
-=======
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.88235295, y: 1.882353}
-  m_Direction: 0
->>>>>>> parent of 6309ae3... Mob Animations and spawn
+  resourceAmount: 13
+  material: {fileID: 0}
+--- !u!114 &3292560750203450450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781056712416211583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed414be8f4197784181187dc85f64ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 6
+  movementSpeed: 1
+--- !u!114 &-2357263025199221730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781056712416211583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fcb25c2dc2687429c1e382348647da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

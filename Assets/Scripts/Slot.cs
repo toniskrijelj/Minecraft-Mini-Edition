@@ -3,6 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[System.Serializable]
+public class SlotData
+{
+	public string itemName;
+	public int amount;
+	public int index;
+
+	public SlotData(Slot slot)
+	{
+		if (slot.Item == null)
+		{
+			itemName = "";
+		}
+		else
+		{
+			itemName = slot.Item.DisplayName.ToLower();
+		}
+		amount = slot.Amount;
+		index = slot.Index;
+	}
+
+	public Slot GetSlot()
+	{
+		return new Slot(Item.GetItem(itemName), amount, index);
+	}
+}
+
 public class Slot
 {
 	public Slot() { }

@@ -12,11 +12,9 @@ GameObject:
   - component: {fileID: 7781056712416211554}
   - component: {fileID: 7781056712416211581}
   - component: {fileID: 2419777825151583096}
-<<<<<<< HEAD
-  - component: {fileID: -3210756766472389168}
-  - component: {fileID: 7111435623734923990}
-=======
->>>>>>> parent of 6309ae3... Mob Animations and spawn
+  - component: {fileID: -5437223729856002871}
+  - component: {fileID: 8807526474685674268}
+  - component: {fileID: -4508668801826406330}
   m_Layer: 10
   m_Name: ZombiePrefab
   m_TagString: Untagged
@@ -100,7 +98,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: -100
   m_Material: {fileID: 0}
@@ -121,25 +119,10 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-<<<<<<< HEAD
-  m_Offset: {x: -0.21269101, y: 0}
-  m_Size: {x: 0.39814746, y: 1.882353}
+  m_Offset: {x: -0.16878688, y: -0.00000011920929}
+  m_Size: {x: 0.22991824, y: 1.7726228}
   m_Direction: 0
---- !u!114 &-3210756766472389168
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7781056712416211583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a729243cfeff094a98e2973404447cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 5
-  movementSpeed: 1
---- !u!114 &7111435623734923990
+--- !u!114 &-5437223729856002871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,9 +134,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4a1ce84d6b5704a9fec8be6ae5540b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceAmount: 10
-=======
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.8235294, y: 1.882353}
-  m_Direction: 0
->>>>>>> parent of 6309ae3... Mob Animations and spawn
+  resourceAmount: 15
+  material: {fileID: 0}
+--- !u!114 &8807526474685674268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781056712416211583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1e8b891b63a4514196aeadfe457d204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+  movementSpeed: 1
+--- !u!114 &-4508668801826406330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7781056712416211583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56fcb25c2dc2687429c1e382348647da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

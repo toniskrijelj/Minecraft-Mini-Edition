@@ -1,8 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.EventSystems;
+
+[Serializable]
+public class InventoryData
+{
+	public SlotData[] slots;
+
+	public InventoryData(Inventory inventory)
+	{
+		slots = new SlotData[Inventory.SLOTS];
+		for(int i = 0; i < Inventory.SLOTS; i++)
+		{
+			slots[i] = new SlotData(inventory.slots[i]);
+		}
+	}
+}
 
 public class Inventory : MonoBehaviour
 {
@@ -19,32 +35,15 @@ public class Inventory : MonoBehaviour
 		Instance = this;
 		player = GetComponent<Player>();
 		player.OnPlayerRespawn += Player_OnPlayerRespawn;
-		for (int i = 0; i < SLOTS; i++)
-		{
-			slots[i] = new Slot(null, 0, i);
-		}
-		/*
-		slots[0].SetItemAmount(Item.WoodenPickaxe, 1);
-		slots[1].SetItemAmount(Item.StonePickaxe, 1);
-		slots[2].SetItemAmount(Item.IronPickaxe, 1);
-		slots[3].SetItemAmount(Item.GoldPickaxe, 1);
-		slots[4].SetItemAmount(Item.DiamondPickaxe, 1);
-		slots[5].SetItemAmount(Item.WoodenAxe, 1);
-		slots[6].SetItemAmount(Item.StoneAxe, 1);
-		slots[7].SetItemAmount(Item.IronAxe, 1);
-		slots[8].SetItemAmount(Item.GoldenAxe, 1);
-		slots[9].SetItemAmount(Item.DiamondAxe, 1);
-		slots[10].SetItemAmount(Item.CoalOre, 64);
-		slots[11].SetItemAmount(Item.IronOre, 64);
-		slots[12].SetItemAmount(Item.DiamondOre, 64);
-		slots[13].SetItemAmount(Item.CraftingTable, 64);
-		slots[14].SetItemAmount(Item.OakLog, 64);
-		slots[15].SetItemAmount(Item.Sand, 64);
-		slots[16].SetItemAmount(Item.furnace, 64);
-		slots[17].SetItemAmount(Item.Apple, 64);
-		slots[18].SetItemAmount(Item.RawBeef, 64);
-		slots[19].SetItemAmount(Item.CobblestoneSlab, 64);*/
 		GetComponent<HealthSystem>().OnResourceEmpty += Inventory_OnResourceEmpty;
+		DeathScreen.OnQuit += Save;
+		if (!Load())
+		{
+			for (int i = 0; i < SLOTS; i++)
+			{
+				slots[i] = new Slot(null, 0, i);
+			}
+		}
 	}
 
 	private void Player_OnPlayerRespawn()
@@ -171,5 +170,27 @@ public class Inventory : MonoBehaviour
 	public void Drop(int index, bool all = false)
 	{
 		slots[index].Drop(all);
+	}
+
+	public void Save()
+	{
+		string json = JsonUtility.ToJson(new InventoryData(this));
+		File.WriteAllText(Application.dataPath + "/inventory.txt", json);
+	}
+
+	private bool Load()
+	{
+		if (File.Exists(Application.dataPath + "/inventory.txt"))
+		{
+			string saveString = File.ReadAllText(Application.dataPath + "/inventory.txt");
+
+			InventoryData data = JsonUtility.FromJson<InventoryData>(saveString);
+			for(int i = 0; i < SLOTS; i++)
+			{
+				slots[i] = data.slots[i].GetSlot();
+			}
+			return true;
+		}
+		return false;
 	}
 }

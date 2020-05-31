@@ -18,7 +18,7 @@ public class Item : Enumeration
 	public static readonly Item CraftingTable = new BlockItem("Crafting_Table", () => ItemData.icons.craftingTable, BlockType.CraftingTable);
 	public static readonly Item Chest = new BlockItem("Chest", () => ItemData.icons.Chest, BlockType.Chest);
 	public static readonly Item CoalOre = new BlockItem("Coal_Ore", () => ItemData.icons.CoalOre, BlockType.CoalOre);
-	public static readonly Item Coal = new Item("Coal_Ore", () => ItemData.icons.coal, true);
+	public static readonly Item Coal = new Item("Coal", () => ItemData.icons.coal, true);
 	public static readonly Item Cobblestone = new BlockItem("Cobblestone", () => ItemData.icons.Cobblestone, BlockType.Cobblestone);
 	public static readonly Item Door = new BlockItem("Door", () => ItemData.icons.oakDoor, BlockType.Door);
 	public static readonly Item GrassBlock = new BlockItem("Grass_Block", () => ItemData.icons.grassBlock, BlockType.GrassBlock);
@@ -98,6 +98,22 @@ public class Item : Enumeration
 	public static readonly Item BirchSlab = new BlockItem("Birch_Slab", () => ItemData.icons.BirchSlab, BlockType.BirchSlab);
 
 
+	public static Item GetItem(string itemName)
+	{
+		var fields = typeof(Item).GetFields();
+		foreach (var item in fields)
+		{
+			if (item.FieldType == typeof(Item))
+			{
+				Item current = (Item)item.GetValue(null);
+				if (current.DisplayName.ToLower() == itemName)
+				{
+					return current;
+				}
+			}
+		}
+		return null;
+	}
 	
 
 	private Action putInHand = null;
